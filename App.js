@@ -1,21 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
+//Adicionar StatusBar
+import 'react-native-gesture-handler'
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native'
+import { View, Text, ImageBackground, StyleSheet } from 'react-native';
+import firebase from './src/services/firebaseConnection';
+
+import Routes from './src/routes/index';
+
+const image = { uri: "https://reactjs.org/logo-og.png" };
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer style={{ marginTop: 150 }}>
+      <ImageBackground source={image} style={styles.image}>
+
+        <Routes />
+      
+      </ImageBackground>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  image: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    resizeMode: "cover",
+    justifyContent: "center"
+  }
 });

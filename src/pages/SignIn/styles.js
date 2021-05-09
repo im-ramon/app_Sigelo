@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native'
 
-const cores = {
-    color1: "#12121250",
+export const cores = {
+    color1: "#121212", //tirei um "50" daqui, poder dar erro alguma hora na cor preta base
     color2: "#011126",
     color3: "#3C74A6",
     color4: "#73AABF",
@@ -60,7 +60,7 @@ export const SubmitButton = styled.TouchableOpacity`
 `;
 
 export const SubmitText = styled.Text`
-    color: ${cores.color1};
+    color: ${cores.color7};
     font-weight: bold;
     text-transform: uppercase;
 `;

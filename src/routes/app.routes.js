@@ -7,7 +7,7 @@ const AppSatck = createStackNavigator();
 function AppRoutes() {
     return (
         <AppSatck.Navigator>
-            <AppSatck.Screen name="Home" component={Home} />
+            <AppSatck.Screen name="Home" component={Home}  options={{headerShown: false}} />
         </AppSatck.Navigator>
     );
 }

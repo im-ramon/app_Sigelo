@@ -18,20 +18,20 @@ export default function Home() {
             <ImageBackground source={require('../../assets/background.jpg')} style={style.bodyBackground}>
                 <View style={style.root}>
                     <View style={style.menu}>
-                        <TouchableOpacity style={style.menu_item} onPress={() => { signOut(); }}>
+                        <TouchableOpacity style={style.menu_item} onPress={() => signOut()}>
                             <Ionicons name="exit-sharp" size={40} color={cores.color5} style={{ transform: [{ rotate: "180deg" }] }} />
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={style.menu_item} onPress={() => { alert('Abrir página de configurações') }}>
+                        <TouchableOpacity style={style.menu_item} onPress={ () => {navigation.navigate('Conf')}}>
                             <Ionicons name="settings-sharp" size={40} color={cores.color5} />
                         </TouchableOpacity>
                     </View>
 
-                    {/* <Text style={style.textWelcome}>Bem vindo, {user.nome}!</Text> */}
-
+                    <Text style={style.textWelcome}>Bem vindo, {user.nome}!</Text>
+                    
                     <Text style={style.text_menu}>MENU</Text>
                     <View style={style.section}>
-                        <TouchableOpacity style={style.section_btn}>
+                        <TouchableOpacity style={style.section_btn} onPress={ () => {navigation.navigate('ScannerQR')}}>
                             <Ionicons name="camera-sharp" size={64} color={cores.color3} />
                             <Text style={style.section_btn_text}>Abrir scanner</Text>
                         </TouchableOpacity>

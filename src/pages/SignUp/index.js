@@ -80,7 +80,7 @@ export default function SignUp() {
                         alert('x')
                     }}>
                         <SubmitText>
-                            Entrar
+                            Enviar
                     </SubmitText>
                     </SubmitButton>
                 </Container>

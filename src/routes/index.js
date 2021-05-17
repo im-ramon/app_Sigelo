@@ -13,7 +13,7 @@ function Routes() {
             <ActivityIndicator size="large" color="#121212" />
         </View>
     }
-
+    
     return (
         signed ? <AuthRoutes /> : <AppRoutes />
     );

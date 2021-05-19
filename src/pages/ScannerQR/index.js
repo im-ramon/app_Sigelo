@@ -14,6 +14,7 @@ export default function ScannerQR() {
   const [cor, setCor] = useState('buscando...')
   const [modelo, setModelo] = useState('buscando...')
   const [tipo, setTipo] = useState('buscando...')
+  const [validade, setValidade] = useState('buscando...')
 
 
   useEffect(() => {
@@ -26,17 +27,23 @@ export default function ScannerQR() {
 
   async function dados(data) {
     await firebase.database().ref('users/' + data).on('value', (snapshot) => {
-      setNome(snapshot.val().nome)
-      setCor(snapshot.val().cor)
-      setModelo(snapshot.val().modelo)
-      setTipo(snapshot.val().tipo)
+      try {
+        setNome(snapshot.val().nome)
+        setCor(snapshot.val().cor)
+        setModelo(snapshot.val().modelo)
+        setTipo(snapshot.val().tipo)
+        setValidade(snapshot.val().validade)
+        setModalActive(true)
+      } catch (error) {
+        setModalActive(false)
+        alert('eroooou!')
+      }
     })
   }
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     dados(data);
-    setModalActive(true)
   };
 
   if (hasPermission === null) {
@@ -45,6 +52,14 @@ export default function ScannerQR() {
   if (hasPermission === false) {
     return <Text>Sem acesso à câmera.</Text>;
   }
+
+  // function getDate(validade){
+  //   let dataAgora = new Date()
+  //   let dataValidade = new Date(validade)
+
+  //   return `${dataValidade}`
+
+  // }
 
   return (
     <View style={styles.container}>
@@ -64,6 +79,8 @@ export default function ScannerQR() {
             <Text style={styles.text}>Cor do veículo: <Text style={styles.textDestaque}>{cor}</Text></Text>
             <Text style={styles.text}>Modelo do veículo: <Text style={styles.textDestaque}>{modelo}</Text></Text>
             <Text style={styles.text}>Tipo de acesso: <Text style={styles.textDestaque}>{tipo}</Text></Text>
+            <Text style={styles.text}>Validade: <Text style={styles.textDestaque}>{validade}</Text></Text>
+            {/* <Text style={styles.text}>Hoje: {getDate(validade)} </Text> */}
 
           </View>
 
@@ -89,7 +106,7 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     backgroundColor: '#141414',
-    flex:1,
+    flex: 1,
   },
   header: {
     flex: 1,
@@ -107,7 +124,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#ffffff',
     fontSize: 18
-  }, 
+  },
   textDestaque: {
     color: '#F27405',
     fontWeight: '900',

@@ -46,7 +46,7 @@ export default function Home() {
                             <Text style={style.section_btn_text}>Verificar pendências</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={style.section_btn}>
+                        <TouchableOpacity style={style.section_btn} onPress={ () => {navigation.navigate('Register')}}>
                             <Ionicons name="add-sharp" size={64} color={cores.color3} />
                             <Text style={style.section_btn_text}>Cadastrar veículos</Text>
                         </TouchableOpacity>

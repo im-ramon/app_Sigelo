@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { ImageBackground, StyleSheet } from 'react-native';
+import { ImageBackground, StyleSheet, TextInput } from 'react-native';
 import { Background, Container, Logo, AreaInput, Input, SubmitButton, SubmitText, Link, LinkText, styles } from '../../styles/styles';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../contexts/auth'
+import { color } from 'react-native-reanimated';
 
 export default function SignIn() {
 
@@ -35,7 +36,7 @@ export default function SignIn() {
                         />
                     </AreaInput>
 
-                    <AreaInput>
+                    <AreaInput >
                         <Ionicons name="lock-closed" size={20} color="#dedede" style={{ marginLeft: 5 }} />
                         <Input
                             placeholder="Digite sua senha"

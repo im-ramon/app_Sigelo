@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Button, Modal, TouchableOpacity } from 'react-n
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import firebase from '../../../src/services/firebaseConnection';
 import { Ionicons } from '@expo/vector-icons';
+import { cores } from '../Register/listas';
 
 export default function ScannerQR() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -10,11 +11,16 @@ export default function ScannerQR() {
 
   const [modalActive, setModalActive] = useState(false)
 
-  const [nome, setNome] = useState('buscando...')
-  const [cor, setCor] = useState('buscando...')
+  const [nomeCompleto, setNomeCompleto] = useState('buscando...')
+  const [postGrad, setPostGrad] = useState('buscando...')
+  const [nomeGuerra, setNomeGuerra] = useState('buscando...')
   const [modelo, setModelo] = useState('buscando...')
-  const [tipo, setTipo] = useState('buscando...')
+  const [placa, setPlaca] = useState('buscando...')
+  const [cor, setCor] = useState('buscando...')
+  const [tipoAcesso, setTipoAcesso] = useState('buscando...')
   const [validade, setValidade] = useState('buscando...')
+  const [documentoIdentidade, setDocumentoIdentidade] = useState('buscando...')
+  const [observacoes, setObservacoes] = useState('buscando...')
 
 
   useEffect(() => {
@@ -26,13 +32,19 @@ export default function ScannerQR() {
 
 
   async function dados(data) {
-    await firebase.database().ref('users/' + data).on('value', (snapshot) => {
+    await firebase.database().ref('veiculos/' + data).on('value', (snapshot) => {
       try {
-        setNome(snapshot.val().nome)
-        setCor(snapshot.val().cor)
+        setNomeCompleto(snapshot.val().nomeCompleto)
+        setPostGrad(snapshot.val().postGrad)
+        setNomeGuerra(snapshot.val().nomeGuerra)
         setModelo(snapshot.val().modelo)
-        setTipo(snapshot.val().tipo)
+        setPlaca(snapshot.val().placa)
+        setCor(snapshot.val().cor)
+        setTipoAcesso(snapshot.val().tipoAcesso)
         setValidade(snapshot.val().validade)
+        setDocumentoIdentidade(snapshot.val().documentoIdentidade)
+        setObservacoes(snapshot.val().observacoes)
+
         setModalActive(true)
       } catch (error) {
         setModalActive(false)
@@ -53,16 +65,9 @@ export default function ScannerQR() {
     return <Text>Sem acesso à câmera.</Text>;
   }
 
-  // function getDate(validade){
-  //   let dataAgora = new Date()
-  //   let dataValidade = new Date(validade)
-
-  //   return `${dataValidade}`
-
-  // }
-
   return (
     <View style={styles.container}>
+      <Text style={styles.textAbsolute}>Aponte a câmera para o selo.</Text>
 
       <Modal animationType="slide" visible={modalActive} >
         <View style={styles.modalContainer}>
@@ -75,18 +80,19 @@ export default function ScannerQR() {
 
           <View style={styles.modalBody}>
 
-            <Text style={styles.text}>Propietário: <Text style={styles.textDestaque}>{nome}</Text></Text>
-            <Text style={styles.text}>Cor do veículo: <Text style={styles.textDestaque}>{cor}</Text></Text>
+            <Text style={styles.text}>Propietário: <Text style={styles.textDestaque}>{arrayPostGrad[postGrad].pg + ' ' +nomeGuerra}</Text></Text>
+            <Text style={styles.text}>Nome completo: <Text style={styles.textDestaque}>{nomeCompleto}</Text></Text>
+            <Text style={styles.text}>Documento de Identidade: <Text style={styles.textDestaque}>{documentoIdentidade}</Text></Text>
             <Text style={styles.text}>Modelo do veículo: <Text style={styles.textDestaque}>{modelo}</Text></Text>
-            <Text style={styles.text}>Tipo de acesso: <Text style={styles.textDestaque}>{tipo}</Text></Text>
+            <Text style={styles.text}>Cor do veículo: <Text style={styles.textDestaque}>{cores[cor].cor}</Text></Text>
+            <Text style={styles.text}>Áreas de acesso permitido: <Text style={styles.textDestaque}>{tipoAcesso}</Text></Text>
             <Text style={styles.text}>Validade: <Text style={styles.textDestaque}>{validade}</Text></Text>
-            {/* <Text style={styles.text}>Hoje: {getDate(validade)} </Text> */}
+            <Text style={styles.text}>Observações: <Text style={styles.textDestaque}>{observacoes}</Text></Text>
 
           </View>
 
         </View>
       </Modal>
-
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
@@ -129,5 +135,12 @@ const styles = StyleSheet.create({
     color: '#F27405',
     fontWeight: '900',
     textDecorationLine: 'underline'
+  },
+  textAbsolute: {
+    position: 'absolute',
+    zIndex: 1,
+    fontSize: 18,
+    top: 30,
+    color: '#dedede'
   }
 })

@@ -17,7 +17,7 @@ function AppRoutes() {
                 component={ScannerQR}
                 options={{
                     headerShown: true,
-                    title: 'Pesquisar dados do selo',
+                    title: 'Voltar',
                     headerStyle: {
                         backgroundColor: '#121212',
                         borderBottomColor: '#F27405',
@@ -32,7 +32,7 @@ function AppRoutes() {
                 component={Register}
                 options={{
                     headerShown: true,
-                    title: 'Registar novo veículo',
+                    title: 'Voltar',
                     headerStyle: {
                         backgroundColor: '#121212',
                         borderBottomColor: '#F27405',
@@ -47,7 +47,7 @@ function AppRoutes() {
                 component={Conf}
                 options={{
                     headerShown: true,
-                    title: 'Pesquisar dados do selo',
+                    title: 'Voltar',
                     headerStyle: {
                         backgroundColor: '#121212',
                         borderBottomColor: '#F27405',

@@ -33,4 +33,17 @@ export const style = StyleSheet.create({
         flex: 1,
         alignSelf: 'center'
     },
+    piker: {
+        backgroundColor: '#121212',
+        borderBottomWidth: 3,
+        borderBottomColor: '#3C74A6',
+        width: '80%',
+        flex: 1,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        height: 35,
+        marginBottom: 20,
+        alignItems: 'center',
+        paddingBottom: 10,
+    },
 })

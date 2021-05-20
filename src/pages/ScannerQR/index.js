@@ -4,6 +4,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import firebase from '../../../src/services/firebaseConnection';
 import { Ionicons } from '@expo/vector-icons';
 import { cores } from '../Register/listas';
+import { arrayPostGrad } from '../Register/listas'
 
 export default function ScannerQR() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -32,7 +33,7 @@ export default function ScannerQR() {
 
 
   async function dados(data) {
-    await firebase.database().ref('veiculos/' + data).on('value', (snapshot) => {
+    await firebase.database().ref('veiculos/' + data.replace(/\.?\,?\#?\$?\[?\]?/g, '')).on('value', (snapshot) => {
       try {
         setNomeCompleto(snapshot.val().nomeCompleto)
         setPostGrad(snapshot.val().postGrad)
@@ -48,7 +49,7 @@ export default function ScannerQR() {
         setModalActive(true)
       } catch (error) {
         setModalActive(false)
-        alert('eroooou!')
+        alert('Identificador do selo não encontrado no banco de dados!')
       }
     })
   }
@@ -80,11 +81,12 @@ export default function ScannerQR() {
 
           <View style={styles.modalBody}>
 
-            <Text style={styles.text}>Propietário: <Text style={styles.textDestaque}>{arrayPostGrad[postGrad].pg + ' ' +nomeGuerra}</Text></Text>
+            <Text style={styles.text}>Propietário: <Text style={styles.textDestaque}>{nomeGuerra}</Text></Text>
             <Text style={styles.text}>Nome completo: <Text style={styles.textDestaque}>{nomeCompleto}</Text></Text>
             <Text style={styles.text}>Documento de Identidade: <Text style={styles.textDestaque}>{documentoIdentidade}</Text></Text>
             <Text style={styles.text}>Modelo do veículo: <Text style={styles.textDestaque}>{modelo}</Text></Text>
-            <Text style={styles.text}>Cor do veículo: <Text style={styles.textDestaque}>{cores[cor].cor}</Text></Text>
+            <Text style={styles.text}>Placa do veículo: <Text style={styles.textDestaque}>{placa}</Text></Text>
+            <Text style={styles.text}>Cor do veículo: <Text style={styles.textDestaque}>{cor}</Text></Text>
             <Text style={styles.text}>Áreas de acesso permitido: <Text style={styles.textDestaque}>{tipoAcesso}</Text></Text>
             <Text style={styles.text}>Validade: <Text style={styles.textDestaque}>{validade}</Text></Text>
             <Text style={styles.text}>Observações: <Text style={styles.textDestaque}>{observacoes}</Text></Text>

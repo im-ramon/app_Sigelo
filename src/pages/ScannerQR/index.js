@@ -44,12 +44,12 @@ export default function ScannerQR() {
         setTipoAcesso(snapshot.val().tipoAcesso)
         setValidade(snapshot.val().validade)
         setDocumentoIdentidade(snapshot.val().documentoIdentidade)
-        setObservacoes(snapshot.val().observacoes)
+        setObservacoes(!snapshot.val().observacoes ? 'Sem observações' : snapshot.val().observacoes)
 
         setModalActive(true)
       } catch (error) {
         setModalActive(false)
-        alert('Identificador do selo não encontrado no banco de dados!')
+        alert(`O identificador nº "${data}" não foi encontrado no banco de dados.\nTente novamente!`)
       }
     })
   }
@@ -79,17 +79,19 @@ export default function ScannerQR() {
             </TouchableOpacity>
           </View>
 
-          <View style={styles.modalBody}>
 
-            <Text style={styles.text}>Propietário: <Text style={styles.textDestaque}>{nomeGuerra}</Text></Text>
-            <Text style={styles.text}>Nome completo: <Text style={styles.textDestaque}>{nomeCompleto}</Text></Text>
-            <Text style={styles.text}>Documento de Identidade: <Text style={styles.textDestaque}>{documentoIdentidade}</Text></Text>
-            <Text style={styles.text}>Modelo do veículo: <Text style={styles.textDestaque}>{modelo}</Text></Text>
-            <Text style={styles.text}>Placa do veículo: <Text style={styles.textDestaque}>{placa}</Text></Text>
-            <Text style={styles.text}>Cor do veículo: <Text style={styles.textDestaque}>{cor}</Text></Text>
-            <Text style={styles.text}>Áreas de acesso permitido: <Text style={styles.textDestaque}>{tipoAcesso}</Text></Text>
-            <Text style={styles.text}>Validade: <Text style={styles.textDestaque}>{validade}</Text></Text>
-            <Text style={styles.text}>Observações: <Text style={styles.textDestaque}>{observacoes}</Text></Text>
+          <View style={styles.modalBody}>
+            <Text style={styles.headerH1}>Veículo encontrado:</Text>
+
+            <Text style={styles.text}>Propietário: <Text style={styles.textAchado}>{nomeGuerra}</Text></Text>
+            <Text style={styles.text}>Nome completo: <Text style={styles.textAchado}>{nomeCompleto}</Text></Text>
+            <Text style={styles.text}>Documento de Identidade: <Text style={styles.textAchado}>{documentoIdentidade}</Text></Text>
+            <Text style={styles.text}>Modelo do veículo: <Text style={styles.textAchado}>{modelo}</Text></Text>
+            <Text style={styles.text}>Placa do veículo: <Text style={styles.textAchado}>{placa}</Text></Text>
+            <Text style={styles.text}>Cor do veículo: <Text style={styles.textAchado}>{cor}</Text></Text>
+            <Text style={styles.text}>Áreas de acesso permitido: <Text style={styles.textAchado}>{tipoAcesso}</Text></Text>
+            <Text style={styles.text}>Validade: <Text style={styles.textAchado}>{validade}</Text></Text>
+            <Text style={styles.text}>Observações: <Text style={styles.textAchado}>{observacoes}</Text></Text>
 
           </View>
 
@@ -115,6 +117,7 @@ const styles = StyleSheet.create({
   modalContainer: {
     backgroundColor: '#141414',
     flex: 1,
+    paddingHorizontal: 10,
   },
   header: {
     flex: 1,
@@ -124,19 +127,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#141414',
     flexDirection: 'row'
   },
+  headerH1: {
+    color: '#dedede',
+    textAlign: 'center',
+    fontSize: 28,
+    backgroundColor: '#F27405',
+    width: '80%',
+    paddingVertical: 5,
+    fontWeight: 'bold',
+    marginBottom: 30,
+  },
   modalBody: {
     alignItems: 'center',
     justifyContent: 'center',
     flex: 12,
   },
   text: {
-    color: '#ffffff',
-    fontSize: 18
-  },
-  textDestaque: {
-    color: '#F27405',
+    color: '#3C74A6',
+    fontSize: 18,
     fontWeight: '900',
-    textDecorationLine: 'underline'
+  },
+  textAchado: {
+    color: '#dedede',
+    fontSize: 16,
   },
   textAbsolute: {
     position: 'absolute',

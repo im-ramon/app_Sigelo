@@ -1,0 +1,19 @@
+Funcionalidades:
+1. Verificar se a placa exisite antes de inserir
+2. Criar editar com Modal
+3. Como implementar datas
+
+
+
+
+Melhorias de UX:
+1. Falta implementar validação dos campos em tempo real
+2. Limpar campos ao remeter (testar com then)
+
+    color1: "#121212",
+    color2: "#011126",
+    color3: "#3C74A6",
+    color4: "#73AABF",
+    color5: "#F27405",
+    color6: "#F24405",
+    color7: "#e1e1e1",

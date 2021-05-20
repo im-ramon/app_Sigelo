@@ -33,12 +33,12 @@ export default function Home() {
                     <View style={style.section}>
                         <TouchableOpacity style={style.section_btn} onPress={ () => {navigation.navigate('ScannerQR')}}>
                             <Ionicons name="camera-sharp" size={64} color={cores.color3} />
-                            <Text style={style.section_btn_text}>Abrir scanner</Text>
+                            <Text style={style.section_btn_text}>Escanear selo</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={style.section_btn}>
-                            <Ionicons name="checkmark-circle-sharp" size={64} color={cores.color3} />
-                            <Text style={style.section_btn_text}>Cadastros Ativos</Text>
+                            <Ionicons name="checkmark-circle-sharp" size={64} color={cores.color3} onPress={ () => {navigation.navigate('UserList')}}/>
+                            <Text style={style.section_btn_text}>Consultar e editar cadastros</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={style.section_btn}>

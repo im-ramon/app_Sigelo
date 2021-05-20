@@ -7,6 +7,7 @@ import { style } from './style'
 import { Picker } from '@react-native-picker/picker'
 import firebase from '../../services/firebaseConnection'
 import { arrayPostGrad, cores } from './listas'
+import ModalConfirm from './ModalConfirm'
 
 export default function Register() {
 
@@ -23,6 +24,8 @@ export default function Register() {
     const [validade, setValidade] = useState('')
     const [documentoIdentidade, setDocumentoIdentidade] = useState('')
     const [observacoes, setObservacoes] = useState('')
+
+    const [modalActive, setModalActive] = useState(false)
 
     let itemPostGrad = arrayPostGrad.map((value, index) => {
         return <Picker.Item key={index} value={index} label={value.pg} />
@@ -167,13 +170,16 @@ export default function Register() {
                             if (nomeCompleto != '' && postGrad != '' && nomeGuerra != '' && modelo != '' && placa != '' && cor != '' && tipoAcesso != '' && validade != '' && documentoIdentidade != '') {
                                 insertNoFireBase(nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade, observacoes, documentoIdentidade)
                             } else {
-                                alert('Preencha todos os campos')
+                                alert('Preencha todos os campos para continuar.')
                             }
                         }}>
                             <SubmitText>
                                 Enviar
-                    </SubmitText>
+                            </SubmitText>
                         </SubmitButton>
+
+                        {modalActive == true ? <ModalConfirm /> : <Text></Text>}
+                        
                     </ScrollView>
                 </Container>
             </ImageBackground>

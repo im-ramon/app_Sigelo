@@ -13,11 +13,11 @@ export default function ScannerQR() {
   const [modalActive, setModalActive] = useState(false)
 
   const [nomeCompleto, setNomeCompleto] = useState('buscando...')
-  const [postGrad, setPostGrad] = useState('buscando...')
+  const [postGrad, setPostGrad] = useState(0)
   const [nomeGuerra, setNomeGuerra] = useState('buscando...')
   const [modelo, setModelo] = useState('buscando...')
   const [placa, setPlaca] = useState('buscando...')
-  const [cor, setCor] = useState('buscando...')
+  const [cor, setCor] = useState(0)
   const [tipoAcesso, setTipoAcesso] = useState('buscando...')
   const [validade, setValidade] = useState('buscando...')
   const [documentoIdentidade, setDocumentoIdentidade] = useState('buscando...')
@@ -42,7 +42,7 @@ export default function ScannerQR() {
         setPlaca(snapshot.val().placa)
         setCor(snapshot.val().cor)
         setTipoAcesso(snapshot.val().tipoAcesso)
-        setValidade(snapshot.val().validade)
+        setValidade(Date.parse(snapshot.val().validade))
         setDocumentoIdentidade(snapshot.val().documentoIdentidade)
         setObservacoes(!snapshot.val().observacoes ? 'Sem observações' : snapshot.val().observacoes)
 
@@ -66,6 +66,8 @@ export default function ScannerQR() {
     return <Text>Sem acesso à câmera.</Text>;
   }
 
+  let dataPrint = new Date(validade)
+
   return (
     <View style={styles.container}>
       <Text style={styles.textAbsolute}>Aponte a câmera para o selo.</Text>
@@ -83,14 +85,16 @@ export default function ScannerQR() {
           <View style={styles.modalBody}>
             <Text style={styles.headerH1}>Veículo encontrado:</Text>
 
-            <Text style={styles.text}>Propietário: <Text style={styles.textAchado}>{nomeGuerra}</Text></Text>
+            <Text style={styles.text}>Propietário: <Text style={styles.textAchado}>{`${arrayPostGrad[postGrad].pg} ${nomeGuerra}`}</Text></Text>
             <Text style={styles.text}>Nome completo: <Text style={styles.textAchado}>{nomeCompleto}</Text></Text>
             <Text style={styles.text}>Documento de Identidade: <Text style={styles.textAchado}>{documentoIdentidade}</Text></Text>
             <Text style={styles.text}>Modelo do veículo: <Text style={styles.textAchado}>{modelo}</Text></Text>
             <Text style={styles.text}>Placa do veículo: <Text style={styles.textAchado}>{placa}</Text></Text>
-            <Text style={styles.text}>Cor do veículo: <Text style={styles.textAchado}>{cor}</Text></Text>
+            <Text style={styles.text}>Cor do veículo: <Text style={styles.textAchado}>{cores[cor].cor}</Text></Text>
             <Text style={styles.text}>Áreas de acesso permitido: <Text style={styles.textAchado}>{tipoAcesso}</Text></Text>
-            <Text style={styles.text}>Validade: <Text style={styles.textAchado}>{validade}</Text></Text>
+            <Text style={styles.text}>Validade: <Text style={styles.textAchado}>{
+              `${(dataPrint.getDate() <= 9) ? '0' + (dataPrint.getDate()) : dataPrint.getDate()}/${(dataPrint.getMonth() + 1) <= 9 ? '0' + (dataPrint.getMonth() + 1) : (dataPrint.getMonth() + 1)}/${dataPrint.getFullYear()}`
+            }</Text></Text>
             <Text style={styles.text}>Observações: <Text style={styles.textAchado}>{observacoes}</Text></Text>
 
           </View>

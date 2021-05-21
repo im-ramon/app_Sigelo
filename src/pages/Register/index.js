@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, ImageBackground, StyleSheet, Image, ScrollView, TextInput } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import { AreaInput, Background, Container, Input, Logo, SubmitButton, SubmitText, Link, LinkText, styles } from '../../styles/styles';
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -8,10 +8,17 @@ import { Picker } from '@react-native-picker/picker'
 import firebase from '../../services/firebaseConnection'
 import { arrayPostGrad, cores } from './listas'
 import ModalConfirm from './ModalConfirm'
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 
 export default function Register() {
-
+    
     const navigation = useNavigation();
+
+
+    // DatePiker states
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
 
     //dados do formulário: 
     const [nomeCompleto, setNomeCompleto] = useState('')
@@ -21,16 +28,22 @@ export default function Register() {
     const [placa, setPlaca] = useState('')
     const [cor, setCor] = useState(0)
     const [tipoAcesso, setTipoAcesso] = useState('')
-    const [validade, setValidade] = useState('')
+    const [validade, setValidade] = useState(new Date());
     const [documentoIdentidade, setDocumentoIdentidade] = useState('')
     const [observacoes, setObservacoes] = useState('')
 
     const [modalActive, setModalActive] = useState(false)
 
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || validade;
+        setShow(Platform.OS === 'ios');
+        setValidade(currentDate);
+    };
+
     let itemPostGrad = arrayPostGrad.map((value, index) => {
         return <Picker.Item key={index} value={index} label={value.pg} />
     })
-    
+
     let itemCor = cores.map((value, index) => {
         return <Picker.Item key={index} value={index} label={value.cor} color={value.codigoCor} />
     })
@@ -40,9 +53,10 @@ export default function Register() {
         let chave = cadastros.push().key
 
         cadastros.child(chave).set({
-            nomeCompleto, postGrad: postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade, observacoes, documentoIdentidade
+            nomeCompleto, postGrad: postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade: String(validade) , observacoes, documentoIdentidade
         })
     }
+
 
     return (
         <Background>
@@ -52,7 +66,6 @@ export default function Register() {
 
                     <Text style={style.textH1}>Cadastrar novos veículos</Text>
                     <ScrollView style={style.containerScrollView}>
-
                         <AreaInput style={style.areaInput}>
                             <Ionicons name="person" size={20} color="#dedede" style={{ marginLeft: 5 }} />
                             <Input
@@ -143,18 +156,28 @@ export default function Register() {
                                 value={tipoAcesso}
                                 onChangeText={text => setTipoAcesso(text)}
                             />
-                        </AreaInput>                    
-
-                        <AreaInput style={style.areaInput}>
-                            <Ionicons name="calendar-sharp" size={20} color="#dedede" style={{ marginLeft: 5 }} />
-                            <Input
-                                placeholder="Validade do selo"
-                                autoCorrect={false}
-                                autoCapitalize="none"
-                                value={validade}
-                                onChangeText={text => setValidade(text)}
-                            />
                         </AreaInput>
+
+                        <TouchableOpacity onPress={() => { setMode('date'); setShow(true) }}>
+                            <View style={style.datePiker}>
+                                <Ionicons name="calendar-sharp" size={20} color="#dedede" style={{ marginLeft: 5 }} />
+                                <Input
+                                    editable={false}
+                                    selectTextOnFocus={false}
+                                    value={String(`${(validade.getDate() <= 9) ? '0' + (validade.getDate()) : validade.getDate()}/${(validade.getMonth()+1) <= 9 ? '0' + (validade.getMonth()+1) : (validade.getMonth()+1)}/${validade.getFullYear()}`)}
+                                />
+                            </View>
+                            {show && (
+                                <DateTimePicker
+                                    testID="dateTimePicker"
+                                    value={validade}
+                                    mode={mode}
+                                    is24Hour={true}
+                                    display="default"
+                                    onChange={onChange}
+                                />
+                            )}
+                        </TouchableOpacity>
 
                         <AreaInput style={style.areaInput}>
                             <Ionicons name="add" size={20} color="#dedede" style={{ marginLeft: 5 }} />
@@ -179,7 +202,7 @@ export default function Register() {
                         </SubmitButton>
 
                         {modalActive == true ? <ModalConfirm /> : <Text></Text>}
-                        
+
                     </ScrollView>
                 </Container>
             </ImageBackground>

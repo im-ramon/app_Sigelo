@@ -25,6 +25,7 @@ function AuthProvider({ children }) {
 
     //login
     async function signIn(email, password) {
+        setLoading(true)
         await firebase.auth().signInWithEmailAndPassword(email, password)
             .then(async (value) => {
                 let uid = value.user.uid;
@@ -37,6 +38,7 @@ function AuthProvider({ children }) {
                         };
                         setUser(data);
                         storageUser(data);
+                        setLoading(false)
                     })
             })
             .catch((error) => {
@@ -71,7 +73,6 @@ function AuthProvider({ children }) {
     }
 
     async function signOut() {
-
         await firebase.auth().signOut();
         await AsyncStorage.clear()
             .then(() => {

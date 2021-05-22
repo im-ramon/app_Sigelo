@@ -14,13 +14,13 @@
 
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/im-ramon/app_Sigelo">
 
-  <a href="https://github.com/ im-ramon/app_Sigelo/commits/master">
+  <a href="https://github.com/im-ramon/app_Sigelo/commits/master">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/im-ramon/app_Sigelo">
   </a>
     
    <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
 
-  <a href="https://rocketseat.com.br">
+  <a href="https://imramon.com.br">
     <img alt="Feito pela Rocketseat" src="https://img.shields.io/badge/dev-Ramon%20Oliveira-%237519C1">
   </a>
 
@@ -36,21 +36,23 @@
 
 ------
 
-<h4>
+<h4 align="center">
     Tabela de conteúdos: 
 </h4>
+
 
 <p align="center">  <a href="#objetivo">Registrar usuário</a> •  <a href="#roadmap">Roadmap</a> •   <a href="#tecnologias">Tecnologias</a> •   <a href="#contribuicao">Contribuição</a> •   <a href="#licenc-a">Licença</a> •   <a href="#autor">Autor</a> </p>
 
 ------
 
-<h4 align="center">
+<h3 align="center">
     [🚧 Projeto em construção...  🚧]
-    </h4>
+    </h3>
 
 
 
-##### **:checkered_flag: Features**:
+
+#### **:checkered_flag: Features**:
 
 - [x] Escanear adesivo e retornar informações
 
@@ -72,35 +74,35 @@
 
   
 
-##### 🧪 Demonstração da aplicação:
+#### 🧪 Demonstração da aplicação:
 
 
 
-##### 🧭 Pré-requisitos e como rodar a aplicação/testes:
+#### 🧭 Pré-requisitos e como rodar a aplicação/testes:
 
 
 
- **:hammer: Tecnologias**: 
+####  **:hammer: Tecnologias**: 
 
 - As seguintes ferramentas foram usadas na construção do projeto: - [Expo](https://expo.io/) - [Node.js](https://nodejs.org/en/) - [React](https://pt-br.reactjs.org/) - [React Native](https://reactnative.dev/)
 
   
 
-##### 👨‍👩‍👦 Contribuição:
+#### 👨‍👩‍👦 Contribuição:
 
 
 
-##### 👨‍💻 Autor:
+#### 👨‍💻 Autor:
 
 
 
-##### ✅ Licença: 
+#### ✅ Licença: 
 
 - Este projeto esta sobe a licença [MIT](https://github.com/im-ramon/app_Sigelo/LICENSE).
 
   
 
-##### :earth_americas: Outros versões: 
+#### :earth_americas: Outros versões: 
 
 [English](#) | [Español](#) | [Esperanto](#)
 

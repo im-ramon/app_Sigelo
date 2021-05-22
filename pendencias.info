@@ -6,6 +6,16 @@ Funcionalidades:
 
 
 
+Melhorias de sintaxe:
+1. Limpar itens (components, stats, functions...) não usados nas pages
+
+
+
+Melhorias UI:
+1. Fundo preto na tela de solicitação de acesso à câmera
+
+
+
 
 Melhorias de UX:
 1. Falta implementar validação dos campos em tempo real

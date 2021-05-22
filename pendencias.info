@@ -1,25 +1,18 @@
-Funcionalidades:
+##### Funcionalidades: #####
 1. Verificar se a placa exisite antes de inserir
 2. Criar editar com Modal
 3. Como implementar datas
-4. Tentar melhorar perfomace trocando "onchage" por "onblue"
 
-
-
-Melhorias de sintaxe:
+##### Melhorias de sintaxe: #####
 1. Limpar itens (components, stats, functions...) não usados nas pages
 
-
-
-Melhorias UI:
+##### Melhorias UI: #####
 1. Fundo preto na tela de solicitação de acesso à câmera
 
-
-
-
-Melhorias de UX:
+##### Melhorias de UX: #####
 1. Falta implementar validação dos campos em tempo real
 2. Limpar campos ao remeter (testar com then)
+3. Animação de transição de páginas
 
     color1: "#121212",
     color2: "#011126",

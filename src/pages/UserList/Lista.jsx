@@ -1,10 +1,19 @@
-import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, TouchableOpacity, Modal, ScrollView } from 'react-native'
 import { cores, arrayPostGrad } from '../Register/listas'
 import { AntDesign } from '@expo/vector-icons';
-
+import firebase from '../../services/firebaseConnection'
+import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { AreaInput, Background, Container, Input, Logo, SubmitButton, SubmitText, Link, LinkText } from '../../styles/styles';
+import { style } from '../Register/style'
+import { Picker } from '@react-native-picker/picker'
 
 export default function Lista({ data }) {
+
+    const aletarEditar = (msg) => {
+        alert(`Falta implementar funcionalidade de ${msg}`)
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.header}> {`${data.modelo} - ${data.placa.toUpperCase()}`} </Text>
@@ -20,11 +29,11 @@ export default function Lista({ data }) {
             </View>
 
             <View style={styles.footer}>
-                <TouchableOpacity style={styles.btnEdit}>
+                <TouchableOpacity style={styles.btnEdit} onPress={() => { aletarEditar('EDITAR') }}>
                     <AntDesign name="edit" size={24} color="black" />
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.btnDelete}>
+                <TouchableOpacity style={styles.btnDelete} onPress={() => { aletarEditar('DELETAR') }}>
                     <AntDesign name="delete" size={24} color="black" />
                 </TouchableOpacity>
             </View>
@@ -40,7 +49,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#121212',
         width: 350,
         marginTop: 20,
-        marginBottom: 80,
+        paddingBottom: 60,
+        marginBottom: 50,
         zIndex: 2,
     },
     header: {
@@ -95,8 +105,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         backgroundColor: '#3C74A6',
         position: 'absolute',
-        bottom: '-25%',
+        bottom: 0,
         alignSelf: 'center',
         flexDirection: 'row',
-    },
+    }
 })

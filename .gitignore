@@ -1,3 +1,5 @@
+*.info
+
 node_modules/
 .expo/
 npm-debug.*
@@ -12,5 +14,3 @@ web-build/
 # macOS
 .DS_Store
 
-
-*.info

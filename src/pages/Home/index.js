@@ -11,7 +11,7 @@ export default function Home() {
 
     const navigation = useNavigation();
 
-    const { signOut, user } = useContext(AuthContext);
+    const { signOut, user, setLoading } = useContext(AuthContext);
 
     return (
         <Background>

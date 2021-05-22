@@ -9,18 +9,6 @@ import UserList from '../pages/UserList';
 const AppSatck = createStackNavigator();
 
 function AppRoutes() {
-    
-const config = {
-    animation: 'spring',
-    config: {
-      stiffness: 1000,
-      damping: 500,
-      mass: 3,
-      overshootClamping: true,
-      restDisplacementThreshold: 0.01,
-      restSpeedThreshold: 0.01,
-    },
-  };
     return (
         <AppSatck.Navigator>
             <AppSatck.Screen name="Home" component={Home} options={{ headerShown: false }} />
@@ -52,10 +40,6 @@ const config = {
                         borderBottomWidth: 2
                     },
                     headerTintColor: '#fff',
-                    transitionSpec: {
-                        open: config,
-                        close: config,
-                      },
                 }}
             />
 

@@ -1,12 +1,23 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import cores from '../../styles/colors'
+import styles from './styles'
 
 export default function Conf() {
     return (
-        <View style={{backgroundColor: cores.color1, flex: 1}}>
-            <Text style={{color: cores.light}}>Página de configurações</Text>
-            <Text style={{color: cores.light}}>Implementação futura...</Text>
+        <View style={styles.body}>
+            <View style={styles.header}>
+                <Text style={styles.textHeader}>Configurações</Text>
+            </View>
+
+            <View style={styles.main}>
+                <Text style={styles.text}>Implentação pendente.</Text>
+            </View>
+
+            <View style={styles.footer}>
+                <Text style={styles.textVersion}>Versão 1.0.0</Text>
+                <Text style={styles.text}>Desenvolvido por Ramon Oliveira</Text>
+            </View>
+
         </View>
     )
 }

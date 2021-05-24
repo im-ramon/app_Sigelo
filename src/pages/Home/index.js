@@ -1,12 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { ImageBackground, StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
-import { Background, Container, Logo, AreaInput, Input, SubmitButton, SubmitText, Link, LinkText, cores } from '../../styles/styles';
+import { Background, cores } from '../../styles/styles';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../contexts/auth'
 import { AppContext } from '../../contexts/appContexts'
-import { color } from 'react-native-reanimated';
-import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import myCores from '../../styles/colors'
 
@@ -42,16 +40,18 @@ export default function Home() {
 
                     <Text style={style.textWelcome}>Bem vindo, {user.nome}!</Text>
 
-                    <View style={style.headerMenu}>
+                    <LinearGradient
+                        colors={[myCores.color3, `${myCores.color1}25`]}
+                        style={style.headerMenu}>
                         <Text style={style.textHeaderMenu}>MENU</Text>
-                    </View>
+                    </LinearGradient>
+
+                    {/* <View style={style.headerMenu}>
+                        <Text style={style.textHeaderMenu}>MENU</Text>
+                    </View> */}
 
                     <View style={style.section}>
                         <TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('ScannerQR') }}>
-                            {/* <LinearGradient
-                                colors={['transparent', '#dedede15']}
-                                style={style.linearGradient}
-                            /> */}
                             <Ionicons name="camera-sharp" size={64} color={cores.color3} />
                             <Text style={style.section_btn_text}>Escanear selo</Text>
                         </TouchableOpacity>
@@ -152,7 +152,7 @@ const style = StyleSheet.create({
     textHeaderMenu: {
         color: `${myCores.light}`,
         fontWeight: '900',
-        fontSize: 18,
+        fontSize: 22,
     },
     section_btn: {
         borderColor: `${cores.color3}30`,
@@ -178,5 +178,5 @@ const style = StyleSheet.create({
         right: 0,
         top: 0,
         height: "100%",
-    }
+    },
 });

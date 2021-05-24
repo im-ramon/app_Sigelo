@@ -8,6 +8,7 @@ import { style } from './style'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import firebase from '../../services/firebaseConnection';
 import { AppContext } from '../../contexts/appContexts';
+import minhascores from '../../styles/colors'
 
 export default function Lista({ data }) {
 
@@ -66,12 +67,12 @@ export default function Lista({ data }) {
         return <Picker.Item key={index} value={index} label={value.cor} color={value.codigoCor} />
     })
 
-    async function updateOnFirebase(key, nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade, observacoes) {
+    async function updateOnFirebase(key, nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade, documentoIdentidade, observacoes) {
         setLoadingUpdate(true)
-        await firebase.database().ref('veiculos').child(key).update({ nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade: String(validade), observacoes })
+        await firebase.database().ref('veiculos').child(key).update({ nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade: String(validade), documentoIdentidade, observacoes})
             .then(() => {
                 setLoadingUpdate(false)
-                setBtnCor('#28a745')
+                setBtnCor(`${minhascores.success}`)
                 setTextoResposta('Enviado!')
 
                 setTimeout(() => {
@@ -269,7 +270,7 @@ export default function Lista({ data }) {
 
                                 {loadingUpdate ?
 
-                                    (<View style={{ marginBottom: 50 }}><ActivityIndicator color="#28a745" size={45} /></View>)
+                                    (<View style={{ marginBottom: 50 }}><ActivityIndicator color={minhascores.success} size={45} /></View>)
 
                                     : (
                                         <SubmitButton style={{
@@ -282,7 +283,7 @@ export default function Lista({ data }) {
 
                                             onPress={() => {
                                                 if (nomeCompleto != '' && postGrad != '' && nomeGuerra != '' && modelo != '' && placa != '' && cor != '' && tipoAcesso != '' && validade != '' && documentoIdentidade != '') {
-                                                    updateOnFirebase(key, nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade, observacoes, documentoIdentidade)
+                                                    updateOnFirebase(key, nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade, documentoIdentidade, observacoes)
                                                 } else {
                                                     alert('Preencha todos os campos para continuar.')
                                                 }
@@ -346,7 +347,7 @@ const LocalStyle = StyleSheet.create({
         backgroundColor: '#121212'
     },
     btnEdit: {
-        backgroundColor: '#28A745',
+        backgroundColor: `${minhascores.success}`,
         width: 50,
         height: 50,
         alignItems: 'center',

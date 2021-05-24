@@ -1,0 +1,27 @@
+##### Funcionalidades: #####
+[x] Exibir cadastros com pendências
+[x] Como implementar datas
+[ ] Verificar se a placa exisite antes de inserir
+[x] Garantir integridade das datas
+[ ] Criar perfis de usuários
+
+
+##### Melhorias de sintaxe: #####
+[ ] Limpar itens (components, stats, functions...) não usados nas pages
+[ ] Criar arquivos de variaveis globais
+
+
+##### Melhorias UI: #####
+[ ] Fundo preto na tela de solicitação de acesso à câmera
+
+
+##### Melhorias de UX: #####
+[ ] Falta implementar validação dos campos em tempo real
+[ ] Limpar campos ao remeter (testar com then)
+[ ] Animação de transição de páginas
+
+
+
+
+##### Melhorias no estilo #####
+[ ] Tornar alguns cantos arredondados

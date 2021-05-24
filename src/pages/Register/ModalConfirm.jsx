@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Modal, StyleSheet, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import cores from '../../styles/colors'
 
 export default function ModalConfirm() {
 
@@ -14,12 +15,12 @@ export default function ModalConfirm() {
             style={styles.modalContainer}
         >
             <View style={styles.viewBody}>
-                <TouchableOpacity style={styles.btnClose} onPress={()=>{setModalActive(false)}}>
+                <TouchableOpacity style={styles.btnClose} onPress={() => { setModalActive(false) }}>
                     <AntDesign name="close" size={24} color="#F27405" />
                 </TouchableOpacity>
-                
+
                 <Text style={styles.modalText}>
-                    <AntDesign name="check" size={24} color="#28a745" style={styles.btnCheck} />
+                    <AntDesign name="check" size={24} color={cores.success} style={styles.btnCheck} />
                     <Text>Dados inseridos com sucesso!</Text>
                 </Text>
             </View>
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: '80%',
         marginVertical: '78%',
-        borderColor: '#28a745',
+        borderColor: `${cores.success}`,
         borderWidth: 2,
         flexDirection: 'row'
     },

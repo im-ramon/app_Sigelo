@@ -33,6 +33,19 @@ export const style = StyleSheet.create({
         flex: 1,
         alignSelf: 'center'
     },
+    datePiker: {
+        width: '80%',
+        flex: 1,
+        alignSelf: 'center',
+        flexDirection: 'row',
+        width: '80%',
+        height: 35,
+        marginBottom: 23,
+        borderBottomColor:'#3C74A6',
+        borderBottomWidth: 3,
+        paddingBottom: 5,
+        alignItems: 'center'
+    },
     btnEnviar: {
         flex: 1,
         alignSelf: 'center',

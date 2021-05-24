@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../contexts/auth'
 import { color } from 'react-native-reanimated';
 import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Home() {
 
@@ -22,23 +23,27 @@ export default function Home() {
                             <Ionicons name="exit-sharp" size={40} color={cores.color5} style={{ transform: [{ rotate: "180deg" }] }} />
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={style.menu_item} onPress={ () => {navigation.navigate('Conf')}}>
+                        <TouchableOpacity style={style.menu_item} onPress={() => { navigation.navigate('Conf') }}>
                             <Ionicons name="settings-sharp" size={40} color={cores.color5} />
                         </TouchableOpacity>
                     </View>
 
                     <Text style={style.textWelcome}>Bem vindo, {user.nome}!</Text>
-                    
+
                     <Text style={style.text_menu}>MENU</Text>
                     <View style={style.section}>
-                        <TouchableOpacity style={style.section_btn} onPress={ () => {navigation.navigate('ScannerQR')}}>
+                        <TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('ScannerQR') }}>
+                            {/* <LinearGradient
+                                colors={['transparent', '#dedede15']}
+                                style={style.linearGradient}
+                            /> */}
                             <Ionicons name="camera-sharp" size={64} color={cores.color3} />
                             <Text style={style.section_btn_text}>Escanear selo</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={style.section_btn}>
-                            <Ionicons name="checkmark-circle-sharp" size={64} color={cores.color3} onPress={ () => {navigation.navigate('UserList')}}/>
-                            <Text style={style.section_btn_text}>Consultar e editar cadastros</Text>
+                            <Ionicons name="checkmark-circle-sharp" size={64} color={cores.color3} onPress={() => { navigation.navigate('UserList') }} />
+                            <Text style={style.section_btn_text}>Gerenciar cadastros</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={style.section_btn}>
@@ -46,7 +51,7 @@ export default function Home() {
                             <Text style={style.section_btn_text}>Verificar pendências</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={style.section_btn} onPress={ () => {navigation.navigate('Register')}}>
+                        <TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('Register') }}>
                             <Ionicons name="add-sharp" size={64} color={cores.color3} />
                             <Text style={style.section_btn_text}>Cadastrar veículos</Text>
                         </TouchableOpacity>
@@ -127,5 +132,12 @@ const style = StyleSheet.create({
         textAlign: 'center',
         fontSize: 14,
         fontWeight: '100',
+    },
+    linearGradient: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        height: "100%",
     }
 });

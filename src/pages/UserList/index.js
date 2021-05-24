@@ -16,8 +16,6 @@ export default function UserList() {
     const [users, setUsers] = useState([])
     const [loadingList, setLoadingList] = useState(true)
 
-    const [modalActive, setModalActive] = useState(false)
-
     const { setLoading } = useContext(AuthContext)
 
 
@@ -58,8 +56,7 @@ export default function UserList() {
             <Background>
                 <ImageBackground source={require('../../assets/background.jpg')} style={styles.image}>
                     <Container>
-                        {/* <Image style={style.imgLogo} source={require('../../assets/logo-1.png')} /> */}
-
+                        
                         <Text style={style.textH1}>Cadastros ativos</Text>
 
                         {loadingList ?
@@ -77,48 +74,8 @@ export default function UserList() {
 
                     </Container>
                 </ImageBackground>
-
-                {/* //Modal de edição */}
-                <Modal animationType="slide" visible={modalActive} >
-                    <View style={stylesModal.modalContainer}>
-
-                        <View style={stylesModal.header}>
-                            <TouchableOpacity onPress={() => { setModalActive(false) }}>
-                                <Ionicons name="close-circle-sharp" size={32} color="#F27405" />
-                            </TouchableOpacity>
-                        </View>
-
-
-                        <View style={stylesModal.modalBody}>
-
-                            <Text>TESTE</Text>
-
-                        </View>
-
-                    </View>
-                </Modal>
             </Background>
     );
 }
 
 
-const stylesModal = StyleSheet.create({
-    modalContainer: {
-        backgroundColor: '#141414',
-        flex: 1,
-        paddingHorizontal: 10,
-    },
-    header: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        marginLeft: 25,
-        marginTop: 10,
-        backgroundColor: '#141414',
-        flexDirection: 'row'
-    },
-    modalBody: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 12,
-    },
-})

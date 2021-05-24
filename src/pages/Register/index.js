@@ -62,8 +62,6 @@ export default function Register() {
         <Background>
             <ImageBackground source={require('../../assets/background.jpg')} style={styles.image}>
                 <Container>
-                    {/* <Image style={style.imgLogo} source={require('../../assets/logo-1.png')} /> */}
-
                     <Text style={style.textH1}>Cadastrar novos veículos</Text>
                     <ScrollView style={style.containerScrollView}>
                         <AreaInput style={style.areaInput}>

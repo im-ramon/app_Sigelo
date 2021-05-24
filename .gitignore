@@ -1,4 +1,4 @@
-*.info
+pendencias.note
 
 node_modules/
 .expo/

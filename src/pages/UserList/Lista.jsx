@@ -111,7 +111,9 @@ export default function Lista({ data }) {
                 <Text style={LocalStyle.textDestaque}>Nome completo: <Text style={LocalStyle.textSimples}>{data.nomeCompleto}</Text></Text>
                 <Text style={LocalStyle.textDestaque}>Identidade: <Text style={LocalStyle.textSimples}>{data.documentoIdentidade}</Text></Text>
                 <Text style={LocalStyle.textDestaque}>Cor do veículo: <Text style={LocalStyle.textSimples}>{cores[data.cor].cor}</Text></Text>
-                <Text style={LocalStyle.textDestaque}>Validade do selo: <Text style={LocalStyle.textSimples}>{data.validade}</Text></Text>
+                <Text style={LocalStyle.textDestaque}>Validade do selo: <Text style={LocalStyle.textSimples}>{
+                String(`${((new Date(data.validade)).getDate() <= 9) ? '0' + ((new Date(data.validade)).getDate()) : (new Date(data.validade)).getDate()}/${((new Date(data.validade)).getMonth()+1) <= 9 ? '0' + ((new Date(data.validade)).getMonth()+1) : ((new Date(data.validade)).getMonth()+1)}/${(new Date(data.validade)).getFullYear()}`)
+                }</Text></Text>
                 <Text style={LocalStyle.textDestaque}>Áreas de acesso permitido: <Text style={LocalStyle.textSimples}>{data.tipoAcesso}</Text></Text>
                 <Text style={LocalStyle.textDestaque}>Observações: <Text style={LocalStyle.textSimples}>{data.observacoes}</Text></Text>
             </View>

@@ -4,6 +4,7 @@ import { Background, Container, Logo, AreaInput, Input, SubmitButton, SubmitText
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../contexts/auth'
+import { AppContext } from '../../contexts/appContexts'
 import { color } from 'react-native-reanimated';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -13,6 +14,15 @@ export default function Home() {
     const navigation = useNavigation();
 
     const { signOut, user, setLoading } = useContext(AuthContext);
+    const { setPageName, setToday } = useContext(AppContext);
+
+
+    const navigateTo = (pageType)=>{
+        pageType === 'all' ? setPageName('Cadastros ativos') : setPageName('Cadastros vencidos')
+
+        setToday(new Date())
+        navigation.navigate('UserList')
+    }
 
     return (
         <Background>
@@ -42,13 +52,13 @@ export default function Home() {
                         </TouchableOpacity>
 
                         <TouchableOpacity style={style.section_btn}>
-                            <Ionicons name="checkmark-circle-sharp" size={64} color={cores.color3} onPress={() => { navigation.navigate('UserList') }} />
+                            <Ionicons name="checkmark-circle-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('all') }} />
                             <Text style={style.section_btn_text}>Gerenciar cadastros</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={style.section_btn}>
-                            <Ionicons name="warning-sharp" size={64} color={cores.color3} />
-                            <Text style={style.section_btn_text}>Verificar pendências</Text>
+                            <Ionicons name="warning-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('expired') }} />
+                            <Text style={style.section_btn_text}>Cadastros vencidos</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('Register') }}>

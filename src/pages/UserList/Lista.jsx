@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Modal, ScrollView, ActivityIndicator, Alert } from 'react-native'
 import { cores, arrayPostGrad } from '../Register/listas'
 import { Ionicons, MaterialCommunityIcons, MaterialIcons, AntDesign } from '@expo/vector-icons';
@@ -6,9 +6,12 @@ import { AreaInput, Background, Container, Input, Logo, SubmitButton, SubmitText
 import { Picker } from '@react-native-picker/picker'
 import { style } from './style'
 import DateTimePicker from '@react-native-community/datetimepicker';
-import firebase from '../../services/firebaseConnection'
+import firebase from '../../services/firebaseConnection';
+import { AppContext } from '../../contexts/appContexts';
 
 export default function Lista({ data }) {
+
+    const { pageName, today } = useContext(AppContext);
 
     const [modalActive, setModalActive] = useState(false)
     const [loadingUpdate, setLoadingUpdate] = useState(false)
@@ -41,19 +44,19 @@ export default function Lista({ data }) {
 
 
     const openConfirmDelete = () =>
-    Alert.alert(
-      "Atenção!",
-      `Você deletará PERMANENTEMENTE o registro do(a) ${arrayPostGrad[postGrad].pg} ${nomeGuerra}.\n\nDeseja continuar?`,
-      [
-        {
-          text: "Voltar",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        { text: "Excluir", onPress: () => deleteOnFirebase(data.key) }
-      ],
-      { cancelable: false }
-    );
+        Alert.alert(
+            "Atenção!",
+            `Você deletará PERMANENTEMENTE o registro do(a) ${arrayPostGrad[postGrad].pg} ${nomeGuerra}.\n\nDeseja continuar?`,
+            [
+                {
+                    text: "Voltar",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                { text: "Excluir", onPress: () => deleteOnFirebase(data.key) }
+            ],
+            { cancelable: false }
+        );
 
     let itemPostGrad = arrayPostGrad.map((value, index) => {
         return <Picker.Item key={index} value={index} label={value.pg} />
@@ -79,13 +82,28 @@ export default function Lista({ data }) {
 
     async function deleteOnFirebase(key) {
         await firebase.database().ref('veiculos').child(key).remove()
-        .then(() => {
+            .then(() => {
                 alert('Excluído!')
             });
     }
 
+    const isValidAccess = (page) => {
+        const objDataVencimento = new Date(data.validade)
+
+        if(page === 'Cadastros vencidos'){
+            if(objDataVencimento > today){
+                return true
+            } else {
+                false
+            }
+        } else {
+            true
+        }
+    }
+
     return (
-        <View style={LocalStyle.container}>
+        ( !isValidAccess(pageName) ? 
+        (<View style={LocalStyle.container}>
             <Text style={LocalStyle.header}> {`${data.modelo} - ${data.placa.toUpperCase()}`} </Text>
 
             <View style={LocalStyle.sectionDadosCarro}>
@@ -99,7 +117,7 @@ export default function Lista({ data }) {
             </View>
 
             <View style={LocalStyle.footer}>
-                <TouchableOpacity style={LocalStyle.btnEdit} onPress={() => { setBtnCor('#3C74A6'); setTextoResposta('Atualizar'); setModalActive(true);}}>
+                <TouchableOpacity style={LocalStyle.btnEdit} onPress={() => { setBtnCor('#3C74A6'); setTextoResposta('Atualizar'); setModalActive(true); }}>
                     <AntDesign name="edit" size={24} color="black" />
                 </TouchableOpacity>
 
@@ -249,7 +267,7 @@ export default function Lista({ data }) {
 
                                 {loadingUpdate ?
 
-                                    (<View style={{marginBottom: 50}}><ActivityIndicator color="#28a745" size={45} /></View>)
+                                    (<View style={{ marginBottom: 50 }}><ActivityIndicator color="#28a745" size={45} /></View>)
 
                                     : (
                                         <SubmitButton style={{
@@ -258,19 +276,19 @@ export default function Lista({ data }) {
                                             alignSelf: 'center',
                                             marginBottom: 50,
                                             backgroundColor: `${btnCor}`
-                                        }} 
-                                            
+                                        }}
+
                                             onPress={() => {
-                                            if (nomeCompleto != '' && postGrad != '' && nomeGuerra != '' && modelo != '' && placa != '' && cor != '' && tipoAcesso != '' && validade != '' && documentoIdentidade != '') {
-                                                updateOnFirebase(key, nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade, observacoes, documentoIdentidade)
-                                            } else {
-                                                alert('Preencha todos os campos para continuar.')
-                                            }
-                                        }}>
+                                                if (nomeCompleto != '' && postGrad != '' && nomeGuerra != '' && modelo != '' && placa != '' && cor != '' && tipoAcesso != '' && validade != '' && documentoIdentidade != '') {
+                                                    updateOnFirebase(key, nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade, observacoes, documentoIdentidade)
+                                                } else {
+                                                    alert('Preencha todos os campos para continuar.')
+                                                }
+                                            }}>
                                             <SubmitText>
                                                 {`${textoResposta}`}
                                             </SubmitText>
-        
+
                                         </SubmitButton>
 
                                     )}
@@ -284,6 +302,7 @@ export default function Lista({ data }) {
             </Modal>
 
         </View>
+        ) : false)
     )
 }
 

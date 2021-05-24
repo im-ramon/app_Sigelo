@@ -7,6 +7,8 @@ import { style } from './style'
 import firebase from '../../services/firebaseConnection'
 import Lista from './Lista'
 import { AuthContext } from '../../contexts/auth';
+import { AppContext } from '../../contexts/appContexts';
+
 
 export default function UserList() {
 
@@ -17,6 +19,7 @@ export default function UserList() {
     const [loadingList, setLoadingList] = useState(true)
 
     const { setLoading } = useContext(AuthContext)
+    const { pageName, today, setPageName, setToday } = useContext(AppContext);
 
 
     useEffect(() => {
@@ -57,7 +60,7 @@ export default function UserList() {
                 <ImageBackground source={require('../../assets/background.jpg')} style={styles.image}>
                     <Container>
                         
-                        <Text style={style.textH1}>Cadastros ativos</Text>
+                        <Text style={style.textH1}>{pageName}</Text>
 
                         {loadingList ?
 

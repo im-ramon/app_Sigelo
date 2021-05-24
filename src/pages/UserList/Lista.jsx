@@ -108,7 +108,7 @@ export default function Lista({ data }) {
             (<View style={LocalStyle.container}>
                 
                 <View style={LocalStyle.header}>
-                    <LinearGradient colors={['transparent', '#00000050']} style={LocalStyle.linearGradient} />
+                    <LinearGradient colors={['transparent', '#00000035']} style={LocalStyle.linearGradient} />
                     <Text style={LocalStyle.textHeader}>{`${data.modelo} - ${data.placa.toUpperCase()}`}</Text>
                 </View>
 
@@ -330,9 +330,9 @@ const LocalStyle = StyleSheet.create({
     },
     header: {
         borderWidth: 3,
-        borderRadius: 10,
-        borderColor: minhascores.color5,
-        transform: [{ translateY: -15 }],
+        borderRadius: 15,
+        borderColor: minhascores.black,
+        transform: [{ translateY: -20 }],
         backgroundColor: minhascores.color5,
         marginHorizontal: 30
     },
@@ -340,7 +340,8 @@ const LocalStyle = StyleSheet.create({
         textAlign: 'center',
         fontSize: 18,
         color: '#dedede',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginVertical: 5,
     },
     textDestaque: {
         color: '#3C74A6',
@@ -353,7 +354,7 @@ const LocalStyle = StyleSheet.create({
         fontSize: 14
     },
     sectionDadosCarro: {
-        borderRadius: 10,
+        borderRadius: 11,
         paddingHorizontal: 10,
         paddingBottom: 10,
         overflow: 'hidden'
@@ -366,8 +367,7 @@ const LocalStyle = StyleSheet.create({
         justifyContent: 'center',
         borderColor: '#121212',
         borderLeftWidth: 3,
-        borderWidth: 3, borderRadius: 10,
-        borderBottomLeftRadius: 10,
+        borderWidth: 3, borderRadius: 11,
     },
     btnDelete: {
         backgroundColor: minhascores.danger,
@@ -376,8 +376,7 @@ const LocalStyle = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: '#121212',
-        borderWidth: 3, borderRadius: 10,
-        borderBottomRightRadius: 10,
+        borderWidth: 3, borderRadius: 11,
     },
     footer: {
         flex: 1,
@@ -396,8 +395,9 @@ const LocalStyle = StyleSheet.create({
         left: 0,
         right: 0,
         top: 0,
-        height: "150%",
-        width: "150%",
+        height: "100%",
+        borderRadius: 10,
+        width: "100%",
     }
 })
 

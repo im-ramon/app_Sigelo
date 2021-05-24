@@ -6,6 +6,7 @@ export const style = StyleSheet.create({
     textH1: {
         fontSize: 28,
         color: '#ffffff',
+        borderRadius: 10,
         marginBottom: 30,
         marginTop: 30,
         borderBottomWidth: 3,

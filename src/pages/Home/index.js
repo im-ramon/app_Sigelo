@@ -8,6 +8,7 @@ import { AppContext } from '../../contexts/appContexts'
 import { color } from 'react-native-reanimated';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
+import myCores from '../../styles/colors'
 
 export default function Home() {
 
@@ -17,7 +18,7 @@ export default function Home() {
     const { setPageName, setToday } = useContext(AppContext);
 
 
-    const navigateTo = (pageType)=>{
+    const navigateTo = (pageType) => {
         pageType === 'all' ? setPageName('Cadastros ativos') : setPageName('Cadastros vencidos')
 
         setToday(new Date())
@@ -28,19 +29,23 @@ export default function Home() {
         <Background>
             <ImageBackground source={require('../../assets/background.jpg')} style={style.bodyBackground}>
                 <View style={style.root}>
+
                     <View style={style.menu}>
-                        <TouchableOpacity style={style.menu_item} onPress={() => signOut()}>
+                        <TouchableOpacity style={style.menuItem} onPress={() => signOut()}>
                             <Ionicons name="exit-sharp" size={40} color={cores.color5} style={{ transform: [{ rotate: "180deg" }] }} />
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={style.menu_item} onPress={() => { navigation.navigate('Conf') }}>
+                        <TouchableOpacity style={style.menuItem} onPress={() => { navigation.navigate('Conf') }}>
                             <Ionicons name="settings-sharp" size={40} color={cores.color5} />
                         </TouchableOpacity>
                     </View>
 
                     <Text style={style.textWelcome}>Bem vindo, {user.nome}!</Text>
 
-                    <Text style={style.text_menu}>MENU</Text>
+                    <View style={style.headerMenu}>
+                        <Text style={style.textHeaderMenu}>MENU</Text>
+                    </View>
+
                     <View style={style.section}>
                         <TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('ScannerQR') }}>
                             {/* <LinearGradient
@@ -89,6 +94,17 @@ const style = StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'row',
         padding: 10,
+        marginBottom: 10,
+    },
+    menuItem: {
+        backgroundColor: `${myCores.light}09`,
+        borderRadius: 10,
+        width: 70,
+        height: 70,
+        borderWidth: 5,
+        borderColor: '#00000020',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     section: {
         flex: 10,
@@ -115,27 +131,40 @@ const style = StyleSheet.create({
         flex: 1,
         color: `${cores.color7}`,
         fontSize: 26,
+        marginBottom: 40,
     },
-    text_menu: {
-        fontSize: 20,
+    headerMenu: {
         color: `${cores.color7}`,
-        transform: [{ translateY: 20 }],
+        transform: [{ translateY: 25 }],
+        position: 'absolute',
+        top: 133,
+        width: 200,
+        height: 60,
+        borderRadius: 25,
         zIndex: 1,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: `${cores.color3}`,
-        padding: 10,
-        paddingLeft: 80,
-        paddingRight: 80,
+        borderColor: `${myCores.black}`,
+        borderWidth: 10,
+    },
+    textHeaderMenu: {
+        color: `${myCores.light}`,
         fontWeight: '900',
+        fontSize: 18,
     },
     section_btn: {
-        borderColor: `${cores.color3}10`,
-        borderWidth: 5,
+        borderColor: `${cores.color3}30`,
+        borderWidth: 2.5,
         marginBottom: 30,
         backgroundColor: `${cores.color1}`,
         width: 180,
         height: 180,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderRadius: 10,
+        padding: 10,
     },
     section_btn_text: {
         color: `${cores.color7}`,

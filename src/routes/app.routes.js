@@ -6,12 +6,18 @@ import Conf from '../pages/Conf';
 import Register from '../pages/Register';
 import UserList from '../pages/UserList';
 
+
 const AppSatck = createStackNavigator();
 
 function AppRoutes() {
     return (
         <AppSatck.Navigator>
-            <AppSatck.Screen name="Home" component={Home} options={{ headerShown: false }} />
+            <AppSatck.Screen
+            name="Home"
+            component={Home}
+            options={{ 
+                headerShown: false,
+            }} />
 
             <AppSatck.Screen
                 name="ScannerQR"
@@ -69,11 +75,14 @@ function AppRoutes() {
                         borderBottomColor: '#F27405',
                         borderBottomWidth: 2
                     },
-                    headerTintColor: '#fff'
+                    headerTintColor: '#fff',
+                    
                 }}
             />
         </AppSatck.Navigator>
     );
 }
+
+
 
 export default AppRoutes;

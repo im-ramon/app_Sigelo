@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native'
 
 export const cores = {
-    color1: "#121212", //tirei um "50" daqui, poder dar erro alguma hora na cor preta base
+    color1: "#121212", 
     color2: "#011126",
     color3: "#3C74A6",
     color4: "#73AABF",
@@ -57,6 +57,7 @@ export const SubmitButton = styled.TouchableOpacity`
     width: 65%;
     height: 60px;
     margin-top: 30px; 
+    border-radius: 10px;
 `;
 
 export const SubmitText = styled.Text`
@@ -82,5 +83,13 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         resizeMode: 'cover'
+    },
+    linearGradient: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        height: "150%",
+        width: "150%",
     }
 });

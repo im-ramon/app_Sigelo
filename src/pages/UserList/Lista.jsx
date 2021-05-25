@@ -410,8 +410,8 @@ const styleModal = StyleSheet.create({
     header: {
         flex: 1,
         justifyContent: 'flex-start',
-        marginLeft: 25,
-        marginTop: 10,
+        marginLeft: 10,
+        marginTop: 13,
         backgroundColor: '#141414',
         flexDirection: 'row'
     },

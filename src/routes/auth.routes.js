@@ -24,7 +24,7 @@ function AuthRoutes() {
                     borderBottomWidth: 2,
                     borderBottomColor: '#F27405'
                 }, 
-                headerTintColor: '#F27405',
+                headerTintColor: '#fff',
                 headerBackTitleVisible: false,
                 headerTitle: 'Voltar'
             }}

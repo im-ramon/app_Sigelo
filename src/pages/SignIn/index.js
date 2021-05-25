@@ -29,7 +29,7 @@ export default function SignIn() {
                     <AreaInput>
                         <Ionicons name="person" size={20} color="#dedede" style={{ marginLeft: 5 }} />
                         <Input
-                            placeholder="Digite o usuario"
+                            placeholder="Digite seu e-mail"
                             autoCorrect={false}
                             autoCapitalize="none"
                             value={email}
@@ -44,6 +44,7 @@ export default function SignIn() {
                             autoCorrect={false}
                             autoCapitalize="none"
                             value={password}
+                            secureTextEntry={true}
                             onChangeText={text => setPassword(text)}
                         />
                     </AreaInput>
@@ -60,7 +61,7 @@ export default function SignIn() {
                         navigation.navigate('SignUp')
                     }}>
                         <LinkText>
-                            Ainda não possui um perfil? Solicite seu cadastro.
+                            Solicitar acesso ao aplicativo.
                     </LinkText>
                     </Link>
 

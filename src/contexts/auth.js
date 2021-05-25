@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { Alert } from 'react-native';
 import firebase from '../services/firebaseConnection';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -8,6 +9,17 @@ function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true)
+
+    function cathError(error) {
+        Alert.alert(
+            `Atenção!`,
+            `Os dados digitados não foram encontrados no banco de dados.\n\nTente novamente.`,
+            [
+                { text: "Verificar", onPress: () => console.log('erro') }
+            ],
+            { cancelable: false }
+        );
+    }
 
     useEffect(() => {
         async function loadStorage() {
@@ -42,26 +54,19 @@ function AuthProvider({ children }) {
                     })
             })
             .catch((error) => {
-                alert(error.code)
+                cathError(error)
+                setLoading(false)
             })
     }
 
     //cadastrar usuário
-    async function signUp(email, password, nome) {
-        await firebase.auth().createUserWithEmailAndPassword(email, senha)
+    async function signUp(email, password, nome, sobrenome, tipoUser) {
+        await firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(async (value) => {
                 let uid = value.user.uid;
-                await firebase.database().ref('users').child(uid).set({
-                    nome
+                await firebase.database().ref('tempUsers').child(uid).set({
+                    email, nome, sobrenome, tipoUser
                 })
-                    .then(() => {
-                        let data = {
-                            uid,
-                            nome,
-                            email: value.user.email
-                        };
-                        setUser(data);
-                    })
                     .catch((error) => {
                         alert(error.code)
                     })

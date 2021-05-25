@@ -25,7 +25,7 @@ justify-content: center;
 export const Logo = styled.Image`
 width: 214px;
 height: 264px;
-margin-bottom: 22px;
+margin-bottom: 16px;
 `;
 
 export const AreaInput = styled.View`
@@ -82,7 +82,7 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         width: '100%',
         height: '100%',
-        resizeMode: 'cover'
+        resizeMode: 'repeat'
     },
     linearGradient: {
         position: 'absolute',

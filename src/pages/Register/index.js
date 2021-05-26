@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, ImageBackground, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { AreaInput, Background, Container, Input, Logo, SubmitButton, SubmitText, Link, LinkText, styles } from '../../styles/styles';
 import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -9,10 +9,11 @@ import firebase from '../../services/firebaseConnection'
 import { arrayPostGrad, cores } from './listas'
 import ModalConfirm from './ModalConfirm'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import minhascores from '../../styles/colors'
 
 
 export default function Register() {
-    
+
     const navigation = useNavigation();
 
 
@@ -33,6 +34,7 @@ export default function Register() {
     const [observacoes, setObservacoes] = useState('')
 
     const [modalActive, setModalActive] = useState(false)
+    const [loadingUpdate, setLoadingUpdate] = useState(false)
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || validade;
@@ -48,12 +50,48 @@ export default function Register() {
         return <Picker.Item key={index} value={index} label={value.cor} color={value.codigoCor} />
     })
 
+    function alertFunc(type) {
+        if (type == 'erro') {
+            Alert.alert(
+                `Atenção!`,
+                `Preencha todos os campos para continuar.\n\nTente novamente.`,
+                [
+                    { text: "Continuar", onPress: () => console.log('erro') }
+                ],
+                { cancelable: false }
+            );
+        }
+
+        if (type == 'success') {
+            Alert.alert(
+                `Cadastro concluído!`,
+                `O veículo do ${arrayPostGrad[postGrad].pg} ${nomeGuerra} foi inserido no banco de dados.\n`,
+                [
+                    { text: "Inserir outro veículo", onPress: () => {
+                        console.log('ToStay')
+                        setNomeCompleto('')
+                        setPostGrad(0)
+                        setNomeGuerra('')
+                        setModelo('')
+                        setPlaca('')
+                        setCor(0)
+                        setTipoAcesso('')
+                        setDocumentoIdentidade('')
+                        setObservacoes('')  
+                    } },
+                    { text: "Página inicial", onPress: () => navigation.navigate('Home') },
+                ],
+                { cancelable: false }
+            );
+        }
+    }
+
     async function insertNoFireBase(nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade, observacoes) {
         let cadastros = await firebase.database().ref('veiculos');
         let chave = cadastros.push().key
 
         cadastros.child(chave).set({
-            nomeCompleto, postGrad: postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade: String(validade) , observacoes, documentoIdentidade
+            nomeCompleto, postGrad: postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade: String(validade), observacoes, documentoIdentidade
         })
     }
 
@@ -162,7 +200,7 @@ export default function Register() {
                                 <Input
                                     editable={false}
                                     selectTextOnFocus={false}
-                                    value={String(`${(validade.getDate() <= 9) ? '0' + (validade.getDate()) : validade.getDate()}/${(validade.getMonth()+1) <= 9 ? '0' + (validade.getMonth()+1) : (validade.getMonth()+1)}/${validade.getFullYear()}`)}
+                                    value={String(`${(validade.getDate() <= 9) ? '0' + (validade.getDate()) : validade.getDate()}/${(validade.getMonth() + 1) <= 9 ? '0' + (validade.getMonth() + 1) : (validade.getMonth() + 1)}/${validade.getFullYear()}`)}
                                 />
                             </View>
                             {show && (
@@ -187,23 +225,35 @@ export default function Register() {
                                 onChangeText={text => setObservacoes(text)}
                             />
                         </AreaInput>
-                        <SubmitButton style={style.btnEnviar} onPress={() => {
-                            if (nomeCompleto != '' && postGrad != '' && nomeGuerra != '' && modelo != '' && placa != '' && cor != '' && tipoAcesso != '' && validade != '' && documentoIdentidade != '') {
-                                insertNoFireBase(nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade, observacoes, documentoIdentidade)
-                            } else {
-                                alert('Preencha todos os campos para continuar.')
-                            }
-                        }}>
-                            <SubmitText>
-                                Enviar
-                            </SubmitText>
-                        </SubmitButton>
 
+                        {loadingUpdate ?
+
+                            (<View style={{ marginBottom: 50 }}><ActivityIndicator color={minhascores.color3} size={45} /></View>)
+                            :
+                            (
+                                <SubmitButton style={style.btnEnviar} onPress={() => {
+                                    if (nomeCompleto != '' && postGrad != '' && nomeGuerra != '' && modelo != '' && placa != '' && cor != '' && tipoAcesso != '' && validade != '' && documentoIdentidade != '') {
+                                        setLoadingUpdate(true)
+                                        insertNoFireBase(nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade, observacoes, documentoIdentidade)
+                                        setTimeout(() => {
+                                            setLoadingUpdate(false)
+                                        }, 1000);
+                                        alertFunc('success')
+                                    } else {
+                                        alertFunc('erro')
+                                    }
+                                }}>
+                                    <SubmitText>
+                                        Enviar
+                                    </SubmitText>
+                                </SubmitButton>
+                            )
+                        }
                         {modalActive == true ? <ModalConfirm /> : <Text></Text>}
 
                     </ScrollView>
                 </Container>
             </ImageBackground>
-        </Background>
+        </Background >
     );
 }

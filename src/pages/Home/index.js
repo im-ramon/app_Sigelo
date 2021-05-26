@@ -46,10 +46,6 @@ export default function Home() {
                         <Text style={style.textHeaderMenu}>MENU</Text>
                     </LinearGradient>
 
-                    {/* <View style={style.headerMenu}>
-                        <Text style={style.textHeaderMenu}>MENU</Text>
-                    </View> */}
-
                     <View style={style.section}>
                         <TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('ScannerQR') }}>
                             <Ionicons name="camera-sharp" size={64} color={cores.color3} />
@@ -71,9 +67,7 @@ export default function Home() {
                             <Text style={style.section_btn_text}>Cadastrar veículos</Text>
                         </TouchableOpacity>
                     </View>
-
                 </View>
-
             </ImageBackground>
         </Background>
     );

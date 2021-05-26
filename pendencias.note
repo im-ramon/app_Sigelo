@@ -15,12 +15,23 @@
 
 
 ##### Melhorias de UX: #####
-[ ] Falta implementar validação dos campos em tempo real
-[ ] Limpar campos ao remeter (testar com then)
+[x] Falta implementar validação dos campos em tempo real
+[x] Melhorar validação dos campos em tempo real
+[x] Limpar campos ao remeter
 [ ] Animação de transição de páginas
-
-
-
+Mi
 
 ##### Melhorias no estilo #####
 [x] Tornar alguns cantos arredondados
+
+
+
+##### Telas #####
+[x] Signin
+[x] SignUp
+[x] Home
+[x] ScannerQR
+[x] Register
+[x] UserList
+[ ] Profiles
+[ ] Approver

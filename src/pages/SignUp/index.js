@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, ImageBackground, StyleSheet, Alert, ActivityIndicator } from 'react-native';
 import { AreaInput, Background, Container, Input, Logo, SubmitButton, SubmitText, Link, LinkText, styles } from '../SignIn/styles';
-import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import colors from '../../styles/colors';
 import { AuthContext } from '../../contexts/auth';
@@ -23,8 +23,13 @@ export default function SignUp() {
 
     const [loading, setLoading] = useState(false)
 
+    const [corValidacao, setCorValidacao] = useState('#00000000')
+
+    const validacaoEmail = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)$/
+
+
     function alert(type) {
-        if(type == 'erro') {
+        if (type == 'erro') {
             Alert.alert(
                 `Atenção!`,
                 `Preencha todos os campos para continuar.\n\nTente novamente.`,
@@ -35,7 +40,7 @@ export default function SignUp() {
             );
         }
 
-        if(type == 'success'){
+        if (type == 'success') {
             Alert.alert(
                 `Cadastro concluído!`,
                 `Os dados foram remetidos para análise.\n\nAguarde a aprovação.`,
@@ -88,12 +93,12 @@ export default function SignUp() {
                             value={emailUser}
                             onChangeText={text => setEmailUser(text)}
                         />
-                        <Ionicons name={!/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)$/.test(emailUser) ? "close" : "checkmark"} size={20} color={!/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)$/.test(emailUser) ? cores.danger : cores.success} style={{ marginLeft: -60 }} />
+                        <Ionicons name={!validacaoEmail.test(emailUser) ? "close" : "checkmark"} size={20} color={!validacaoEmail.test(emailUser) ? cores.danger : cores.success} style={{ marginLeft: -60 }} />
                     </AreaInput>
 
                     <AreaInput>
                         <Ionicons name="lock-closed-sharp" size={20} color="#dedede" style={{ marginLeft: 5 }} />
-                        <Input 
+                        <Input
                             placeholder="Senha de (oito) dígitos"
                             autoCorrect={false}
                             autoCapitalize="none"
@@ -118,27 +123,27 @@ export default function SignUp() {
                             <Picker.Item key={3} value={3} label={'Fiscalizador'} />
                         </Picker>
                     </View>
-                    {loading ? 
+                    {loading ?
                         (<ActivityIndicator color={cores.color3} size={45} />)
-                    :
-                    (
-                        <SubmitButton onPress={() => {
-                            if(!!/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)$/.test(emailUser) && senhaUser.length >= 8  && !!nomeUser && !!sobrenomeUser && !!tipoUser){
-                                setLoading(true)
-                                signUp(emailUser, senhaUser, nomeUser, sobrenomeUser, tipoUser)
-                                setLoading(false)
-                                alert('success')
-                            } else {
-                                alert('erro')
-                            }
-                        }}>
-                            <SubmitText>
-                                Enviar
-                        </SubmitText>
-                        </SubmitButton>
-                    )
+                        :
+                        (
+                            <SubmitButton style={{borderRadius: 10}} onPress={() => {
+                                if (!!/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)$/.test(emailUser) && senhaUser.length >= 8 && !!nomeUser && !!sobrenomeUser && !!tipoUser) {
+                                    setLoading(true)
+                                    signUp(emailUser, senhaUser, nomeUser, sobrenomeUser, tipoUser)
+                                    setLoading(false)
+                                    alert('success')
+                                } else {
+                                    alert('erro')
+                                }
+                            }}>
+                                <SubmitText>
+                                    Enviar
+                                </SubmitText>
+                            </SubmitButton>
+                        )
                     }
-                    
+
                 </Container>
             </ImageBackground>
         </Background >

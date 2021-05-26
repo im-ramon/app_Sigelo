@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { ImageBackground, StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Background, cores } from '../../styles/styles';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, FontAwesome5, FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../contexts/auth'
 import { AppContext } from '../../contexts/appContexts'
 import { LinearGradient } from 'expo-linear-gradient';
 import myCores from '../../styles/colors'
+
 
 export default function Home() {
 
@@ -46,26 +47,59 @@ export default function Home() {
                         <Text style={style.textHeaderMenu}>MENU</Text>
                     </LinearGradient>
 
-                    <View style={style.section}>
-                        <TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('ScannerQR') }}>
-                            <Ionicons name="camera-sharp" size={64} color={cores.color3} />
-                            <Text style={style.section_btn_text}>Escanear selo</Text>
-                        </TouchableOpacity>
+                    <View style={style.sectionMaster}>
+                        <ScrollView style={style.sectionScrollView}>
+                            <View style={style.section}>
 
-                        <TouchableOpacity style={style.section_btn}>
-                            <Ionicons name="checkmark-circle-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('all') }} />
-                            <Text style={style.section_btn_text}>Gerenciar cadastros</Text>
-                        </TouchableOpacity>
+                                {user.tipoUser == '0'  || user.tipoUser == '1' || user.tipoUser == '2' || user.tipoUser == '3'?
+                                    (<TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('ScannerQR') }}>
+                                        <Ionicons name="camera-sharp" size={64} color={cores.color3} />
+                                        <Text style={style.section_btn_text}>Escanear selo</Text>
+                                    </TouchableOpacity>
+                                    ) : false
+                                }
 
-                        <TouchableOpacity style={style.section_btn}>
-                            <Ionicons name="warning-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('expired') }} />
-                            <Text style={style.section_btn_text}>Cadastros vencidos</Text>
-                        </TouchableOpacity>
+                                {user.tipoUser == '0'  || user.tipoUser == '1' || user.tipoUser == '2'?
+                                    (<TouchableOpacity style={style.section_btn}>
+                                    <Ionicons name="checkmark-circle-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('all') }} />
+                                    <Text style={style.section_btn_text}>Gerenciar cadastros</Text>
+                                </TouchableOpacity>
+                                    ) : false
+                                }
 
-                        <TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('Register') }}>
-                            <Ionicons name="add-sharp" size={64} color={cores.color3} />
-                            <Text style={style.section_btn_text}>Cadastrar veículos</Text>
-                        </TouchableOpacity>
+                                {user.tipoUser == '0'  || user.tipoUser == '1' || user.tipoUser == '2'?
+                                    (<TouchableOpacity style={style.section_btn}>
+                                    <Ionicons name="warning-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('expired') }} />
+                                    <Text style={style.section_btn_text}>Cadastros vencidos</Text>
+                                </TouchableOpacity>
+                                    ) : false
+                                }
+
+                                {user.tipoUser == '0'  || user.tipoUser == '1' || user.tipoUser == '2'?
+                                    (<TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('Register') }}>
+                                    <Ionicons name="add-sharp" size={64} color={cores.color3} />
+                                    <Text style={style.section_btn_text}>Cadastrar veículos</Text>
+                                </TouchableOpacity>
+                                    ) : false
+                                }
+
+                                {user.tipoUser == '0'  || user.tipoUser == '1'  ?
+                                    (<TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('Approver') }}>
+                                    <FontAwesome5 name="user-check" size={50} color={cores.color3} />
+                                    <Text style={style.section_btn_text}>Aprovar usuários</Text>
+                                </TouchableOpacity>
+                                    ) : false
+                                }
+
+                                {user.tipoUser == '0'  || user.tipoUser == '1' ?
+                                    (<TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('Profiles') }}>
+                                    <FontAwesome name="users" size={50} color={cores.color3} />
+                                    <Text style={style.section_btn_text}>Gerenciar usuários</Text>
+                                </TouchableOpacity>
+                                    ) : false
+                            }
+                            </View>
+                        </ScrollView>
                     </View>
                 </View>
             </ImageBackground>
@@ -91,28 +125,37 @@ const style = StyleSheet.create({
         marginBottom: 10,
     },
     menuItem: {
-        backgroundColor: `${myCores.light}09`,
+        backgroundColor: `${myCores.light}05`,
         borderRadius: 10,
         width: 70,
         height: 70,
         borderWidth: 5,
-        borderColor: '#00000020',
+        borderColor: '#00000010',
         alignItems: 'center',
         justifyContent: 'center',
     },
-    section: {
+    sectionScrollView: {
+        flex: 1,
+    },
+    sectionMaster: {
         flex: 10,
-        backgroundColor: '#e1e1e105',
+        backgroundColor: '#ffffff05',
         width: '100%',
         borderTopColor: `${cores.color5}`,
-        borderTopWidth: 3,
+        borderTopWidth: 4,
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         alignItems: 'center',
         paddingTop: 30,
     },
-
+    section: {
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+    },
     bodyBackground: {
         flex: 1,
         justifyContent: "center",

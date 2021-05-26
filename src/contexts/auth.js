@@ -46,7 +46,9 @@ function AuthProvider({ children }) {
                         let data = {
                             uid,
                             nome: snapshot.val().nome,
-                            email: value.user.email
+                            sobrenome: snapshot.val().sobrenome,
+                            tipoUser: snapshot.val().tipoUser,
+                            email: value.user.email,
                         };
                         setUser(data);
                         storageUser(data);

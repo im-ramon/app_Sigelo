@@ -5,6 +5,8 @@ import ScannerQR from '../pages/ScannerQR';
 import Conf from '../pages/Conf';
 import Register from '../pages/Register';
 import UserList from '../pages/UserList';
+import Approver from '../pages/Approver';
+import Profiles from '../pages/Profiles';
 
 
 const AppSatck = createStackNavigator();
@@ -67,6 +69,38 @@ function AppRoutes() {
             <AppSatck.Screen
                 name="Conf"
                 component={Conf}
+                options={{
+                    headerShown: true,
+                    title: 'Voltar',
+                    headerStyle: {
+                        backgroundColor: '#121212',
+                        borderBottomColor: '#F27405',
+                        borderBottomWidth: 2
+                    },
+                    headerTintColor: '#fff',
+                    
+                }}
+            />
+
+            <AppSatck.Screen
+                name="Approver"
+                component={Approver}
+                options={{
+                    headerShown: true,
+                    title: 'Voltar',
+                    headerStyle: {
+                        backgroundColor: '#121212',
+                        borderBottomColor: '#F27405',
+                        borderBottomWidth: 2
+                    },
+                    headerTintColor: '#fff',
+                    
+                }}
+            />
+
+            <AppSatck.Screen
+                name="Profiles"
+                component={Profiles}
                 options={{
                     headerShown: true,
                     title: 'Voltar',

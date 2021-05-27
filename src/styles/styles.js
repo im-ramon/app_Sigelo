@@ -44,7 +44,7 @@ export const Input = styled.TextInput.attrs({
 })`
 background: ${cores.color1};
 color: ${cores.color7};
-width: 80%;
+width: 75%;
 height: 100%;
 text-align: left;
 margin-left: 15px;

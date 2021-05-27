@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { ImageBackground, StyleSheet, TextInput } from 'react-native';
+import { ImageBackground, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { Background, Container, Logo, AreaInput, Input, SubmitButton, SubmitText, Link, LinkText, styles } from '../../styles/styles';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../contexts/auth'
 import { color } from 'react-native-reanimated';
@@ -14,10 +14,18 @@ export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [textSecure, setTextSecure] = useState(true);
+    const [textSecureIcon, setTextSecureIcon] = useState('eyeo');
+
     const { signIn } = useContext(AuthContext);
 
-    function handleLogin(){
+    function handleLogin() {
         signIn(email, password);
+    }
+
+    function toggleSecureIcon(){
+        if (textSecure) return setTextSecureIcon('eye')
+        if (!textSecure) return setTextSecureIcon('eyeo')
     }
 
     return (
@@ -44,9 +52,12 @@ export default function SignIn() {
                             autoCorrect={false}
                             autoCapitalize="none"
                             value={password}
-                            secureTextEntry={true}
+                            secureTextEntry={textSecure}
                             onChangeText={text => setPassword(text)}
                         />
+                        <TouchableOpacity style={{ marginLeft: 2 }} onPress={()=>{setTextSecure(!textSecure); toggleSecureIcon()}}>
+                            <AntDesign name={textSecureIcon} size={20} color="#dedede" />
+                        </TouchableOpacity>
                     </AreaInput>
 
                     <SubmitButton onPress={() => {

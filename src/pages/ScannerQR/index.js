@@ -5,6 +5,7 @@ import firebase from '../../../src/services/firebaseConnection';
 import { Ionicons } from '@expo/vector-icons';
 import { cores } from '../Register/listas';
 import { arrayPostGrad } from '../Register/listas'
+import minhasCores from '../../styles/colors'
 
 export default function ScannerQR() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -24,6 +25,11 @@ export default function ScannerQR() {
   const [observacoes, setObservacoes] = useState('buscando...')
 
 
+  const [corRetorno, setCorRetorno] = useState(minhasCores.success)
+  const [textoRetorno, setTextoRetorno] = useState('ativo')
+  const [iconRetorno, setIconRetorno] = useState('checkmark')
+
+
   useEffect(() => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
@@ -33,6 +39,7 @@ export default function ScannerQR() {
 
 
   async function dados(data) {
+    let hoje = new Date()
     await firebase.database().ref('veiculos/' + data.replace(/\.?\,?\#?\$?\[?\]?/g, '')).on('value', (snapshot) => {
       try {
         setNomeCompleto(snapshot.val().nomeCompleto)
@@ -45,13 +52,22 @@ export default function ScannerQR() {
         setValidade(Date.parse(snapshot.val().validade))
         setDocumentoIdentidade(snapshot.val().documentoIdentidade)
         setObservacoes(!snapshot.val().observacoes ? 'Sem observações' : snapshot.val().observacoes)
-
         setModalActive(true)
       } catch (error) {
         setModalActive(false)
         alert(`O identificador nº "${data}" não foi encontrado no banco de dados.\nTente novamente!`)
       }
-    })
+      if (validade < hoje) {
+        setCorRetorno(minhasCores.danger);
+        setTextoRetorno('vencido')
+        setIconRetorno('close')
+      } else {
+        setCorRetorno(minhasCores.success);
+        setTextoRetorno('ativo')
+        setIconRetorno('checkmark')
+      }
+    }
+    )
   }
 
   const handleBarCodeScanned = ({ type, data }) => {
@@ -97,7 +113,23 @@ export default function ScannerQR() {
             }</Text></Text>
             <Text style={styles.text}>Observações: <Text style={styles.textAchado}>{observacoes}</Text></Text>
 
+            <View style={{
+              backgroundColor: corRetorno,
+              marginTop: 35,
+              height: 250,
+              width: 300,
+              alignItems: 'center',
+              paddingVertical: 20,
+              paddingHorizontal: 50,
+              borderRadius: 10,
+              borderWidth: 2,
+              borderColor: '#12121250'
+            }}>
+              <Ionicons name={iconRetorno} size={128} color='#ffffff' />
+              <Text style={styles.textResposta}>Cadastro {textoRetorno}</Text>
+            </View>
           </View>
+
 
         </View>
       </Modal>
@@ -162,5 +194,19 @@ const styles = StyleSheet.create({
     fontSize: 18,
     top: 30,
     color: '#dedede'
+  },
+  textResposta: {
+    fontSize: 24,
+    color: '#ffffff'
+  },
+  tipoRespota: {
+    backgroundColor: '#121212',
+    marginTop: 35,
+    height: 250,
+    width: 300,
+    alignItems: 'center',
+    paddingVertical: 20,
+    paddingHorizontal: 50,
+    borderRadius: 10
   }
 })

@@ -63,7 +63,7 @@ export default function SignUp() {
                     <AreaInput>
                         <Ionicons name="person" size={20} color="#dedede" style={{ marginLeft: 5 }} />
                         <Input
-                            placeholder="Primeiro nome do usuário"
+                            placeholder="Primeiro nome"
                             autoCorrect={false}
                             autoCapitalize="none"
                             value={nomeUser}
@@ -75,7 +75,7 @@ export default function SignUp() {
                     <AreaInput>
                         <Ionicons name="person" size={20} color="#dedede" style={{ marginLeft: 5 }} />
                         <Input
-                            placeholder="Sobrenome do usuário"
+                            placeholder="Sobrenome"
                             autoCorrect={false}
                             autoCapitalize="none"
                             value={sobrenomeUser}
@@ -87,7 +87,7 @@ export default function SignUp() {
                     <AreaInput>
                         <Ionicons name="mail" size={20} color="#dedede" style={{ marginLeft: 5 }} />
                         <Input
-                            placeholder="Email do usuário"
+                            placeholder="Email"
                             autoCorrect={false}
                             autoCapitalize="none"
                             value={emailUser}
@@ -117,7 +117,7 @@ export default function SignUp() {
                             dropdownIconColor={tipoUser == '99' ? cores.danger : cores.success} size={20} color={senhaAdm == '' ? cores.danger : cores.success}
                             style={{ color: tipoUser === '' || tipoUser == '99' ? '#484848' : '#dedede', fontSize: 20, width: '95%', height: '100%' }}
                         >
-                            <Picker.Item key={99} value={99} label={'Selecione o tipo de usuário'} />
+                            <Picker.Item key={99} value={99} label={' - Selecione o perfil de usuário'} />
                             <Picker.Item key={1} value={1} label={'Administrador'} />
                             <Picker.Item key={2} value={2} label={'Operador'} />
                             <Picker.Item key={3} value={3} label={'Fiscalizador'} />

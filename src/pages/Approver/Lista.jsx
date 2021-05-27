@@ -19,7 +19,9 @@ export default function Lista({ data }) {
     const [sobrenome, setSobrenome] = useState(data.sobrenome)
     const [tipoUser, setTipoUser] = useState(data.tipoUser)
 
-    function myAlert() {
+    function myAlert(type, key) {
+
+        if(type == 'insert'){
             Alert.alert(
                 "Atenção",
                 `Ao confirmar, você estará concedendo ao usuário acesso ao aplicativo. \n\nDeseja continuar?`,
@@ -32,8 +34,23 @@ export default function Lista({ data }) {
                     { text: "Confirmar", onPress: () => aproverOnFirebase(key, email, nome, sobrenome, tipoUser) }
                 ],
                 { cancelable: false }
-            );
-    }
+            );}
+
+        if(type == 'delete'){
+            Alert.alert(
+                "Atenção",
+                `Ao confirmar, você estará rejeitando a solicitação de acesso ao aplicativo. \n\nDeseja continuar?`,
+                [
+                    {
+                        text: "Voltar",
+                        onPress: () => console.log("Cancel Pressed"),
+                        style: "cancel"
+                    },
+                    { text: "Confirmar", onPress: () => deleteOnFirebase(key) }
+                ],
+                { cancelable: false }
+            );}
+        }
 
     async function aproverOnFirebase(key, email, nome, sobrenome, tipoUser) {
         await firebase.database().ref('users').child(key).set({ email, nome, sobrenome, tipoUser }).then(() => {
@@ -60,12 +77,12 @@ export default function Lista({ data }) {
             </View>
 
             <View style={LocalStyle.footer}>
-                <TouchableOpacity style={LocalStyle.btnEdit} onPress={() => { myAlert() }}>
+                <TouchableOpacity style={LocalStyle.btnEdit} onPress={() => { myAlert('insert') }}>
                     <LinearGradient colors={['transparent', '#00000050']} style={LocalStyle.linearGradient} />
                     <AntDesign name="check" size={24} color="black" />
                 </TouchableOpacity>
 
-                <TouchableOpacity style={LocalStyle.btnDelete} onPress={() => { deleteOnFirebase(key) }}>
+                <TouchableOpacity style={LocalStyle.btnDelete} onPress={() => { myAlert('delete', key) }}>
                     <LinearGradient colors={['transparent', '#00000050']} style={LocalStyle.linearGradient} />
                     <AntDesign name="delete" size={24} color="black" />
                 </TouchableOpacity>

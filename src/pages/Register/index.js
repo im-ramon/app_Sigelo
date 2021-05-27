@@ -186,7 +186,7 @@ export default function Register() {
                         <AreaInput style={style.areaInput}>
                             <Ionicons name="hand-left" size={20} color="#dedede" style={{ marginLeft: 5 }} />
                             <Input
-                                placeholder="Áreas de acesso"
+                                placeholder="Áreas de acesso permitido"
                                 autoCorrect={false}
                                 autoCapitalize="none"
                                 value={tipoAcesso}

@@ -19,22 +19,22 @@ export default function Lista({ data }) {
     const [sobrenome, setSobrenome] = useState(data.sobrenome)
     const [tipoUser, setTipoUser] = useState(data.tipoUser)
 
-    const perfil = ['dev','Administrador', 'Operador', 'Fiscalizador']
+    const perfil = ['dev', 'Administrador', 'Operador', 'Fiscalizador']
 
     function myAlert(key) {
-            Alert.alert(
-                "Atenção",
-                `Ao confirmar, você estará excluíndo definitivamente este perfil.\n\nDeseja continuar?`,
-                [
-                    {
-                        text: "Voltar",
-                        onPress: () => console.log("Cancel Pressed"),
-                        style: "cancel"
-                    },
-                    { text: "Confirmar", onPress: () => deleteOnFirebase(key) }
-                ],
-                { cancelable: false }
-            );
+        Alert.alert(
+            "Atenção",
+            `Ao confirmar, você estará excluíndo definitivamente este perfil.\n\nDeseja continuar?`,
+            [
+                {
+                    text: "Voltar",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                },
+                { text: "Confirmar", onPress: () => deleteOnFirebase(key) }
+            ],
+            { cancelable: false }
+        );
     }
 
     async function deleteOnFirebase(key) {
@@ -42,24 +42,27 @@ export default function Lista({ data }) {
     }
 
     return (
-        <View style={LocalStyle.container}>
-            <View style={LocalStyle.header}>
-                <LinearGradient colors={['transparent', '#00000035']} style={LocalStyle.linearGradient} />
-                <Text style={LocalStyle.textHeader}>{nome + ' ' + sobrenome}</Text>
-            </View>
+        tipoUser != '0' && tipoUser != '-1' ?
+            <View style={LocalStyle.container}>
+                <View style={LocalStyle.header}>
+                    <LinearGradient colors={['transparent', '#00000035']} style={LocalStyle.linearGradient} />
+                    <Text style={LocalStyle.textHeader}>{nome + ' ' + sobrenome}</Text>
+                </View>
 
-            <View style={LocalStyle.sectionDadosCarro}>
-                <Text style={LocalStyle.textDestaque}>E-mai: <Text style={LocalStyle.textSimples}>{email}</Text></Text>
-                <Text style={LocalStyle.textDestaque}>Perfil: <Text style={LocalStyle.textSimples}>{perfil[tipoUser]}</Text></Text>
-            </View>
+                <View style={LocalStyle.sectionDadosCarro}>
+                    <Text style={LocalStyle.textDestaque}>E-mai: <Text style={LocalStyle.textSimples}>{email}</Text></Text>
+                    <Text style={LocalStyle.textDestaque}>Perfil: <Text style={LocalStyle.textSimples}>{perfil[tipoUser]}</Text></Text>
+                </View>
 
-            <View style={LocalStyle.footer}>
-                <TouchableOpacity style={LocalStyle.btnDelete} onPress={() => { myAlert(key) }}>
-                    <LinearGradient colors={['transparent', '#00000050']} style={LocalStyle.linearGradient} />
-                    <AntDesign name="delete" size={24} color="black" />
-                </TouchableOpacity>
+                <View style={LocalStyle.footer}>
+                    <TouchableOpacity style={LocalStyle.btnDelete} onPress={() => { myAlert(key) }}>
+                        <LinearGradient colors={['transparent', '#00000050']} style={LocalStyle.linearGradient} />
+                        <AntDesign name="delete" size={24} color="black" />
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
+        : 
+        false
     )
 }
 

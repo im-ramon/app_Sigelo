@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     justifyContent: 'flex-start',
-    marginLeft: 25,
+    marginLeft: 10,
     marginTop: 10,
     backgroundColor: '#141414',
     flexDirection: 'row'
@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     fontWeight: 'bold',
     marginBottom: 30,
+    borderRadius: 10,
   },
   modalBody: {
     alignItems: 'center',

@@ -12,6 +12,7 @@ export const style = StyleSheet.create({
         borderBottomColor: '#F27405',
         paddingHorizontal: 10,
         paddingVertical: 2,
+        borderRadius: 10
     },
     viewTextArea: {
         width: '80%',

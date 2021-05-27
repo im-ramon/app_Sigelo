@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ImageBackground, StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Background, cores } from '../../styles/styles';
-import { Ionicons, FontAwesome5, FontAwesome } from '@expo/vector-icons';
+import { Ionicons, FontAwesome5, FontAwesome, AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../contexts/auth'
 import { AppContext } from '../../contexts/appContexts'
@@ -53,8 +53,8 @@ export default function Home() {
 
                                 {user.tipoUser == '0'  || user.tipoUser == '1' || user.tipoUser == '2' || user.tipoUser == '3'?
                                     (<TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('ScannerQR') }}>
-                                        <Ionicons name="camera-sharp" size={64} color={cores.color3} />
-                                        <Text style={style.section_btn_text}>Escanear selo</Text>
+                                        <AntDesign name="qrcode" size={64} color={cores.color3} />
+                                        <Text style={style.section_btn_text}>Escanear adesivo</Text>
                                     </TouchableOpacity>
                                     ) : false
                                 }
@@ -62,7 +62,7 @@ export default function Home() {
                                 {user.tipoUser == '0'  || user.tipoUser == '1' || user.tipoUser == '2'?
                                     (<TouchableOpacity style={style.section_btn}>
                                     <Ionicons name="checkmark-circle-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('all') }} />
-                                    <Text style={style.section_btn_text}>Gerenciar cadastros</Text>
+                                    <Text style={style.section_btn_text}>Gerenciar veículos</Text>
                                 </TouchableOpacity>
                                     ) : false
                                 }
@@ -70,14 +70,14 @@ export default function Home() {
                                 {user.tipoUser == '0'  || user.tipoUser == '1' || user.tipoUser == '2'?
                                     (<TouchableOpacity style={style.section_btn}>
                                     <Ionicons name="warning-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('expired') }} />
-                                    <Text style={style.section_btn_text}>Cadastros vencidos</Text>
+                                    <Text style={style.section_btn_text}>Veículos irregulares</Text>
                                 </TouchableOpacity>
                                     ) : false
                                 }
 
                                 {user.tipoUser == '0'  || user.tipoUser == '1' || user.tipoUser == '2'?
                                     (<TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('Register') }}>
-                                    <Ionicons name="add-sharp" size={64} color={cores.color3} />
+                                    <Ionicons name="add-circle" size={64} color={cores.color3} />
                                     <Text style={style.section_btn_text}>Cadastrar veículos</Text>
                                 </TouchableOpacity>
                                     ) : false

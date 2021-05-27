@@ -13,6 +13,7 @@ import { AppContext } from '../../contexts/appContexts';
 export default function Approver() {
 
     const [users, setUsers] = useState([])
+    const [loadingList, setLoadingList] = useState(true)
 
     useEffect(() => {
         async function listarUsuarios() {
@@ -33,7 +34,10 @@ export default function Approver() {
             })
         }
 
-        listarUsuarios()
+        listarUsuarios().then(
+            ()=>{setLoadingList(false)}
+        )
+
     }, [])
 
     
@@ -43,7 +47,12 @@ export default function Approver() {
             <ImageBackground source={require('../../assets/background.jpg')} style={styles.image}>
                 <Container>
                     <Text style={style.textH1}>Aprovar usuários</Text>
+                    
                     {
+                        loadingList ?
+
+                        (<ActivityIndicator color="#3C74A6" size={45} />)
+                    :
                         users.length == 0 ?
                             (
                                 <Text style={{color: '#dedede', fontSize: 20, textAlign: 'center'}}>Não há usuários aguardando aprovação.</Text>

@@ -17,9 +17,8 @@ const styles = StyleSheet.create({
     },  
     textHeader: {
         fontSize: 22,
-        textTransform: 'uppercase',
         color: cores.light,
-        borderBottomColor: cores.color6,
+        borderBottomColor: cores.color5,
         borderBottomWidth: 3,
         borderRadius: 10
     },
@@ -40,7 +39,17 @@ const styles = StyleSheet.create({
     },  
     textVersion: {
         color: `${cores.light}30`,
-    }
+    }, 
+    viewGit: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
+    textGit: {
+        color: `${cores.light}30`,
+        fontSize: 18,
+    },
 })
 
 

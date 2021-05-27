@@ -41,58 +41,75 @@
 </h4>
 
 
-<p align="center">  <a href="#objetivo">Registrar usuário</a> •  <a href="#roadmap">Roadmap</a> •   <a href="#tecnologias">Tecnologias</a> •   <a href="#contribuicao">Contribuição</a> •   <a href="#licenc-a">Licença</a> •   <a href="#autor">Autor</a> </p>
+<p align="center">  <a href="#features">Features</a> •  <a href="#demo">Demonstração</a> •   <a href="#requirements">Requisitos</a> •   <a href="#tech">Tecnoligias</a> •   <a href="#team">Contribuição</a> •   <a href="#autor">Autor</a> </p>
 
 ------
 
 <h3 align="center">
     [🚧 Projeto em construção...  🚧]
     </h3>
+<h4 align="center" font-color="red">
+    📈 Andamento: <a href="https://trello.com/b/U7St3w2y/appsigelo">Trello</a>
+</h4> 
 
+------
 
-
-
-#### **:checkered_flag: Features**:
+#### **:checkered_flag: <a id="features">Features princiapais</a>:**
 
 - [x] Escanear adesivo e retornar informações
 
 - [x] Listar cadastros ativos
 
-- [ ] Editar cadastros ativos
+- [x] Editar cadastros ativos
 
-- [ ] Listar pendências
+- [x] Listar pendências
 
 - [x] Adicionar novos veículos
 
-- [ ] Adicionar novos usuários
+- [x] Adicionar novos usuários
 
-- [ ] Tela de configurações
-
-- [ ] Melhorias de UI
-
-- [ ] Melhorias de UX
+- [x] Tela de configurações
 
   
 
-#### 🧪 Demonstração da aplicação:
+
+#### 🧪 <a id="demo">Demonstração da aplicação</a>:
+
+> ​	[imagens das telas]
 
 
 
-#### 🧭 Pré-requisitos e como rodar a aplicação/testes:
+#### 🧭 <a id="requirements">Pré-requisitos para utilizar a aplicação</a>:
 
+  - Smartphone com: 
 
+    		- Acesso à internet;
+    		- Sistema Operacional Android (7+)
 
-####  **:hammer: Tecnologias**: 
+    
 
-- As seguintes ferramentas foram usadas na construção do projeto: - [Expo](https://expo.io/) - [Node.js](https://nodejs.org/en/) - [React](https://pt-br.reactjs.org/) - [React Native](https://reactnative.dev/)
+####  :hammer: <a id="tech">Tecnologias</a>: 
+
+- As seguintes ferramentas foram usadas na construção do projeto: 
+
+  - [Expo](https://expo.io/)
+  - Node.js](https://nodejs.org/en/)
+  - [React](https://pt-br.reactjs.org/)
+  - React Native](https://reactnative.dev/)
 
   
 
-#### 👨‍👩‍👦 Contribuição:
+#### 👨‍👩‍👦 <a id="team">Contribuição</a>:
 
+ - Aplicação desenvolvida individualmente.
 
+   
 
-#### 👨‍💻 Autor:
+#### 👨‍💻 <a id="autor">Autor</a>:
+
+​	<a href="https://imramon.com.br">
+​    <img alt="Ramon Oliveira" src="https://img.shields.io/badge/[]-Ramon%20Oliveira-%237519C1">
+  </a>
 
 
 

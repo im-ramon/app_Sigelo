@@ -68,7 +68,8 @@ export const SubmitText = styled.Text`
 
 
 export const Link = styled.TouchableOpacity`
-   margin-top:50px;
+   margin-top: 40px;
+   margin-bottom: -5px;
 `;
 
 

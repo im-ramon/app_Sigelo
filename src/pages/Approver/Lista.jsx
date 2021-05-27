@@ -19,9 +19,9 @@ export default function Lista({ data }) {
     const [sobrenome, setSobrenome] = useState(data.sobrenome)
     const [tipoUser, setTipoUser] = useState(data.tipoUser)
 
-    function myAlert(type, key) {
+    function myAlert(type, key, email, nome, sobrenome, tipoUser) {
 
-        if(type == 'insert'){
+        if (type == 'insert') {
             Alert.alert(
                 "Atenção",
                 `Ao confirmar, você estará concedendo ao usuário acesso ao aplicativo. \n\nDeseja continuar?`,
@@ -34,9 +34,11 @@ export default function Lista({ data }) {
                     { text: "Confirmar", onPress: () => aproverOnFirebase(key, email, nome, sobrenome, tipoUser) }
                 ],
                 { cancelable: false }
-            );}
+            );
+            return;
+        }
 
-        if(type == 'delete'){
+        if (type == 'delete') {
             Alert.alert(
                 "Atenção",
                 `Ao confirmar, você estará rejeitando a solicitação de acesso ao aplicativo. \n\nDeseja continuar?`,
@@ -49,8 +51,10 @@ export default function Lista({ data }) {
                     { text: "Confirmar", onPress: () => deleteOnFirebase(key) }
                 ],
                 { cancelable: false }
-            );}
+            );
+            return;
         }
+    }
 
     async function aproverOnFirebase(key, email, nome, sobrenome, tipoUser) {
         await firebase.database().ref('users').child(key).set({ email, nome, sobrenome, tipoUser }).then(() => {
@@ -62,7 +66,7 @@ export default function Lista({ data }) {
         await firebase.database().ref('tempUsers').child(key).remove()
     }
 
-    const perfil = ['dev','Administrador', 'Operador', 'Fiscalizador']
+    const perfil = ['_', 'Administrador', 'Operador', 'Fiscalizador']
 
     return (
         <View style={LocalStyle.container}>
@@ -77,7 +81,7 @@ export default function Lista({ data }) {
             </View>
 
             <View style={LocalStyle.footer}>
-                <TouchableOpacity style={LocalStyle.btnEdit} onPress={() => { myAlert('insert') }}>
+                <TouchableOpacity style={LocalStyle.btnEdit} onPress={() => { myAlert('insert', key, email, nome, sobrenome, tipoUser) }}>
                     <LinearGradient colors={['transparent', '#00000050']} style={LocalStyle.linearGradient} />
                     <AntDesign name="check" size={24} color="black" />
                 </TouchableOpacity>

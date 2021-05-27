@@ -23,7 +23,7 @@ export default function SignIn() {
         signIn(email, password);
     }
 
-    function toggleSecureIcon(){
+    function toggleSecureIcon() {
         if (textSecure) return setTextSecureIcon('eye')
         if (!textSecure) return setTextSecureIcon('eyeo')
     }
@@ -55,7 +55,7 @@ export default function SignIn() {
                             secureTextEntry={textSecure}
                             onChangeText={text => setPassword(text)}
                         />
-                        <TouchableOpacity style={{ marginLeft: 2 }} onPress={()=>{setTextSecure(!textSecure); toggleSecureIcon()}}>
+                        <TouchableOpacity style={{ marginLeft: 2 }} onPress={() => { setTextSecure(!textSecure); toggleSecureIcon() }}>
                             <AntDesign name={textSecureIcon} size={20} color="#dedede" />
                         </TouchableOpacity>
                     </AreaInput>
@@ -69,10 +69,18 @@ export default function SignIn() {
                     </SubmitButton>
 
                     <Link onPress={() => {
-                        navigation.navigate('SignUp')
+                        navigation.navigate('PassawordReset')
                     }}>
                         <LinkText>
-                            Solicitar acesso ao aplicativo.
+                            Esqueci minha senha
+                    </LinkText>
+                    </Link>
+
+                    <Link onPress={() => {
+                        navigation.navigate('SignUp')
+                    }}>
+                        <LinkText style={{color: '#ffffff35'}}>
+                            Solicitar acesso ao aplicativo
                     </LinkText>
                     </Link>
 

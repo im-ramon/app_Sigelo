@@ -69,7 +69,7 @@ export default function SignUp() {
                             value={nomeUser}
                             onChangeText={text => setNomeUser(text)}
                         />
-                        <Ionicons name={!nomeUser ? "close" : "checkmark"} size={20} color={!nomeUser ? cores.danger : cores.success} style={{ marginLeft: -60 }} />
+                        <Ionicons name={!nomeUser ? "close" : "checkmark"} size={20} color={!nomeUser ? cores.danger : cores.success} style={{ marginLeft: -5 }} />
                     </AreaInput>
 
                     <AreaInput>
@@ -81,7 +81,7 @@ export default function SignUp() {
                             value={sobrenomeUser}
                             onChangeText={text => setSobrenomeUser(text)}
                         />
-                        <Ionicons name={!sobrenomeUser ? "close" : "checkmark"} size={20} color={!sobrenomeUser ? cores.danger : cores.success} style={{ marginLeft: -60 }} />
+                        <Ionicons name={!sobrenomeUser ? "close" : "checkmark"} size={20} color={!sobrenomeUser ? cores.danger : cores.success} style={{ marginLeft: -5 }} />
                     </AreaInput>
 
                     <AreaInput>
@@ -93,7 +93,7 @@ export default function SignUp() {
                             value={emailUser}
                             onChangeText={text => setEmailUser(text)}
                         />
-                        <Ionicons name={!validacaoEmail.test(emailUser) ? "close" : "checkmark"} size={20} color={!validacaoEmail.test(emailUser) ? cores.danger : cores.success} style={{ marginLeft: -60 }} />
+                        <Ionicons name={!validacaoEmail.test(emailUser) ? "close" : "checkmark"} size={20} color={!validacaoEmail.test(emailUser) ? cores.danger : cores.success} style={{ marginLeft: -5 }} />
                     </AreaInput>
 
                     <AreaInput>
@@ -106,7 +106,7 @@ export default function SignUp() {
                             onChangeText={text => setSenhaUser(text)}
                             secureTextEntry={true}
                         />
-                        <Ionicons name={senhaUser.length <= 7 ? "close" : "checkmark"} size={20} color={senhaUser.length <= 7 ? cores.danger : cores.success} style={{ marginLeft: -60 }} />
+                        <Ionicons name={senhaUser.length <= 7 ? "close" : "checkmark"} size={20} color={senhaUser.length <= 7 ? cores.danger : cores.success} style={{ marginLeft: -5 }} />
                     </AreaInput>
 
                     <View style={style.piker}>

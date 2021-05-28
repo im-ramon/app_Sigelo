@@ -51,7 +51,7 @@ export default function Home() {
                         <ScrollView style={style.sectionScrollView}>
                             <View style={style.section}>
 
-                                {user.tipoUser == '0'  || user.tipoUser == '1' || user.tipoUser == '2' || user.tipoUser == '3'?
+                                {user.tipoUser == '0' || user.tipoUser == '1' || user.tipoUser == '2' || user.tipoUser == '3' || user.tipoUser == '-1' ?
                                     (<TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('ScannerQR') }}>
                                         <AntDesign name="qrcode" size={64} color={cores.color3} />
                                         <Text style={style.section_btn_text}>Escanear adesivo</Text>
@@ -59,45 +59,45 @@ export default function Home() {
                                     ) : false
                                 }
 
-                                {user.tipoUser == '0'  || user.tipoUser == '1' || user.tipoUser == '2'?
+                                {user.tipoUser == '0' || user.tipoUser == '1' || user.tipoUser == '2' || user.tipoUser == '-1' ?
                                     (<TouchableOpacity style={style.section_btn}>
-                                    <Ionicons name="checkmark-circle-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('all') }} />
-                                    <Text style={style.section_btn_text}>Gerenciar veículos</Text>
-                                </TouchableOpacity>
+                                        <Ionicons name="checkmark-circle-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('all') }} />
+                                        <Text style={style.section_btn_text}>Gerenciar veículos</Text>
+                                    </TouchableOpacity>
                                     ) : false
                                 }
 
-                                {user.tipoUser == '0'  || user.tipoUser == '1' || user.tipoUser == '2'?
+                                {user.tipoUser == '0' || user.tipoUser == '1' || user.tipoUser == '2' || user.tipoUser == '-1' ?
                                     (<TouchableOpacity style={style.section_btn}>
-                                    <Ionicons name="warning-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('expired') }} />
-                                    <Text style={style.section_btn_text}>Veículos irregulares</Text>
-                                </TouchableOpacity>
+                                        <Ionicons name="warning-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('expired') }} />
+                                        <Text style={style.section_btn_text}>Veículos irregulares</Text>
+                                    </TouchableOpacity>
                                     ) : false
                                 }
 
-                                {user.tipoUser == '0'  || user.tipoUser == '1' || user.tipoUser == '2'?
+                                {user.tipoUser == '0' || user.tipoUser == '1' || user.tipoUser == '2' || user.tipoUser == '-1' ?
                                     (<TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('Register') }}>
-                                    <Ionicons name="add-circle" size={64} color={cores.color3} />
-                                    <Text style={style.section_btn_text}>Cadastrar veículos</Text>
-                                </TouchableOpacity>
+                                        <Ionicons name="add-circle" size={64} color={cores.color3} />
+                                        <Text style={style.section_btn_text}>Cadastrar veículos</Text>
+                                    </TouchableOpacity>
                                     ) : false
                                 }
 
-                                {user.tipoUser == '0'  || user.tipoUser == '1'  ?
+                                {user.tipoUser == '0' || user.tipoUser == '1' || user.tipoUser == '-1' ?
                                     (<TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('Approver') }}>
-                                    <FontAwesome5 name="user-check" size={50} color={cores.color3} />
-                                    <Text style={style.section_btn_text}>Aprovar usuários</Text>
-                                </TouchableOpacity>
+                                        <FontAwesome5 name="user-check" size={50} color={cores.color3} />
+                                        <Text style={style.section_btn_text}>Aprovar usuários</Text>
+                                    </TouchableOpacity>
                                     ) : false
                                 }
 
-                                {user.tipoUser == '0'  || user.tipoUser == '1' ?
+                                {user.tipoUser == '0' || user.tipoUser == '1' || user.tipoUser == '-1' ?
                                     (<TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('Profiles') }}>
-                                    <FontAwesome name="users" size={50} color={cores.color3} />
-                                    <Text style={style.section_btn_text}>Gerenciar usuários</Text>
-                                </TouchableOpacity>
+                                        <FontAwesome name="users" size={50} color={cores.color3} />
+                                        <Text style={style.section_btn_text}>Gerenciar usuários</Text>
+                                    </TouchableOpacity>
                                     ) : false
-                            }
+                                }
                             </View>
                         </ScrollView>
                     </View>

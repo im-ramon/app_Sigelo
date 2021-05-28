@@ -1,11 +1,10 @@
 import React, { useState, useContext } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Modal, ScrollView, ActivityIndicator, Alert } from 'react-native'
 import { cores, arrayPostGrad } from '../Register/listas'
-import { Ionicons, MaterialCommunityIcons, MaterialIcons, AntDesign } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { AreaInput, Background, Container, Input, Logo, SubmitButton, SubmitText, Link, LinkText, styles } from '../../styles/styles';
 import { Picker } from '@react-native-picker/picker'
 import { style } from './style'
-import DateTimePicker from '@react-native-community/datetimepicker';
 import firebase from '../../services/firebaseConnection';
 import { AppContext } from '../../contexts/appContexts';
 import minhascores from '../../styles/colors'
@@ -61,8 +60,8 @@ export default function Lista({ data }) {
                     </TouchableOpacity>
                 </View>
             </View>
-        : 
-        false
+            :
+            false
     )
 }
 

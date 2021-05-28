@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, ImageBackground, StyleSheet, Alert, ActivityIndicator } from 'react-native';
-import { AreaInput, Background, Container, Input, Logo, SubmitButton, SubmitText, Link, LinkText, styles } from '../SignIn/styles';
+import { AreaInput, Background, Container, Input, Logo, SubmitButton, SubmitText, Link, styles } from '../SignIn/styles';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import colors from '../../styles/colors';

@@ -49,7 +49,7 @@
     [🚧 Projeto em construção...  🚧]
     </h3>
 <h4 align="center" font-color="red">
-    📈 Andamento: <a href="https://trello.com/b/U7St3w2y/appsigelo">Trello</a>
+    📈 Acompanhe o andamento: <a href="https://trello.com/b/U7St3w2y/appsigelo">Trello</a>
 </h4> 
 
 ------

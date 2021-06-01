@@ -1,0 +1,8 @@
+{
+    "files.exclude": {
+        "node_modules": true,
+        ".vscode": true,
+        ".expo": true,
+        ".expo-shared": true,
+    }
+}

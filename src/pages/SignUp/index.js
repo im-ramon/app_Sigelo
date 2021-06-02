@@ -59,7 +59,7 @@ export default function SignUp() {
                     <Logo source={require('../../assets/logo-1.png')} />
 
                     <Text style={style.textHeader}>Cadastrar usuários</Text>
-
+                    
                     <AreaInput>
                         <Ionicons name="person" size={20} color="#dedede" style={{ marginLeft: 5 }} />
                         <Input
@@ -69,7 +69,7 @@ export default function SignUp() {
                             value={nomeUser}
                             onChangeText={text => setNomeUser(text)}
                         />
-                        <Ionicons name={!nomeUser ? "close" : "checkmark"} size={20} color={!nomeUser ? cores.danger : cores.success} style={{ marginLeft: -5 }} />
+                        <Ionicons name={nomeUser && nomeUser.length >= 2 ? "checkmark" : "close"} size={20} color={nomeUser === '' ? '#00000000' : (nomeUser && nomeUser.length >= 2 ? cores.success : cores.danger)} style={{ marginLeft: -5 }} />
                     </AreaInput>
 
                     <AreaInput>
@@ -81,7 +81,7 @@ export default function SignUp() {
                             value={sobrenomeUser}
                             onChangeText={text => setSobrenomeUser(text)}
                         />
-                        <Ionicons name={!sobrenomeUser ? "close" : "checkmark"} size={20} color={!sobrenomeUser ? cores.danger : cores.success} style={{ marginLeft: -5 }} />
+                        <Ionicons name={sobrenomeUser && sobrenomeUser.length >= 2 ? "checkmark" : "close"} size={20} color={sobrenomeUser === '' ? '#00000000' : (sobrenomeUser && sobrenomeUser.length >=2 ? cores.success : cores.danger)} style={{ marginLeft: -5 }} />
                     </AreaInput>
 
                     <AreaInput>
@@ -93,7 +93,7 @@ export default function SignUp() {
                             value={emailUser}
                             onChangeText={text => setEmailUser(text)}
                         />
-                        <Ionicons name={!validacaoEmail.test(emailUser) ? "close" : "checkmark"} size={20} color={!validacaoEmail.test(emailUser) ? cores.danger : cores.success} style={{ marginLeft: -5 }} />
+                        <Ionicons name={!validacaoEmail.test(emailUser) ? "close" : "checkmark"} size={20} color={emailUser === '' ? '#00000000' : (!validacaoEmail.test(emailUser) ? cores.danger : cores.success)} />
                     </AreaInput>
 
                     <AreaInput>
@@ -106,7 +106,7 @@ export default function SignUp() {
                             onChangeText={text => setSenhaUser(text)}
                             secureTextEntry={true}
                         />
-                        <Ionicons name={senhaUser.length <= 7 ? "close" : "checkmark"} size={20} color={senhaUser.length <= 7 ? cores.danger : cores.success} style={{ marginLeft: -5 }} />
+                        <Ionicons name={senhaUser.length <= 7 ? "close" : "checkmark"} size={20} color={senhaUser == '' ? '#00000000' : (senhaUser.length <= 7 ? cores.danger : cores.success)} style={{ marginLeft: -5 }} />
                     </AreaInput>
 
                     <View style={style.piker}>
@@ -114,10 +114,10 @@ export default function SignUp() {
                         <Picker
                             selectedValue={tipoUser}
                             onValueChange={value => { setTipoUser(value) }}
-                            dropdownIconColor={tipoUser == '99' ? cores.danger : cores.success} size={20} color={senhaAdm == '' ? cores.danger : cores.success}
+                            dropdownIconColor={tipoUser == '99' ? cores.light : cores.success} size={20} color={senhaAdm == '' ? cores.danger : cores.success}
                             style={{ color: tipoUser === '' || tipoUser == '99' ? '#484848' : '#dedede', fontSize: 20, width: '95%', height: '100%' }}
                         >
-                            <Picker.Item key={99} value={99} label={' - Selecione o perfil de usuário'} />
+                            <Picker.Item key={99} value={99} label={' - Selecione um perfil de usuário'} />
                             <Picker.Item key={1} value={1} label={'Administrador'} />
                             <Picker.Item key={2} value={2} label={'Operador'} />
                             <Picker.Item key={3} value={3} label={'Fiscalizador'} />

@@ -82,7 +82,7 @@ export default function PassawordReset() {
                             value={emailUser}
                             onChangeText={text => setEmailUser(text)}
                         />
-                        <Ionicons name={!validacaoEmail.test(emailUser) ? "close" : "checkmark"} size={20} color={!validacaoEmail.test(emailUser) ? cores.danger : cores.success} />
+                        <Ionicons name={!validacaoEmail.test(emailUser) ? "close" : "checkmark"} size={20} color={emailUser === '' ? '#00000000' : (!validacaoEmail.test(emailUser) ? cores.danger : cores.success)} />
                     </AreaInput>
 
                     {loading ?

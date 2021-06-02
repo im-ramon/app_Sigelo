@@ -86,7 +86,7 @@ export default function ScannerQR() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textAbsolute}>Aponte a câmera para o selo.</Text>
+      <Text style={styles.textAbsolute}>Aponte a câmera para o QRCode no adesivo.</Text>
 
       <Modal animationType="slide" visible={modalActive} >
         <View style={styles.modalContainer}>

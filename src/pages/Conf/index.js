@@ -19,7 +19,6 @@ export default function Conf() {
                 <Text style={styles.textVersion}>Desenvolvido por Ramon Oliveira</Text>
                 <View style={styles.viewGit}><AntDesign name="github" size={22} color="#ffffff50" /><Text style={styles.textGit}> /im-ramon</Text></View>
             </View>
-
         </View>
     )
 }

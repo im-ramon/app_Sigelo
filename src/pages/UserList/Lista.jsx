@@ -85,7 +85,18 @@ export default function Lista({ data }) {
     async function deleteOnFirebase(key) {
         await firebase.database().ref('veiculos').child(key).remove()
             .then(() => {
-                alert('Excluído!')
+                Alert.alert(
+                    "Concluído!",
+                    `Registro deletado do banco de dados`,
+                    [
+                        {
+                            text: "Continuar",
+                            onPress: () => console.log("Continue"),
+                            style: "cancel"
+                        },
+                    ],
+                    { cancelable: false }
+                );
             });
     }
 

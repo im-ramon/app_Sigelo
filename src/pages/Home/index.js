@@ -17,8 +17,8 @@ export default function Home() {
     const { setPageName, setToday } = useContext(AppContext);
 
 
-    const navigateTo = (pageType) => {
-        pageType === 'all' ? setPageName('Cadastros ativos') : setPageName('Cadastros vencidos')
+    const navigateTo = (pageNameNav) => {
+        pageNameNav === 'all' ? setPageName('Cadastros ativos') : setPageName('Cadastros vencidos')
 
         setToday(new Date())
         navigation.navigate('UserList')

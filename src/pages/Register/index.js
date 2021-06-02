@@ -92,6 +92,9 @@ export default function Register() {
 
         cadastros.child(chave).set({
             nomeCompleto, postGrad: postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade: String(validade), observacoes, documentoIdentidade
+        }).then((foo) => {
+            setLoadingUpdate(false)
+            alertFunc('success')
         })
     }
 
@@ -235,10 +238,6 @@ export default function Register() {
                                     if (nomeCompleto != '' && postGrad != '' && nomeGuerra != '' && modelo != '' && placa != '' && cor != '' && tipoAcesso != '' && validade != '' && documentoIdentidade != '') {
                                         setLoadingUpdate(true)
                                         insertNoFireBase(nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade, observacoes, documentoIdentidade)
-                                        setTimeout(() => {
-                                            setLoadingUpdate(false)
-                                        }, 1000);
-                                        alertFunc('success')
                                     } else {
                                         alertFunc('erro')
                                     }

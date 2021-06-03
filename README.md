@@ -10,19 +10,7 @@
 ------
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/im-ramon/app_Sigelo?color=%2304D361">
-
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/im-ramon/app_Sigelo">
-
-  <a href="https://github.com/im-ramon/app_Sigelo/commits/master"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/im-ramon/app_Sigelo"></a>
-    
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
-
-  <a href="https://imramon.com.br"><img alt="Feito pela Rocketseat" src="https://img.shields.io/badge/dev-Ramon%20Oliveira-%237519C1"></a>
-
-  <a href="#link"><img alt="Stargazers" src="https://img.shields.io/badge/Blog-Ramon%20Oliveira-%237159c1?style=flat&logo=ghost"></a>
-
-  <a href="https://github.com/ im-ramon/app_Sigelo/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/im-ramon/app_Sigelo?style=social"></a>
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/im-ramon/app_Sigelo?color=%2304D361"> <img alt="Repository size" src="https://img.shields.io/github/repo-size/im-ramon/app_Sigelo"> <a href="https://github.com/im-ramon/app_Sigelo/commits/master"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/im-ramon/app_Sigelo"></a> <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen"> <a href="https://imramon.com.br"><img alt="Feito pela Rocketseat" src="https://img.shields.io/badge/dev-Ramon%20Oliveira-%237519C1"></a> <a href="#link"><img alt="Stargazers" src="https://img.shields.io/badge/Blog-Ramon%20Oliveira-%237159c1?style=flat&logo=ghost"></a> <a href="https://github.com/ im-ramon/app_Sigelo/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/im-ramon/app_Sigelo?style=social"></a>
 </p>
 
 ------
@@ -48,20 +36,14 @@
 #### **:checkered_flag: <a id="features">Features princiapais</a>:**
 
 - [x] Escanear adesivo e retornar informações
-
 - [x] Listar cadastros ativos
-
 - [x] Editar cadastros ativos
-
 - [x] Listar pendências
-
 - [x] Adicionar novos veículos
-
 - [x] Adicionar novos usuários
-
 - [x] Tela de configurações
 
-  
+
 
 
 #### 🧪 <a id="demo">Demonstração das telas da aplicação</a>:
@@ -89,13 +71,15 @@
   - [React](https://pt-br.reactjs.org/)
   - [React Native](https://reactnative.dev/)
 
-  
+
+
 
 #### 👨‍👩‍👦 <a id="team">Contribuição</a>:
 
  - Aplicação desenvolvida individualmente.
 
-   
+
+
 
 #### 👨‍💻 <a id="autor">Autor</a>:
 
@@ -107,7 +91,8 @@
 
 - Este projeto esta sobe a licença [MIT](https://github.com/im-ramon/app_Sigelo/LICENSE).
 
-  
+
+
 
 #### :earth_americas: Outros versões: 
 

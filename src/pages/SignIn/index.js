@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { ImageBackground, StyleSheet, TextInput, TouchableOpacity, CheckBox, View, Text } from 'react-native';
+import { ImageBackground, StyleSheet, TextInput, TouchableOpacity, CheckBox, View, Text, Alert } from 'react-native';
 import { Background, Container, Logo, AreaInput, Input, SubmitButton, SubmitText, Link, LinkText, styles } from '../../styles/styles';
 import minhasCores from '../../styles/colors'
 import { Ionicons, AntDesign } from '@expo/vector-icons';
@@ -17,10 +17,19 @@ export default function SignIn() {
 
     const [textSecure, setTextSecure] = useState(true);
     const [textSecureIcon, setTextSecureIcon] = useState('eyeo');
-    
+
     const [keepConnected, setKeepConnected] = useState(false);
 
     const { signIn } = useContext(AuthContext);
+
+    const contato = () => {
+        Alert.alert(
+            'Tem alguma dúvida?',
+            'Entre em contato com o desenvolvedor pelo e-mail:\n\t- ramon.santos11@outlook.com\n',
+            [{ text: "Voltar", onPress: () => { }, style: "cancel" }],
+            { cancelable: true }
+        )
+    }
 
     function handleLogin() {
         signIn(email, password, keepConnected);
@@ -75,7 +84,7 @@ export default function SignIn() {
                         <Text style={styles.textCheckbox}>Manter conectado? </Text>
                         <CheckBox
                             value={keepConnected}
-                            onValueChange={()=>{setKeepConnected(!keepConnected)}}
+                            onValueChange={() => { setKeepConnected(!keepConnected) }}
                             style={styles.checkbox}
                             tintColors={{ true: minhasCores.color3, false: '#ff00ff' }}
                         />
@@ -98,6 +107,14 @@ export default function SignIn() {
                     </Link>
 
                 </Container>
+
+                {/* 
+                    // Está deixando a tela de login muito cheia. Vou procurar uma forma de a deixar mais limpa.
+                    
+                <TouchableOpacity style={styles.helpBtn} onPress={()=> {contato()}}>
+                    <Ionicons name="help" size={20} style={styles.helpIcon} />
+                </TouchableOpacity> */}
+
             </ImageBackground>
         </Background>
     );

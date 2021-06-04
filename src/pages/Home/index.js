@@ -61,16 +61,16 @@ export default function Home() {
 
                                 {user.tipoUser == '0' || user.tipoUser == '1' || user.tipoUser == '2' || user.tipoUser == '-1' ?
                                     (<TouchableOpacity style={style.section_btn}>
-                                        <Ionicons name="checkmark-circle-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('all') }} />
-                                        <Text style={style.section_btn_text}>Gerenciar veículos</Text>
+                                        <Ionicons name="warning-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('expired') }} />
+                                        <Text style={style.section_btn_text}>Veículos irregulares</Text>
                                     </TouchableOpacity>
                                     ) : false
                                 }
 
                                 {user.tipoUser == '0' || user.tipoUser == '1' || user.tipoUser == '2' || user.tipoUser == '-1' ?
                                     (<TouchableOpacity style={style.section_btn}>
-                                        <Ionicons name="warning-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('expired') }} />
-                                        <Text style={style.section_btn_text}>Veículos irregulares</Text>
+                                        <Ionicons name="checkmark-circle-sharp" size={64} color={cores.color3} onPress={() => { navigateTo('all') }} />
+                                        <Text style={style.section_btn_text}>Exibir veículos</Text>
                                     </TouchableOpacity>
                                     ) : false
                                 }

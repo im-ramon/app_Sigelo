@@ -106,4 +106,18 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     }, 
+    helpIcon: {
+        color: cores.color1,
+    },
+    helpBtn: {
+        backgroundColor: cores.color5 + '50',
+        borderRadius: 25,
+        width: 25,
+        height: 25,
+        top: 30,
+        right: 15,
+        position: 'absolute',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 });

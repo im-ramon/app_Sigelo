@@ -38,11 +38,42 @@ export default function Lista({ data }) {
     const [documentoIdentidade, setDocumentoIdentidade] = useState(data.documentoIdentidade)
     const [observacoes, setObservacoes] = useState(data.observacoes)
 
+    const regexPlate = /^[A-Za-z]{3}([0-9]{1}[A-Za-z]{1}[0-9]{2}|[0-9]{4}$)/
+
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || validade;
         setShow(Platform.OS === 'ios');
         setValidade(currentDate);
     };
+
+    const isValidAccess = (page) => {
+        const objDataVencimento = new Date(data.validade)
+
+        if (page === 'Cadastros vencidos') {
+            if (objDataVencimento > today) {
+                return true
+            } else {
+                false
+            }
+        } else {
+            true
+        }
+    }
+
+    const alertFill = () => {
+        Alert.alert(
+            "Atenção!",
+            `Preencha corretamente todos os campos para continuar.`,
+            [
+                {
+                    text: "Continuar",
+                    onPress: () => {},
+                    style: "cancel"
+                },
+            ],
+            { cancelable: false }
+        );
+    }
 
 
     const openConfirmDelete = () =>
@@ -78,7 +109,7 @@ export default function Lista({ data }) {
 
                 setTimeout(() => {
                     setModalActive(false)
-                }, 1000);
+                }, 300);
             });
     }
 
@@ -98,20 +129,6 @@ export default function Lista({ data }) {
                     { cancelable: false }
                 );
             });
-    }
-
-    const isValidAccess = (page) => {
-        const objDataVencimento = new Date(data.validade)
-
-        if (page === 'Cadastros vencidos') {
-            if (objDataVencimento > today) {
-                return true
-            } else {
-                false
-            }
-        } else {
-            true
-        }
     }
 
     return (
@@ -162,129 +179,134 @@ export default function Lista({ data }) {
                             <Container>
                                 <Text style={style.textH1}>Editar cadastro</Text>
                                 <ScrollView style={style.containerScrollView}>
-                                    <AreaInput style={style.areaInput}>
-                                        <Ionicons name="person" size={20} color="#dedede" style={{ marginLeft: 5 }} />
-                                        <Input
-                                            placeholder="Nome completo"
-                                            autoCorrect={false}
-                                            autoCapitalize="none"
-                                            value={nomeCompleto}
-                                            onChangeText={text => setNomeCompleto(text)}
-                                        />
-                                    </AreaInput>
+                                <AreaInput style={style.areaInput}>
+                            <Ionicons name="person" size={20} color="#dedede" style={{ marginLeft: 5 }} />
+                            <Input
+                                placeholder="Nome completo"
+                                autoCorrect={false}
+                                autoCapitalize="none"
+                                value={nomeCompleto}
+                                onChangeText={text => setNomeCompleto(text)}
+                            />
+                            <Ionicons name={nomeCompleto.length > 1 ? "checkmark" : "close"} size={20} color={nomeCompleto === '' ? "#00000000" : (nomeCompleto.length > 1 ? minhascores.success : minhascores.danger)} style={{ marginLeft: 0}} />
+                        </AreaInput>
 
-                                    <View style={style.piker}>
-                                        <MaterialIcons name="military-tech" size={22} color="#dedede" style={{ marginLeft: 5 }} />
-                                        <Picker
-                                            selectedValue={postGrad}
-                                            onValueChange={value => { setPostGrad(value) }}
-                                            dropdownIconColor='#dedede'
-                                            style={{ color: '#dedede', fontSize: 20, width: '95%', height: '100%' }}
-                                        >
-                                            {itemPostGrad}
-                                        </Picker>
+                        <View style={style.piker}>
+                            <MaterialIcons name="military-tech" size={22} color="#dedede" style={{ marginLeft: 5 }} />
+                            <Picker
+                                selectedValue={postGrad}
+                                onValueChange={value => { setPostGrad(value) }}
+                                dropdownIconColor={postGrad === 0 ? minhascores.light : minhascores.success}
+                                style={{ color: postGrad === 0 ? '#484848' : '#dedede', fontSize: 20, width: '95%', height: '100%' }}
+                            >
+                                {itemPostGrad}
+                            </Picker>
+                        </View>
 
-                                    </View>
+                        <AreaInput style={style.areaInput}>
+                            <MaterialIcons name="military-tech" size={22} color="#dedede" style={{ marginLeft: 5 }} />
+                            <Input
+                                placeholder="Nome de guerra"
+                                autoCorrect={false}
+                                autoCapitalize="none"
+                                value={nomeGuerra}
+                                onChangeText={text => setNomeGuerra(text)}
+                            />
+                            <Ionicons name={nomeGuerra.length > 1 ? "checkmark" : "close"} size={20} color={nomeGuerra === '' ? "#00000000" : (nomeGuerra.length > 1 ? minhascores.success : minhascores.danger)} style={{ marginLeft: 0}} />
+                        </AreaInput>
 
-                                    <AreaInput style={style.areaInput}>
-                                        <MaterialIcons name="military-tech" size={22} color="#dedede" style={{ marginLeft: 5 }} />
+                        <AreaInput style={style.areaInput}>
+                            <MaterialCommunityIcons name="identifier" size={20} color="#dedede" style={{ marginLeft: 5 }} />
+                            <Input
+                                placeholder="Documento de identidade"
+                                autoCorrect={false}
+                                autoCapitalize="none"
+                                value={documentoIdentidade}
+                                onChangeText={text => setDocumentoIdentidade(text)}
+                            />
+                            <Ionicons name={documentoIdentidade.length > 1 ? "checkmark" : "close"} size={20} color={documentoIdentidade === '' ? "#00000000" : (documentoIdentidade.length > 1 ? minhascores.success : minhascores.danger)} style={{ marginLeft: 0}} />
+                        </AreaInput>
 
-                                        <Input
-                                            placeholder="Nome de guerra"
-                                            autoCorrect={false}
-                                            autoCapitalize="none"
-                                            value={nomeGuerra}
-                                            onChangeText={text => setNomeGuerra(text)}
-                                        />
-                                    </AreaInput>
+                        <AreaInput style={style.areaInput}>
+                            <Ionicons name="car" size={20} color="#dedede" style={{ marginLeft: 5 }} />
+                            <Input
+                                placeholder="Modelo do veículo"
+                                autoCorrect={false}
+                                autoCapitalize="none"
+                                value={modelo}
+                                onChangeText={text => setModelo(text)}
+                            />
+                            <Ionicons name={modelo.length > 1 ? "checkmark" : "close"} size={20} color={modelo === '' ? "#00000000" : (modelo.length > 1 ? minhascores.success : minhascores.danger)} style={{ marginLeft: 0}} />
+                        </AreaInput>
 
-                                    <AreaInput style={style.areaInput}>
-                                        <MaterialCommunityIcons name="identifier" size={20} color="#dedede" style={{ marginLeft: 5 }} />
-                                        <Input
-                                            placeholder="Documento de identidade"
-                                            autoCorrect={false}
-                                            autoCapitalize="none"
-                                            value={documentoIdentidade}
-                                            onChangeText={text => setDocumentoIdentidade(text)}
-                                        />
-                                    </AreaInput>
+                        <View style={style.piker}>
+                            <Ionicons name="color-palette-sharp" size={22} color="#dedede" style={{ marginLeft: 5 }} />
+                            <Picker
+                                selectedValue={cor}
+                                onValueChange={value => { setCor(value) }}
+                                dropdownIconColor={cor === 0 ? minhascores.light : minhascores.success}
+                                style={{ color: cor === 0 ? '#484848' : '#dedede', fontSize: 20, width: '95%', height: '100%' }}
+                            >
+                                {itemCor}
+                            </Picker>
+                        </View>
 
-                                    <AreaInput style={style.areaInput}>
-                                        <Ionicons name="car" size={20} color="#dedede" style={{ marginLeft: 5 }} />
-                                        <Input
-                                            placeholder="Modelo do veículo"
-                                            autoCorrect={false}
-                                            autoCapitalize="none"
-                                            value={modelo}
-                                            onChangeText={text => setModelo(text)}
-                                        />
-                                    </AreaInput>
+                        <AreaInput style={style.areaInput}>
+                            <MaterialCommunityIcons name="scoreboard" size={20} color="#dedede" style={{ marginLeft: 5 }} />
+                            <Input
+                                placeholder="Placa do veículo"
+                                maxLength={7}
+                                autoCorrect={false}
+                                autoCapitalize="none"
+                                value={placa}
+                                onChangeText={text => setPlaca(text)}
+                            />
+                            <Ionicons name={regexPlate.test(placa) ? "checkmark" : "close"} size={20} color={placa === '' ? '#00000000' : (regexPlate.test(placa) ? minhascores.success : minhascores.danger)} style={{ marginLeft: 0}} />
+                        </AreaInput>
 
-                                    <View style={style.piker}>
-                                        <Ionicons name="color-palette-sharp" size={22} color="#dedede" style={{ marginLeft: 5 }} />
-                                        <Picker
-                                            selectedValue={cor}
-                                            onValueChange={value => { setCor(value) }}
-                                            dropdownIconColor='#dedede'
-                                            style={{ color: cor === 0 ? '#484848' : '#dedede', fontSize: 20, width: '95%', height: '100%' }}
-                                        >
-                                            {itemCor}
-                                        </Picker>
-                                    </View>
+                        <AreaInput style={style.areaInput}>
+                            <Ionicons name="hand-left" size={20} color="#dedede" style={{ marginLeft: 5 }} />
+                            <Input
+                                placeholder="Áreas de acesso permitido"
+                                autoCorrect={false}
+                                autoCapitalize="none"
+                                value={tipoAcesso}
+                                onChangeText={text => setTipoAcesso(text)}
+                            />
+                            <Ionicons name={tipoAcesso.length > 1 ? "checkmark" : "close"} size={20} color={tipoAcesso === '' ? "#00000000" : (tipoAcesso.length > 1 ? minhascores.success : minhascores.danger)} style={{ marginLeft: 0}} />
+                        </AreaInput>
 
-                                    <AreaInput style={style.areaInput}>
-                                        <MaterialCommunityIcons name="scoreboard" size={20} color="#dedede" style={{ marginLeft: 5 }} />
-                                        <Input
-                                            placeholder="Placa do veículo"
-                                            autoCorrect={false}
-                                            autoCapitalize="none"
-                                            value={placa}
-                                            onChangeText={text => setPlaca(text)}
-                                        />
-                                    </AreaInput>
+                        <TouchableOpacity onPress={() => { setMode('date'); setShow(true) }}>
+                            <View style={style.datePiker}>
+                                <Ionicons name="calendar-sharp" size={20} color="#dedede" style={{ marginLeft: 5 }} />
+                                <Input
+                                    editable={false}
+                                    selectTextOnFocus={false}
+                                    value={String(`${(validade.getDate() <= 9) ? '0' + (validade.getDate()) : validade.getDate()}/${(validade.getMonth() + 1) <= 9 ? '0' + (validade.getMonth() + 1) : (validade.getMonth() + 1)}/${validade.getFullYear()}`)}
+                                />
+                            </View>
+                            {show && (
+                                <DateTimePicker
+                                    testID="dateTimePicker"
+                                    value={validade}
+                                    mode={mode}
+                                    is24Hour={true}
+                                    display="default"
+                                    onChange={onChange}
+                                />
+                            )}
+                        </TouchableOpacity>
 
-                                    <AreaInput style={style.areaInput}>
-                                        <Ionicons name="hand-left" size={20} color="#dedede" style={{ marginLeft: 5 }} />
-                                        <Input
-                                            placeholder="Áreas de acesso"
-                                            autoCorrect={false}
-                                            autoCapitalize="none"
-                                            value={tipoAcesso}
-                                            onChangeText={text => setTipoAcesso(text)}
-                                        />
-                                    </AreaInput>
-
-                                    <TouchableOpacity onPress={() => { setMode('date'); setShow(true) }}>
-                                        <View style={style.datePiker}>
-                                            <Ionicons name="calendar-sharp" size={20} color="#dedede" style={{ marginLeft: 5 }} />
-                                            <Input
-                                                editable={false}
-                                                selectTextOnFocus={false}
-                                                value={String(`${(validade.getDate() <= 9) ? '0' + (validade.getDate()) : validade.getDate()}/${(validade.getMonth() + 1) <= 9 ? '0' + (validade.getMonth() + 1) : (validade.getMonth() + 1)}/${validade.getFullYear()}`)}
-                                            />
-                                        </View>
-                                        {show && (
-                                            <DateTimePicker
-                                                testID="dateTimePicker"
-                                                value={validade}
-                                                mode={mode}
-                                                is24Hour={true}
-                                                display="default"
-                                                onChange={onChange}
-                                            />
-                                        )}
-                                    </TouchableOpacity>
-
-                                    <AreaInput style={style.areaInput}>
-                                        <Ionicons name="add" size={20} color="#dedede" style={{ marginLeft: 5 }} />
-                                        <Input
-                                            placeholder="Observações"
-                                            autoCorrect={false}
-                                            autoCapitalize="none"
-                                            value={observacoes}
-                                            onChangeText={text => setObservacoes(text)}
-                                        />
-                                    </AreaInput>
+                        <AreaInput style={style.areaInput}>
+                            <Ionicons name="add" size={20} color="#dedede" style={{ marginLeft: 5 }} />
+                            <Input
+                                placeholder="Observações"
+                                autoCorrect={false}
+                                autoCapitalize="none"
+                                value={observacoes}
+                                onChangeText={text => setObservacoes(text)}
+                            />
+                        </AreaInput>
 
                                     {loadingUpdate ?
 
@@ -300,10 +322,10 @@ export default function Lista({ data }) {
                                             }}
 
                                                 onPress={() => {
-                                                    if (nomeCompleto != '' && postGrad != '' && nomeGuerra != '' && modelo != '' && placa != '' && cor != '' && tipoAcesso != '' && validade != '' && documentoIdentidade != '') {
+                                                    if (nomeCompleto != '' && postGrad != '' && nomeGuerra != '' && modelo != '' && regexPlate.test(placa) && cor != '' && tipoAcesso != '' && validade != '' && documentoIdentidade != '') {
                                                         updateOnFirebase(key, nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade, documentoIdentidade, observacoes)
                                                     } else {
-                                                        alert('Preencha todos os campos para continuar.')
+                                                        alertFill()
                                                     }
                                                 }}>
                                                 <SubmitText>

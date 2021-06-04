@@ -83,10 +83,14 @@ export default function Lista({ data }) {
             [
                 {
                     text: "Voltar",
-                    onPress: () => console.log("Cancel Pressed"),
+                    onPress: () => {},
                     style: "cancel"
                 },
-                { text: "Excluir", onPress: () => deleteOnFirebase(data.key) }
+                {
+                    text: "Excluir",
+                    onPress: () => {deleteOnFirebase(data.key)},
+                    style: "cancel"
+                }
             ],
             { cancelable: false }
         );
@@ -118,7 +122,7 @@ export default function Lista({ data }) {
             .then(() => {
                 Alert.alert(
                     "Concluído!",
-                    `Registro deletado do banco de dados`,
+                    `Registro deletado com sucesso do banco de dados.`,
                     [
                         {
                             text: "Continuar",
@@ -126,7 +130,7 @@ export default function Lista({ data }) {
                             style: "cancel"
                         },
                     ],
-                    { cancelable: false }
+                    { cancelable: true }
                 );
             });
     }

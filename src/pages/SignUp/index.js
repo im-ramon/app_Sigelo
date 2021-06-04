@@ -23,8 +23,6 @@ export default function SignUp() {
 
     const [loading, setLoading] = useState(false)
 
-    const [corValidacao, setCorValidacao] = useState('#00000000')
-
     const validacaoEmail = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)$/
 
 
@@ -32,7 +30,7 @@ export default function SignUp() {
         if (type == 'erro') {
             Alert.alert(
                 `Atenção!`,
-                `Preencha todos os campos para continuar.\n\nTente novamente.`,
+                `Preencha corretamente todos os campos solicitados para continuar.\n\nTente novamente.`,
                 [
                     { text: "Continuar", onPress: () => console.log('erro') }
                 ],
@@ -128,7 +126,7 @@ export default function SignUp() {
                         :
                         (
                             <SubmitButton style={{borderRadius: 10}} onPress={() => {
-                                if (!!/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)$/.test(emailUser) && senhaUser.length >= 8 && !!nomeUser && !!sobrenomeUser && !!tipoUser) {
+                                if (!!validacaoEmail.test(emailUser) && senhaUser.length >= 8 && !!nomeUser && !!sobrenomeUser && !!tipoUser) {
                                     setLoading(true)
                                     signUp(emailUser, senhaUser, nomeUser, sobrenomeUser, tipoUser)
                                     setLoading(false)

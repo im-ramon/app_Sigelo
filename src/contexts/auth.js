@@ -36,7 +36,7 @@ function AuthProvider({ children }) {
     }, [])
 
     //login
-    async function signIn(email, password) {
+    async function signIn(email, password, keepConnected) {
         setLoading(true)
         await firebase.auth().signInWithEmailAndPassword(email, password)
             .then(async (value) => {
@@ -51,7 +51,7 @@ function AuthProvider({ children }) {
                             email: value.user.email,
                         };
                         setUser(data);
-                        storageUser(data);
+                        keepConnected && storageUser(data)
                         setLoading(false)
                     })
             })

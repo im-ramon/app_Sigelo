@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { ImageBackground, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { ImageBackground, StyleSheet, TextInput, TouchableOpacity, CheckBox, View, Text } from 'react-native';
 import { Background, Container, Logo, AreaInput, Input, SubmitButton, SubmitText, Link, LinkText, styles } from '../../styles/styles';
+import minhasCores from '../../styles/colors'
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../contexts/auth'
@@ -16,11 +17,13 @@ export default function SignIn() {
 
     const [textSecure, setTextSecure] = useState(true);
     const [textSecureIcon, setTextSecureIcon] = useState('eyeo');
+    
+    const [keepConnected, setKeepConnected] = useState(false);
 
     const { signIn } = useContext(AuthContext);
 
     function handleLogin() {
-        signIn(email, password);
+        signIn(email, password, keepConnected);
     }
 
     function toggleSecureIcon() {
@@ -68,6 +71,16 @@ export default function SignIn() {
                     </SubmitText>
                     </SubmitButton>
 
+                    <View style={styles.checkboxArea}>
+                        <Text style={styles.textCheckbox}>Manter conectado? </Text>
+                        <CheckBox
+                            value={keepConnected}
+                            onValueChange={()=>{setKeepConnected(!keepConnected)}}
+                            style={styles.checkbox}
+                            tintColors={{ true: minhasCores.color3, false: '#ff00ff' }}
+                        />
+                    </View>
+
                     <Link onPress={() => {
                         navigation.navigate('PassawordReset')
                     }}>
@@ -79,7 +92,7 @@ export default function SignIn() {
                     <Link onPress={() => {
                         navigation.navigate('SignUp')
                     }}>
-                        <LinkText style={{color: '#ffffff35'}}>
+                        <LinkText style={{ color: '#ffffff35' }}>
                             Solicitar acesso ao aplicativo
                     </LinkText>
                     </Link>

@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native'
 
 export const cores = {
-    color1: "#121212", 
+    color1: "#121212",
     color2: "#011126",
     color3: "#3C74A6",
     color4: "#73AABF",
@@ -56,7 +56,7 @@ export const SubmitButton = styled.TouchableOpacity`
     background-color: ${cores.color3};
     width: 65%;
     height: 60px;
-    margin-top: 30px; 
+    margin-top: 10px; 
     border-radius: 10px;
 `;
 
@@ -68,8 +68,7 @@ export const SubmitText = styled.Text`
 
 
 export const Link = styled.TouchableOpacity`
-   margin-top: 40px;
-   margin-bottom: -5px;
+   margin-top: 15px;
 `;
 
 
@@ -92,5 +91,19 @@ export const styles = StyleSheet.create({
         top: 0,
         height: "150%",
         width: "150%",
-    }
+    },
+    checkbox: {
+        
+    }, 
+    textCheckbox: {
+        color: cores.color7+ '99',
+    }, 
+    checkboxArea: {
+        marginTop: 15,
+        marginBottom: 50,
+        width: '65%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }, 
 });

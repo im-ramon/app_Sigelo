@@ -24,11 +24,13 @@
 
 ------
 
+------
+
 <h3 align="center">
     [🚧 Projeto em construção...  🚧]
     </h3>
 <h4 align="center" font-color="red">
-    📈 Acompanhe o andamento: <a href="https://trello.com/b/U7St3w2y/appsigelo">Trello</a>
+    📈 Acompanhe o andamento: <a href="https://trello.com/b/U7St3w2y/appsigelo" title="Acompanhe como estou trabalhando no projeto.">Trello</a>
 </h4> 
 
 ------

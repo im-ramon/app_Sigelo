@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, ImageBackground, StyleSheet, Alert, ActivityIndicator } from 'react-native';
-import { AreaInput, Background, Container, Input, Logo, SubmitButton, SubmitText, Link, LinkText, styles } from '../SignIn/styles';
+import { AreaInput, Background, Container, Input, Logo, SubmitButton, SubmitText, Link, LinkText, styles } from '../../styles/styles';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import colors from '../../styles/colors';
@@ -163,16 +163,20 @@ const style = StyleSheet.create({
         marginTop: -20
     },
     piker: {
-        backgroundColor: '#121212',
+        backgroundColor: '#00000050',
         borderBottomWidth: 3,
+        borderTopRightRadius: 5,
+        borderTopLeftRadius: 5,
         borderBottomColor: '#3C74A6',
         width: '65%',
         // flex: 1,
         alignSelf: 'center',
         flexDirection: 'row',
-        height: 35,
+        height: 40,
         marginBottom: 20,
         alignItems: 'center',
         paddingBottom: 10,
+        paddingTop: 5,
+        paddingRight: 15,
     },
 })

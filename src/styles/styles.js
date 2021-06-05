@@ -31,18 +31,21 @@ margin-bottom: 16px;
 export const AreaInput = styled.View`
 flex-direction: row;
 width: 65%;
-height: 35px;
+height: 40px;
 margin-bottom: 23px;
 border-bottom-color: ${cores.color3};
 border-bottom-width: 3px;
 padding-bottom: 5px;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+padding-top: 8px;
+background: ${'#00000050'};
 align-items: center;
 `;
 
 export const Input = styled.TextInput.attrs({
     placeholderTextColor: '#484848'
 })`
-background: ${cores.color1};
 color: ${cores.color7};
 width: 75%;
 height: 100%;
@@ -82,7 +85,7 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         width: '100%',
         height: '100%',
-        resizeMode: 'repeat'
+        resizeMode: 'contain'
     },
     linearGradient: {
         position: 'absolute',

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, ImageBackground, StyleSheet, Alert, ActivityIndicator } from 'react-native';
-import { AreaInput, Background, Container, Input, Logo, SubmitButton, SubmitText, Link, styles } from '../SignIn/styles';
+import { AreaInput, Background, Container, Input, Logo, SubmitButton, SubmitText, Link, styles } from '../../styles/styles';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import colors from '../../styles/colors';
@@ -33,10 +33,10 @@ export default function PassawordReset() {
     function myalert(type, error) {
         if (type == 'erro') {
             Alert.alert(
-                `:(`,
-                `Ocorreu um erro.\n\nTente novamente.\n\nDescrição do erro: ${error}`,
+                `Ocorreu um erro`,
+                `Verifique o e-mail digitado e tente novamente!\n\n${!!error ? 'Descrição do erro:' + error : ''}`,
                 [
-                    { text: "Continuar", onPress: () => console.log('erro') }
+                    { text: "Tentar novamente", onPress: () => {} }
                 ],
                 { cancelable: false }
             );
@@ -90,7 +90,7 @@ export default function PassawordReset() {
                         :
                         (
                             <SubmitButton style={{ borderRadius: 10 }} onPress={() => {
-                                if (!!validacaoEmail.test(emailUser)) {
+                                if (validacaoEmail.test(emailUser)) {
                                     resetEmail(emailUser)
                                 } else {
                                     myalert('erro')

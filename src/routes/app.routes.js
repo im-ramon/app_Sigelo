@@ -8,6 +8,8 @@ import UserList from '../pages/UserList';
 import Approver from '../pages/Approver';
 import Profiles from '../pages/Profiles';
 
+import minhascores from '../styles/colors'
+
 
 const AppSatck = createStackNavigator();
 
@@ -65,7 +67,7 @@ function AppRoutes() {
                     headerShown: true,
                     title: 'Voltar',
                     headerStyle: {
-                        backgroundColor: '#121212',
+                        backgroundColor: minhascores.color1,
                         borderBottomColor: '#F27405',
                         borderBottomWidth: 2
                     },
@@ -81,7 +83,7 @@ function AppRoutes() {
                     headerShown: true,
                     title: 'Voltar',
                     headerStyle: {
-                        backgroundColor: '#121212',
+                        backgroundColor: minhascores.color1,
                         borderBottomColor: '#F27405',
                         borderBottomWidth: 2
                     },
@@ -97,7 +99,7 @@ function AppRoutes() {
                     headerShown: true,
                     title: 'Voltar',
                     headerStyle: {
-                        backgroundColor: '#121212',
+                        backgroundColor: minhascores.color1,
                         borderBottomColor: '#F27405',
                         borderBottomWidth: 2
                     },
@@ -113,7 +115,7 @@ function AppRoutes() {
                     headerShown: true,
                     title: 'Voltar',
                     headerStyle: {
-                        backgroundColor: '#121212',
+                        backgroundColor: minhascores.color1,
                         borderBottomColor: '#F27405',
                         borderBottomWidth: 2
                     },
@@ -130,7 +132,7 @@ function AppRoutes() {
                     headerShown: true,
                     title: 'Voltar',
                     headerStyle: {
-                        backgroundColor: '#121212',
+                        backgroundColor: minhascores.color1,
                         borderBottomColor: '#F27405',
                         borderBottomWidth: 2
                     },
@@ -147,7 +149,7 @@ function AppRoutes() {
                     headerShown: true,
                     title: 'Voltar',
                     headerStyle: {
-                        backgroundColor: '#121212',
+                        backgroundColor: minhascores.color1,
                         borderBottomColor: '#F27405',
                         borderBottomWidth: 2
                     },

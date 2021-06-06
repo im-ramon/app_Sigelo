@@ -8,7 +8,6 @@ import UserList from '../pages/UserList';
 import Approver from '../pages/Approver';
 import Profiles from '../pages/Profiles';
 import ExportAllQR from '../pages/ExportAllQR';
-import ExportAQR from '../pages/ExportAQR';
 
 import minhascores from '../styles/colors'
 
@@ -177,22 +176,6 @@ function AppRoutes() {
                 }}
             />
 
-            <AppSatck.Screen
-                name="ExportAQR"
-                component={ExportAQR}
-                options={{
-                    ...configAnimation,
-                    headerShown: true,
-                    title: 'Voltar',
-                    headerStyle: {
-                        backgroundColor: minhascores.color1,
-                        borderBottomColor: '#F27405',
-                        borderBottomWidth: 2
-                    },
-                    headerTintColor: '#fff',
-
-                }}
-            />
         </AppSatck.Navigator>
     );
 }

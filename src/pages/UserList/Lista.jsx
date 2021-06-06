@@ -10,6 +10,7 @@ import firebase from '../../services/firebaseConnection';
 import { AppContext } from '../../contexts/appContexts';
 import minhascores from '../../styles/colors'
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Print from 'expo-print';
 
 export default function Lista({ data }) {
 
@@ -20,12 +21,10 @@ export default function Lista({ data }) {
     const [textoResposta, setTextoResposta] = useState('Atualizar')
     const [btnCor, setBtnCor] = useState('#3C74A6')
 
-    ////
-
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
-    //dados do formulário: 
+    //Dados do formulário: 
     const [key, setKey] = useState(data.key)
     const [nomeCompleto, setNomeCompleto] = useState(data.nomeCompleto)
     const [postGrad, setPostGrad] = useState(data.postGrad)
@@ -103,6 +102,23 @@ export default function Lista({ data }) {
         return <Picker.Item key={index} value={index} label={value.cor} color={value.codigoCor} />
     })
 
+    function makeHTML() {
+        const tamanhoQRCode = 500
+
+        let HTML = `
+            <div style="display: flex; padding: 1em; width: 21cm; flex-wrap: wrap;">
+                <div style="width: 30%; display: flex; justify-content: center; align-items: center; flex-direction: column; border: 3px dashed #00000030; margin: .2em;">
+                    <img src="https://chart.googleapis.com/chart?chs=${tamanhoQRCode}x${tamanhoQRCode}&cht=qr&chl=${key}" width="100%">
+                    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: #00000015; width: 100%;">
+                        <p style="line-height: 0cm;">${arrayPostGrad[postGrad].pg} ${nomeGuerra}</p>
+                    </div>
+                </div>
+            </div>
+            `
+
+        return HTML
+    }
+
     async function updateOnFirebase(key, nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade, documentoIdentidade, observacoes) {
         setLoadingUpdate(true)
         await firebase.database().ref('veiculos').child(key).update({ nomeCompleto, postGrad, nomeGuerra, modelo, placa, cor, tipoAcesso, validade: String(validade), documentoIdentidade, observacoes })
@@ -158,14 +174,27 @@ export default function Lista({ data }) {
 
                 <View style={LocalStyle.footer}>
                     <TouchableOpacity style={LocalStyle.btnEdit} onPress={() => { setBtnCor('#3C74A6'); setTextoResposta('Atualizar'); setModalActive(true); }}>
-                        <LinearGradient colors={['transparent', '#00000050']} style={LocalStyle.linearGradient} />
+                        <LinearGradient colors={['transparent', '#00000030']} style={LocalStyle.linearGradient} />
                         <AntDesign name="edit" size={24} color="black" />
                     </TouchableOpacity>
 
                     <TouchableOpacity style={LocalStyle.btnDelete} onPress={() => { openConfirmDelete() }}>
-                        <LinearGradient colors={['transparent', '#00000050']} style={LocalStyle.linearGradient} />
+                        <LinearGradient colors={['transparent', '#00000030']} style={LocalStyle.linearGradient} />
                         <AntDesign name="delete" size={24} color="black" />
                     </TouchableOpacity>
+
+                    {pageName === 'Cadastros ativos' ?
+                        (<TouchableOpacity style={LocalStyle.btnQRCOde} onPress={() => {
+                            Print.printAsync({
+                                html: makeHTML()
+                            })
+                        }}>
+                            <LinearGradient colors={['transparent', '#00000030']} style={LocalStyle.linearGradient} />
+                            <AntDesign name="qrcode" size={24} color="black" />
+                        </TouchableOpacity>)
+                        :
+                        false
+                    }
                 </View>
 
                 <Modal animationType="slide" visible={modalActive} >
@@ -398,7 +427,7 @@ const LocalStyle = StyleSheet.create({
     },
     btnEdit: {
         backgroundColor: minhascores.success,
-        width: '50%',
+        flex: 1,
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
@@ -408,7 +437,16 @@ const LocalStyle = StyleSheet.create({
     },
     btnDelete: {
         backgroundColor: minhascores.danger,
-        width: '50%',
+        flex: 1,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: '#121212',
+        borderWidth: 3, borderRadius: 11,
+    },
+    btnQRCOde: {
+        backgroundColor: minhascores.light,
+        flex: 1,
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',

@@ -6,11 +6,13 @@ import { style } from './style'
 import firebase from '../../services/firebaseConnection'
 import { cores, arrayPostGrad } from '../Register/listas'
 import * as Print from 'expo-print';
+import minhascores from '../../styles/colors'
 
 export default function ExportAllQR() {
 
     const [users, setUsers] = useState([])
     const [loadingList, setLoadingList] = useState(true)
+    const [loadingButton, setLoadingButton] = useState(false)
 
     useEffect(() => {
         async function listarUsuarios() {
@@ -55,20 +57,26 @@ export default function ExportAllQR() {
     }
 
     return (
-        <ImageBackground source={require('../../assets/background.jpg')}style={style.body}>
+        <ImageBackground source={require('../../assets/background.jpg')} style={style.body}>
             <View style={style.area1}>
                 <Text style={style.header}>Impressão de todos os selos</Text>
             </View>
-            <View style={style.area2}>
-                <TouchableOpacity style={style.btnImprimir} onPress={() => {
-                    Print.printAsync({
-                        html: makeHTML()
-                    })
-                }}>
-                    <Text style={style.btnImprimirText}>Imprimir ou salvar em PDF</Text>
-                    <AntDesign name="printer" size={24} style={style.btnIcons} />
-                </TouchableOpacity>
-            </View>
+            {
+                loadingList ?
+                    (<ActivityIndicator color={minhascores.color3} size={50} />)
+                    :
+                    (<View style={style.area2}>
+                        <TouchableOpacity style={style.btnImprimir} onPress={() => {
+                            Print.printAsync({
+                                html: makeHTML()
+                            })
+                        }}>
+                            <Text style={style.btnImprimirText}>Imprimir ou salvar em PDF</Text>
+                            <AntDesign name="printer" size={24} style={style.btnIcons} />
+                        </TouchableOpacity>
+                    </View>
+                    )
+            }
         </ImageBackground>
     );
 }

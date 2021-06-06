@@ -8,7 +8,7 @@ import Lista from './Lista'
 import * as Print from 'expo-print';
 
 
-export default function ExportAllQR() {
+export default function ExportAQR() {
 
     const [users, setUsers] = useState([])
     const [loadingList, setLoadingList] = useState(true)

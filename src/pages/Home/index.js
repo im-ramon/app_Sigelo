@@ -107,6 +107,14 @@ export default function Home() {
                                     ) : false
                                 }
                                 
+                                {user.tipoUser == '0' || user.tipoUser == '1' || user.tipoUser == '-1' ?
+                                    (<TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('ExportAQR') }}>
+                                        <MaterialCommunityIcons  name="file-export" size={60} color={cores.color3} />
+                                        <Text style={style.section_btn_text}>Exportar um adesivo</Text>
+                                    </TouchableOpacity>
+                                    ) : false
+                                }
+                                
                             </View>
                         </ScrollView>
                     </View>

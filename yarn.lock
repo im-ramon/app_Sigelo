@@ -3546,6 +3546,11 @@ expo-linear-gradient@~9.1.0:
   resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-9.1.0.tgz#7adfe8284268874134954b8249207938c455a5b3"
   integrity sha512-9W4TxaDrZUzmLzd18+Eo2Ef7ONnuLrHKX0PRyHEGY2/rJCtGiPJtJuR6AS5dkX7WB/Pxlx0zK/p/qDHHw09Uxg==
 
+expo-print@~10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/expo-print/-/expo-print-10.1.0.tgz#7a24d52af0f9bfcabd96cb4c1b542b8c19cf2835"
+  integrity sha512-Kewebb4bq4mzc+kl98hEiJfy0BsC5a91NkYVMJ3cswQkJviOJbYR0cK2julVJXh22DpidgJ43FxHMIjsN/aPsg==
+
 expo-status-bar@~1.0.4:
   version "1.0.4"
   resolved "https://registry.npmjs.org/expo-status-bar/-/expo-status-bar-1.0.4.tgz"

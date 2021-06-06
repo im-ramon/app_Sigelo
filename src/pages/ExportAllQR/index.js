@@ -45,7 +45,7 @@ export default function ExportAllQR() {
                 <img src="https://chart.googleapis.com/chart?chs=${tamanhoQRCode}x${tamanhoQRCode}&cht=qr&chl=${item.key}" width="100%">
                 <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: #00000015; width: 100%;">
                     <p style="line-height: 0cm;">${arrayPostGrad[item.postGrad].pg} ${item.nomeGuerra}</p>
-                    <p style="line-height: 0cm;">Validade: 22/05/2021</p>
+                    
                 </div>
             </div>
             `

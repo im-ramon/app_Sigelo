@@ -7,6 +7,7 @@ import Register from '../pages/Register';
 import UserList from '../pages/UserList';
 import Approver from '../pages/Approver';
 import Profiles from '../pages/Profiles';
+import ExportAllQR from '../pages/ExportAllQR';
 
 import minhascores from '../styles/colors'
 
@@ -144,6 +145,23 @@ function AppRoutes() {
             <AppSatck.Screen
                 name="Profiles"
                 component={Profiles}
+                options={{
+                    ...configAnimation,
+                    headerShown: true,
+                    title: 'Voltar',
+                    headerStyle: {
+                        backgroundColor: minhascores.color1,
+                        borderBottomColor: '#F27405',
+                        borderBottomWidth: 2
+                    },
+                    headerTintColor: '#fff',
+
+                }}
+            />
+            
+            <AppSatck.Screen
+                name="ExportAllQR"
+                component={ExportAllQR}
                 options={{
                     ...configAnimation,
                     headerShown: true,

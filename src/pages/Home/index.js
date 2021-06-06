@@ -98,6 +98,15 @@ export default function Home() {
                                     </TouchableOpacity>
                                     ) : false
                                 }
+                                
+                                {user.tipoUser == '0' || user.tipoUser == '1' || user.tipoUser == '-1' ?
+                                    (<TouchableOpacity style={style.section_btn} onPress={() => { navigation.navigate('ExportAllQR') }}>
+                                        <MaterialCommunityIcons  name="database-export" size={60} color={cores.color3} />
+                                        <Text style={style.section_btn_text}>Exportar todos adesivos</Text>
+                                    </TouchableOpacity>
+                                    ) : false
+                                }
+                                
                             </View>
                         </ScrollView>
                     </View>
@@ -201,7 +210,7 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,
-        padding: 10,
+        padding: 15,
     },
     section_btn_text: {
         color: `${cores.color7}`,

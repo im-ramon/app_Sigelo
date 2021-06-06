@@ -63,7 +63,7 @@ export default function ExportAllQR() {
             </View>
             {
                 loadingList ?
-                    (<ActivityIndicator color={minhascores.color3} size={50} />)
+                    (<View style={style.area2}><ActivityIndicator color={minhascores.color3} size={50} /></View>)
                     :
                     (<View style={style.area2}>
                         <TouchableOpacity style={style.btnImprimir} onPress={() => {

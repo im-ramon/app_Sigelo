@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button, Modal, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { Text, View, StyleSheet, Button, Modal, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import firebase from '../../../src/services/firebaseConnection';
 import { Ionicons } from '@expo/vector-icons';
 import { cores } from '../Register/listas';
 import { arrayPostGrad } from '../Register/listas'
 import minhasCores from '../../styles/colors'
+import { AppContext } from '../../contexts/appContexts'
 
 export default function ScannerQR() {
+
+  const { today } = useContext(AppContext);
+
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
   const [modalActive, setModalActive] = useState(false)
+
+  const [loading, setLoading] = useState(false)
 
   const [nomeCompleto, setNomeCompleto] = useState('buscando...')
   const [postGrad, setPostGrad] = useState(0)
@@ -24,11 +30,9 @@ export default function ScannerQR() {
   const [documentoIdentidade, setDocumentoIdentidade] = useState('buscando...')
   const [observacoes, setObservacoes] = useState('buscando...')
 
-
   const [corRetorno, setCorRetorno] = useState(minhasCores.success)
-  const [textoRetorno, setTextoRetorno] = useState('ativo')
-  const [iconRetorno, setIconRetorno] = useState('checkmark')
-
+  const [textoRetorno, setTextoRetorno] = useState('...')
+  const [iconRetorno, setIconRetorno] = useState('time')
 
   useEffect(() => {
     (async () => {
@@ -37,9 +41,19 @@ export default function ScannerQR() {
     })();
   }, []);
 
+  useEffect(() => {
+    if (validade < today) {
+      setCorRetorno(minhasCores.danger);
+      setTextoRetorno('vencido')
+      setIconRetorno('close')
+    } else if (validade > today) {
+      setCorRetorno(minhasCores.success);
+      setTextoRetorno('ativo')
+      setIconRetorno('checkmark')
+    }
+  }, [validade])
 
   async function dados(data) {
-    let hoje = new Date()
     await firebase.database().ref('veiculos/' + data.replace(/\.?\,?\#?\$?\[?\]?/g, '')).on('value', (snapshot) => {
       try {
         setNomeCompleto(snapshot.val().nomeCompleto)
@@ -52,25 +66,28 @@ export default function ScannerQR() {
         setValidade(Date.parse(snapshot.val().validade))
         setDocumentoIdentidade(snapshot.val().documentoIdentidade)
         setObservacoes(!snapshot.val().observacoes ? 'Sem observações' : snapshot.val().observacoes)
+
+        //Gambiarra para corrigir erro de atualização do "state: validade". Pesquisar porque está demorando de atualizar
         setModalActive(true)
-      } catch (error) {
-        setModalActive(false)
-        alert(`O identificador nº "${data}" não foi encontrado no banco de dados.\nTente novamente!`)
+        setLoading(false)
+
+      } catch (e) {
+        Alert.alert(
+          `Ocorreu um erro`,
+          `Não foi possível encontar os dados do adesivo escaneado no banco de dados. Por favor, tente novamente.\n\n- Informações técnicas do erro:\n\t${e}\n\t${data}`,
+          [
+            { text: "Tentar novamente", onPress: () => setScanned(false) }
+          ],
+          { cancelable: false }
+        );
+
+        setLoading(false)
       }
-      if (validade < hoje) {
-        setCorRetorno(minhasCores.danger);
-        setTextoRetorno('vencido')
-        setIconRetorno('close')
-      } else {
-        setCorRetorno(minhasCores.success);
-        setTextoRetorno('ativo')
-        setIconRetorno('checkmark')
-      }
-    }
-    )
+    })
   }
 
   const handleBarCodeScanned = ({ type, data }) => {
+    setLoading(true)
     setScanned(true);
     dados(data);
   };
@@ -130,14 +147,16 @@ export default function ScannerQR() {
             </View>
           </View>
 
-
         </View>
       </Modal>
+
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
-      {scanned && <Button title={'Escanear outro selo'} onPress={() => setScanned(false)} />}
+
+      {loading ? (<ActivityIndicator size={64} color={minhasCores.color3} />) : (scanned && <Button title={'Escanear outro selo'} onPress={() => setScanned(false)} />)}
+
     </View>
   );
 }

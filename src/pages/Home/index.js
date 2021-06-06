@@ -62,7 +62,6 @@ export default function Home() {
                                     ) : false
                                 }
 
-
                                 {user.tipoUser == '0' || user.tipoUser == '1' || user.tipoUser == '2' || user.tipoUser == '-1' ?
                                     (<TouchableOpacity style={style.section_btn} onPress={() => { navigateTo('all') }}>
                                         <Svg

@@ -4,9 +4,8 @@ import { AreaInput, Background, Container, Input, Logo, SubmitButton, SubmitText
 import { AntDesign } from '@expo/vector-icons';
 import { style } from './style'
 import firebase from '../../services/firebaseConnection'
-import Lista from './Lista'
+import { cores, arrayPostGrad } from '../Register/listas'
 import * as Print from 'expo-print';
-
 
 export default function ExportAllQR() {
 
@@ -35,42 +34,42 @@ export default function ExportAllQR() {
         listarUsuarios()
     }, [])
 
-    const htmlX = '<p>Falta implementar a conversão de um componente em JSX ou HTML</p>'
+    function makeHTML() {
+        const tamanhoQRCode = 500
+
+        let HTML = '<div style="display: flex; padding: 1em; width: 21cm; flex-wrap: wrap;">'
+        users.forEach(item => {
+            HTML = HTML + `
+
+            <div style="width: 30%; display: flex; justify-content: space-between; align-items: center; flex-direction: column; border: 3px dashed #00000030; margin: .2em;">
+                <img src="https://chart.googleapis.com/chart?chs=${tamanhoQRCode}x${tamanhoQRCode}&cht=qr&chl=${item.key}" width="100%">
+                <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: #00000015; width: 100%;">
+                    <p style="line-height: 0cm;">${arrayPostGrad[item.postGrad].pg} ${item.nomeGuerra}</p>
+                    <p style="line-height: 0cm;">Validade: 22/05/2021</p>
+                </div>
+            </div>
+            `
+        })
+
+        return HTML + '</div>'
+    }
 
     return (
-        <View style={style.body}>
+        <ImageBackground source={require('../../assets/background.jpg')}style={style.body}>
             <View style={style.area1}>
                 <Text style={style.header}>Impressão de todos os selos</Text>
-                <TouchableOpacity style={style.btnImprimir} onPress={()=>{Print.printAsync({
-                    html: htmlX,
-                    width: 150,
-                    height: 150
-                })}}>
+            </View>
+            <View style={style.area2}>
+                <TouchableOpacity style={style.btnImprimir} onPress={() => {
+                    Print.printAsync({
+                        html: makeHTML()
+                    })
+                }}>
                     <Text style={style.btnImprimirText}>Imprimir ou salvar em PDF</Text>
-                    {/* <AntDesign name="pdffile1" size={24} style={style.btnIcons}/> */}
                     <AntDesign name="printer" size={24} style={style.btnIcons} />
                 </TouchableOpacity>
             </View>
-
-            <View style={style.area2}>
-                <View style={style.flatList}>
-                    {loadingList ?
-
-                        (<ActivityIndicator color="#3C74A6" size={45} />)
-
-                        : (
-                            <FlatList
-                                keyExtractor={item => item.key}
-                                data={users}
-                                showsVerticalScrollIndicator={false}
-                                renderItem={({ item }) => (<Lista data={item} />)}
-                            />
-
-                        )}
-
-                </View>
-            </View>
-        </View>
+        </ImageBackground>
     );
 }
 

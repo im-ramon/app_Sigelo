@@ -3,33 +3,23 @@ import minhascores from '../../styles/colors'
 
 export const style = StyleSheet.create({
     body: {
-        backgroundColor: '#fff',
         flex: 1,
         width: '100%',
         height: '100%',
         alignItems: 'center',
+        resizeMode: 'contain'
     },
     area1: {
-        backgroundColor: minhascores.color1,
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 4,
-        },
-        shadowOpacity: 0.32,
-        shadowRadius: 5.46,
-        elevation: 9,
     },
     area2: {
-        backgroundColor: '#fff',
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        flex: 4,
+        flex: 6,
         paddingTop: 15,
     },
     header: {
@@ -42,11 +32,6 @@ export const style = StyleSheet.create({
         borderBottomWidth: 3,
         borderBottomColor: '#F27405',
         paddingHorizontal: 10,
-    },
-    flatList: {
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
     },
     btnImprimir: {
         width: '80%',
@@ -67,26 +52,5 @@ export const style = StyleSheet.create({
     btnIcons: {
         color: minhascores.light,
         marginHorizontal: 5,
-    },
-    qrCodeArea: {
-        width: 350,
-        height: 400,
-        borderColor: '#00000020',
-        borderWidth: 3,
-        marginTop: 5,
-        alignItems: 'center'
-    },
-    qrCodeImage: {
-        width: '80%',
-        height: '80%',
-    },
-    informationArea: {
-        backgroundColor: '#00000010',
-        width: '100%',
-        paddingVertical: 10,
-        alignItems: 'center'
-    },
-    informationText: {
-        fontSize: 16
-    },
+    }
 })

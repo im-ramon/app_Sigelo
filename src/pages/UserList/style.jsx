@@ -75,7 +75,7 @@ export const style = StyleSheet.create({
         width: '80%',
         height: 40,
         marginBottom: 23,
-        borderBottomColor: minhasCores.core3,
+        borderBottomColor: minhasCores.color3,
         borderBottomWidth: 3,
         paddingBottom: 5,
         paddingTop: 5,
@@ -89,7 +89,7 @@ export const style = StyleSheet.create({
     piker: {
         backgroundColor: '#00000050',
         borderBottomWidth: 3,
-        borderBottomColor:  minhasCores.core3,
+        borderBottomColor:  minhasCores.color3,
         width: '80%',
         flex: 1,
         alignSelf: 'center',

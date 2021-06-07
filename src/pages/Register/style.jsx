@@ -55,9 +55,9 @@ export const style = StyleSheet.create({
     piker: {
         backgroundColor: '#00000050',
         borderBottomWidth: 3,
+        borderBottomColor: '#3C74A6',
         borderTopLeftRadius: 5,
         borderTopRightRadius: 5,
-        borderBottomColor: '#3C74A6',
         width: '80%',
         flex: 1,
         alignSelf: 'center',

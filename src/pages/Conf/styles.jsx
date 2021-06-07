@@ -16,14 +16,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },  
     textHeader: {
-        fontSize: 22,
+        fontSize: 24,
         color: cores.light,
         borderBottomColor: cores.color5,
         borderBottomWidth: 3,
-        borderRadius: 10
+        borderRadius: 10,
+        marginBottom: 15,
     },
     main: {
-        flex: 6,
+        flex: 5,
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
@@ -50,6 +51,29 @@ const styles = StyleSheet.create({
         color: `${cores.light}30`,
         fontSize: 18,
     },
+    themeArea: {
+        height: '25%',
+        width: '80%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    themeAreaBtn:{
+        flex: 1,
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    themeBtn: {
+        width: '45%',
+        height: 80,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        borderWidth: 5,
+        marginVertical: 10,
+        marginHorizontal: 10,
+    }
 })
 
 

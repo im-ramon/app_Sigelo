@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { View, ActivityIndicator, StyleSheet, Image } from 'react-native'
 import { AuthContext } from '../contexts/auth';
 import AppContextProvider from '../contexts/appContexts'
-
 import AuthRoutes from './auth.routes';
 import AppRoutes from './app.routes'
 

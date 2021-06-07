@@ -237,9 +237,9 @@ export default function Lista({ data }) {
                                     </View>
 
                                     <AreaInput style={style.areaInput}>
-                                        <MaterialIcons name="military-tech" size={22} color="#dedede" style={{ marginLeft: 5 }} />
+                                        <MaterialIcons name="person-pin" size={22} color="#dedede" style={{ marginLeft: 5 }} />
                                         <Input
-                                            placeholder="Nome de guerra"
+                                            placeholder="Apelido/ Nome de guerra"
                                             autoCorrect={false}
                                             autoCapitalize="none"
                                             value={nomeGuerra}
@@ -290,9 +290,9 @@ export default function Lista({ data }) {
                                             placeholder="Placa do veículo"
                                             maxLength={7}
                                             autoCorrect={false}
-                                            autoCapitalize="none"
+                                            autoCapitalize="characters"
                                             value={placa}
-                                            onChangeText={text => setPlaca(text)}
+                                            onChangeText={text => setPlaca(text.toUpperCase())}
                                         />
                                         <Ionicons name={regexPlate.test(placa) ? "checkmark" : "close"} size={20} color={placa === '' ? '#00000000' : (regexPlate.test(placa) ? minhascores.success : minhascores.danger)} style={{ marginLeft: 0 }} />
                                     </AreaInput>
@@ -335,7 +335,7 @@ export default function Lista({ data }) {
                                         <Input
                                             placeholder="Observações"
                                             autoCorrect={false}
-                                            autoCapitalize="none"
+                                            autoCapitalize="sentences"
                                             value={observacoes}
                                             onChangeText={text => setObservacoes(text)}
                                         />

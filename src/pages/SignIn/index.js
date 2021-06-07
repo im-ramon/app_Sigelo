@@ -53,6 +53,7 @@ export default function SignIn() {
                             autoCorrect={false}
                             autoCapitalize="none"
                             value={email}
+                            autoCompleteType='email'
                             onChangeText={text => setEmail(text)}
                         />
                     </AreaInput>
@@ -64,6 +65,7 @@ export default function SignIn() {
                             autoCorrect={false}
                             autoCapitalize="none"
                             value={password}
+                            autoCompleteType='password'
                             secureTextEntry={textSecure}
                             onChangeText={text => setPassword(text)}
                         />

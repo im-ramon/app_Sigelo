@@ -113,7 +113,7 @@ export default function Register() {
                             <Input
                                 placeholder="Nome completo"
                                 autoCorrect={false}
-                                autoCapitalize="none"
+                                autoCapitalize="sentences"
                                 value={nomeCompleto}
                                 onChangeText={text => setNomeCompleto(text)}
                             />
@@ -133,11 +133,11 @@ export default function Register() {
                         </View>
 
                         <AreaInput style={style.areaInput}>
-                            <MaterialIcons name="military-tech" size={22} color="#dedede" style={{ marginLeft: 5 }} />
+                            <MaterialIcons name="person-pin" size={22} color="#dedede" style={{ marginLeft: 5 }} />
                             <Input
-                                placeholder="Nome de guerra"
+                                placeholder="Apelido/ Nome de guerra"
                                 autoCorrect={false}
-                                autoCapitalize="none"
+                                autoCapitalize="sentences"
                                 value={nomeGuerra}
                                 onChangeText={text => setNomeGuerra(text)}
                             />
@@ -161,7 +161,7 @@ export default function Register() {
                             <Input
                                 placeholder="Modelo do veículo"
                                 autoCorrect={false}
-                                autoCapitalize="none"
+                                autoCapitalize="sentences"
                                 value={modelo}
                                 onChangeText={text => setModelo(text)}
                             />
@@ -186,9 +186,9 @@ export default function Register() {
                                 placeholder="Placa do veículo"
                                 maxLength={7}
                                 autoCorrect={false}
-                                autoCapitalize="none"
                                 value={placa}
-                                onChangeText={text => setPlaca(text)}
+                                autoCapitalize='characters'
+                                onChangeText={text => setPlaca(text.toUpperCase())}
                             />
                             <Ionicons name={regexPlate.test(placa) ? "checkmark" : "close"} size={20} color={placa === '' ? '#00000000' : (regexPlate.test(placa) ? minhascores.success : minhascores.danger)} style={{ marginLeft: 22 }} />
                         </AreaInput>
@@ -198,7 +198,7 @@ export default function Register() {
                             <Input
                                 placeholder="Áreas de acesso permitido"
                                 autoCorrect={false}
-                                autoCapitalize="none"
+                                autoCapitalize="sentences"
                                 value={tipoAcesso}
                                 onChangeText={text => setTipoAcesso(text)}
                             />
@@ -231,7 +231,7 @@ export default function Register() {
                             <Input
                                 placeholder="Observações"
                                 autoCorrect={false}
-                                autoCapitalize="none"
+                                autoCapitalize="sentences"
                                 value={observacoes}
                                 onChangeText={text => setObservacoes(text)}
                             />

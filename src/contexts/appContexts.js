@@ -8,9 +8,11 @@ function AppContextProvider({ children }) {
 
     const [pageName, setPageName] = useState('buscando...')
     const [today, setToday] = useState(new Date())
+    const [background, setBackground] = useState(require('../assets/background.jpg'))
+    // background-light.jpg
 
     return (
-        <AppContext.Provider value={{pageName, today, setPageName, setToday}}>
+        <AppContext.Provider value={{pageName, today, background, setPageName, setToday, setBackground}}>
             {children}
         </AppContext.Provider>
     );

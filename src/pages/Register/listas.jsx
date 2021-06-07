@@ -1,5 +1,5 @@
 export const arrayPostGrad = [
-    { key: 0, pg: 'Selecionar Posto ou Graduação' },
+    { key: 0, pg: 'Selecionar classificação' },
     { key: 1, pg: 'Gen Ex' },
     { key: 2, pg: 'Gen Div' },
     { key: 3, pg: 'Gen Brig' },

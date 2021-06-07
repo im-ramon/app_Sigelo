@@ -11,13 +11,10 @@ import Svg, { Path, SvgXml } from "react-native-svg"
 
 export default function Home() {
 
-    const svgMarkup = `<CONTENT OF SVG FILE>`;
-    const SvgImage = () => <SvgXml xml={svgMarkup} width="301px" />;
-
     const navigation = useNavigation();
 
     const { signOut, user, setLoading } = useContext(AuthContext);
-    const { setPageName, setToday } = useContext(AppContext);
+    const { setPageName, setToday, background, setBackground} = useContext(AppContext);
 
 
     const navigateTo = (pageNameNav) => {

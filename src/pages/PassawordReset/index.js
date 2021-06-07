@@ -72,6 +72,7 @@ export default function PassawordReset() {
                     <Logo source={require('../../assets/logo-1.png')} />
 
                     <Text style={style.textHeader}>Recuperar senha</Text>
+                    <Text style={{...style.textHeader, fontSize: 13}}>Digite o e-mail da conta que deseja recuperar a senha:</Text>
 
                     <AreaInput>
                         <Ionicons name="mail" size={20} color="#dedede" style={{ marginLeft: 5 }} />
@@ -80,6 +81,7 @@ export default function PassawordReset() {
                             autoCorrect={false}
                             autoCapitalize="none"
                             value={emailUser}
+                            autoFocus={true}
                             onChangeText={text => setEmailUser(text)}
                         />
                         <Ionicons name={!validacaoEmail.test(emailUser) ? "close" : "checkmark"} size={20} color={emailUser === '' ? '#00000000' : (!validacaoEmail.test(emailUser) ? cores.danger : cores.success)} />
@@ -121,7 +123,9 @@ const style = StyleSheet.create({
         color: colors.light,
         fontSize: 20,
         marginBottom: 30,
-        marginTop: -20
+        marginTop: -20,
+        width: '80%',
+        textAlign: 'center'
     },
     piker: {
         backgroundColor: '#121212',

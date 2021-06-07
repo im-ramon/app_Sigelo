@@ -1,5 +1,6 @@
 import react from 'react'
 import { StyleSheet } from 'react-native'
+import minhasCores from '../../styles/colors'
 
 
 export const style = StyleSheet.create({
@@ -20,6 +21,35 @@ export const style = StyleSheet.create({
     viewText: {
         color: '#dedede',
         textAlign: 'center',
+    },
+    searchArea: {
+        backgroundColor: minhasCores.color1,
+        width: '100%',
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'absolute',
+        bottom: 0,
+        zIndex: 2,
+        flexDirection: 'row',
+        borderColor: minhasCores.color1,
+        borderWidth: 5,
+    },
+    btnSearch:{
+        backgroundColor: minhasCores.color5,
+        height: '100%',
+        width: '18%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 5,
+    }, 
+    inputSearch: {
+        backgroundColor: minhasCores.color1,
+        width: '80%',
+        height: '100%',
+        fontSize: 24,
+        color: minhasCores.light,
+        paddingLeft: 5,
     },
     imgLogo: {
         width: 150,
@@ -45,7 +75,7 @@ export const style = StyleSheet.create({
         width: '80%',
         height: 40,
         marginBottom: 23,
-        borderBottomColor:'#3C74A6',
+        borderBottomColor: minhasCores.core3,
         borderBottomWidth: 3,
         paddingBottom: 5,
         paddingTop: 5,
@@ -59,7 +89,7 @@ export const style = StyleSheet.create({
     piker: {
         backgroundColor: '#00000050',
         borderBottomWidth: 3,
-        borderBottomColor: '#3C74A6',
+        borderBottomColor:  minhasCores.core3,
         width: '80%',
         flex: 1,
         alignSelf: 'center',

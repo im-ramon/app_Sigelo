@@ -38,6 +38,7 @@ export default function Lista({ data }) {
     const [observacoes, setObservacoes] = useState(data.observacoes)
 
     const regexPlate = /^[A-Za-z]{3}([0-9]{1}[A-Za-z]{1}[0-9]{2}|[0-9]{4}$)/
+    const regexAllTexts = /[^A-Z a-z0-9]/gi
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || validade;
@@ -217,9 +218,9 @@ export default function Lista({ data }) {
                                         <Input
                                             placeholder="Nome completo"
                                             autoCorrect={false}
-                                            autoCapitalize="none"
+                                            autoCapitalize="sentences"
                                             value={nomeCompleto}
-                                            onChangeText={text => setNomeCompleto(text)}
+                                            onChangeText={text => setNomeCompleto(text.replace(regexAllTexts, ''))}
                                         />
                                         <Ionicons name={nomeCompleto.length > 1 ? "checkmark" : "close"} size={20} color={nomeCompleto === '' ? "#00000000" : (nomeCompleto.length > 1 ? minhascores.success : minhascores.danger)} style={{ marginLeft: 0 }} />
                                     </AreaInput>
@@ -241,9 +242,9 @@ export default function Lista({ data }) {
                                         <Input
                                             placeholder="Apelido/ Nome de guerra"
                                             autoCorrect={false}
-                                            autoCapitalize="none"
+                                            autoCapitalize="sentences"
                                             value={nomeGuerra}
-                                            onChangeText={text => setNomeGuerra(text)}
+                                            onChangeText={text => setNomeGuerra(text.replace(regexAllTexts, ''))}
                                         />
                                         <Ionicons name={nomeGuerra.length > 1 ? "checkmark" : "close"} size={20} color={nomeGuerra === '' ? "#00000000" : (nomeGuerra.length > 1 ? minhascores.success : minhascores.danger)} style={{ marginLeft: 0 }} />
                                     </AreaInput>
@@ -265,7 +266,7 @@ export default function Lista({ data }) {
                                         <Input
                                             placeholder="Modelo do veículo"
                                             autoCorrect={false}
-                                            autoCapitalize="none"
+                                            autoCapitalize="sentences"
                                             value={modelo}
                                             onChangeText={text => setModelo(text)}
                                         />
@@ -292,7 +293,7 @@ export default function Lista({ data }) {
                                             autoCorrect={false}
                                             autoCapitalize="characters"
                                             value={placa}
-                                            onChangeText={text => setPlaca(text.toUpperCase())}
+                                            onChangeText={text => setPlaca(text.replace(regexAllTexts, '').toUpperCase())}
                                         />
                                         <Ionicons name={regexPlate.test(placa) ? "checkmark" : "close"} size={20} color={placa === '' ? '#00000000' : (regexPlate.test(placa) ? minhascores.success : minhascores.danger)} style={{ marginLeft: 0 }} />
                                     </AreaInput>
@@ -302,7 +303,7 @@ export default function Lista({ data }) {
                                         <Input
                                             placeholder="Áreas de acesso permitido"
                                             autoCorrect={false}
-                                            autoCapitalize="none"
+                                            autoCapitalize="sentences"
                                             value={tipoAcesso}
                                             onChangeText={text => setTipoAcesso(text)}
                                         />

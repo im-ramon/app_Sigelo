@@ -31,12 +31,10 @@ export default function Approver() {
                     arrayUsers.push(data)
                 })
                 setUsers(arrayUsers)
+                setLoadingList(false)
             })
         }
-
-        listarUsuarios().then(
-            ()=>{setLoadingList(false)}
-        )
+        listarUsuarios()
 
     }, [])
 
@@ -55,7 +53,7 @@ export default function Approver() {
                     :
                         users.length == 0 ?
                             (
-                                <Text style={{color: '#dedede', fontSize: 20, textAlign: 'center'}}>Não há usuários aguardando aprovação.</Text>
+                                <Text style={{color: '#dedede', fontSize: 20, textAlign: 'center', width: '90%'}}>Não há novos usuários aguardando aprovação.</Text>
                             )
                             :
                             (

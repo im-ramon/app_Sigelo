@@ -41,6 +41,7 @@ export default function Register() {
     };
 
     const regexPlate = /^[A-Za-z]{3}([0-9]{1}[A-Za-z]{1}[0-9]{2}|[0-9]{4}$)/
+    const regexAllTexts = /[^A-Z a-z0-9]/gi
 
     let itemPostGrad = arrayPostGrad.map((value, index) => {
         return <Picker.Item key={index} value={index} label={value.pg} />
@@ -115,7 +116,7 @@ export default function Register() {
                                 autoCorrect={false}
                                 autoCapitalize="sentences"
                                 value={nomeCompleto}
-                                onChangeText={text => setNomeCompleto(text)}
+                                onChangeText={text => setNomeCompleto(text.replace(regexAllTexts, ''))}
                             />
                             <Ionicons name={nomeCompleto.length > 1 ? "checkmark" : "close"} size={20} color={nomeCompleto === '' ? "#00000000" : (nomeCompleto.length > 1 ? minhascores.success : minhascores.danger)} style={{ marginLeft: 22 }} />
                         </AreaInput>
@@ -139,7 +140,7 @@ export default function Register() {
                                 autoCorrect={false}
                                 autoCapitalize="sentences"
                                 value={nomeGuerra}
-                                onChangeText={text => setNomeGuerra(text)}
+                                onChangeText={text => setNomeGuerra(text.replace(regexAllTexts, ''))}
                             />
                             <Ionicons name={nomeGuerra.length > 1 ? "checkmark" : "close"} size={20} color={nomeGuerra === '' ? "#00000000" : (nomeGuerra.length > 1 ? minhascores.success : minhascores.danger)} style={{ marginLeft: 22 }} />
                         </AreaInput>
@@ -188,7 +189,7 @@ export default function Register() {
                                 autoCorrect={false}
                                 value={placa}
                                 autoCapitalize='characters'
-                                onChangeText={text => setPlaca(text.toUpperCase())}
+                                onChangeText={text => setPlaca(text.replace(regexAllTexts, '').toUpperCase())}
                             />
                             <Ionicons name={regexPlate.test(placa) ? "checkmark" : "close"} size={20} color={placa === '' ? '#00000000' : (regexPlate.test(placa) ? minhascores.success : minhascores.danger)} style={{ marginLeft: 22 }} />
                         </AreaInput>

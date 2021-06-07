@@ -7,7 +7,7 @@
 // console.log(regex.test(plate))
 
 // -----------------------------------------------------------------------------
+const text = 'Ramon Oliveira;[;][~[~[~~[[~--/-*+-+-*-/-/]]]]] dos Santos'
+const regex = /[^A-Z a-z0-9]/gi
 
-let text = '13121'
-
-console.log(text.toUpperCase())
+console.log(text.replace(regexAllTexts, ''))

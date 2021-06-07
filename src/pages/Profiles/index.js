@@ -29,14 +29,12 @@ export default function Profiles() {
                         sobrenome: itens.val().sobrenome,
                     }
                     arrayUsers.push(data)
-                })
+                })                
                 setUsers(arrayUsers)
+                setLoadingList(false)
             })
         }
-        
-        listarUsuarios().then(
-            ()=>{setLoadingList(false)}
-        )
+        listarUsuarios()
         
     }, [])
 

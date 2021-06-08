@@ -12,8 +12,8 @@ function AuthProvider({ children }) {
 
     function cathError(error) {
         Alert.alert(
-            `Atenção!`,
-            `Os dados digitados não foram encontrados no banco de dados.\n\nTente novamente.`,
+            `Ocorreu um erro.`,
+            `Verifique os dados digitados e tente novamente.\n\nDescrição do erro:${error}`,
             [
                 { text: "Verificar", onPress: () => console.log('erro') }
             ],

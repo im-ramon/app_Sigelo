@@ -39,21 +39,34 @@ export default function ExportAllQR() {
     function makeHTML() {
         const tamanhoQRCode = 500
 
-        let HTML = '<div style="display: flex; padding: 1em; width: 21cm; flex-wrap: wrap;">'
-        users.forEach(item => {
-            HTML = HTML + `
+        const header = '<div style="display: flex; padding: 1em; width: 21cm; flex-wrap: wrap; justify-content: space-around;">'
+        const footer = '</div><div style="page-break-after: always"></div>'
 
-            <div style="width: 30%; display: flex; justify-content: space-between; align-items: center; flex-direction: column; border: 3px dashed #00000030; margin: .2em;">
-                <img src="https://chart.googleapis.com/chart?chs=${tamanhoQRCode}x${tamanhoQRCode}&cht=qr&chl=${item.key}" width="100%">
-                <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: #00000015; width: 100%;">
-                    <p style="line-height: 0cm;">${arrayPostGrad[item.postGrad].pg} ${item.nomeGuerra}</p>
-                    
+        let contadorInicio = 0;
+        let contadorFim = 11;
+
+        let html = ''
+
+        users.forEach((item, index) => {
+
+            index == contadorInicio && (html = html + header)
+            
+            html = html + `
+                <div style="width: 30%; height: 18%; display: flex; align-items: center; flex-direction: column; margin: .1em;">
+                    <img src="https://chart.googleapis.com/chart?chs=${tamanhoQRCode}x${tamanhoQRCode}&cht=qr&chl=${item.key}" style="border: 3px dashed #00000030;" width="100%">
+                    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; background-color: #00000015; width: 100%; border: 3px solid #00000030">
+                        <p style="line-height: 0cm;">${arrayPostGrad[item.postGrad].pg} ${item.nomeGuerra}</p>
+                    </div>
                 </div>
-            </div>
             `
+            if (index == contadorFim){
+                html = html + footer
+                contadorFim = contadorFim + 12
+                contadorInicio = contadorInicio + 12
+            }
         })
 
-        return HTML + '</div>'
+        return html
     }
 
     return (
@@ -67,8 +80,11 @@ export default function ExportAllQR() {
                     :
                     (<View style={style.area2}>
                         <TouchableOpacity style={style.btnImprimir} onPress={() => {
+                            setLoadingList(true);
                             Print.printAsync({
                                 html: makeHTML()
+                            }).then(()=>{
+                                setLoadingList(false)
                             })
                         }}>
                             <Text style={style.btnImprimirText}>Imprimir ou salvar em PDF</Text>

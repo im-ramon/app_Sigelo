@@ -20,6 +20,7 @@ export default function Lista({ data }) {
     const [loadingUpdate, setLoadingUpdate] = useState(false)
     const [textoResposta, setTextoResposta] = useState('Atualizar')
     const [btnCor, setBtnCor] = useState('#3C74A6')
+    const [loadingQR, setLoadingQR] = useState(false)
 
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
@@ -162,7 +163,7 @@ export default function Lista({ data }) {
                 </View>
 
                 <View style={LocalStyle.sectionDadosCarro}>
-                    <Text style={LocalStyle.textDestaque}>Titular: <Text style={LocalStyle.textSimples}>{arrayPostGrad[data.postGrad].pg} {data.nomeGuerra}</Text></Text>
+                    <Text style={LocalStyle.textDestaque}>Titular: <Text style={LocalStyle.textSimples}>{arrayPostGrad[data.postGrad].pg} | {data.nomeGuerra}</Text></Text>
                     <Text style={LocalStyle.textDestaque}>Nome completo: <Text style={LocalStyle.textSimples}>{data.nomeCompleto}</Text></Text>
                     <Text style={LocalStyle.textDestaque}>Identidade: <Text style={LocalStyle.textSimples}>{data.documentoIdentidade}</Text></Text>
                     <Text style={LocalStyle.textDestaque}>Cor do veículo: <Text style={LocalStyle.textSimples}>{cores[data.cor].cor}</Text></Text>
@@ -184,17 +185,18 @@ export default function Lista({ data }) {
                         <AntDesign name="delete" size={24} color="black" />
                     </TouchableOpacity>
 
-                    {pageName === 'Cadastros ativos' ?
-                        (<TouchableOpacity style={LocalStyle.btnQRCOde} onPress={() => {
-                            Print.printAsync({
-                                html: makeHTML()
-                            })
-                        }}>
-                            <LinearGradient colors={['transparent', '#00000030']} style={LocalStyle.linearGradient} />
-                            <AntDesign name="qrcode" size={24} color="black" />
-                        </TouchableOpacity>)
-                        :
-                        false
+                    {pageName === 'Cadastros ativos' &&
+                    
+                            (<TouchableOpacity style={LocalStyle.btnQRCOde} onPress={() => {
+                                setLoadingQR(true);
+                                Print.printAsync({
+                                    html: makeHTML()
+                                }).then(()=>{setLoadingQR(false)})
+                            }}>
+                                <LinearGradient colors={['transparent', '#00000030']} style={LocalStyle.linearGradient} />
+                                {( loadingQR ? <ActivityIndicator color={'#000'} size={24} /> : <AntDesign name="qrcode" size={24} color="black" />)}
+                            </TouchableOpacity>)
+                                        
                     }
                 </View>
 

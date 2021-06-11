@@ -80,6 +80,7 @@ export default function PassawordReset() {
                             placeholder="Email"
                             autoCorrect={false}
                             autoCapitalize="none"
+                            keyboardType="email-address"
                             value={emailUser}
                             autoFocus={true}
                             onChangeText={text => setEmailUser(text)}

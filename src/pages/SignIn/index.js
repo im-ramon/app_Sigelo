@@ -53,6 +53,7 @@ export default function SignIn() {
                             autoCorrect={false}
                             autoCapitalize="none"
                             value={email}
+                            keyboardType="email-address"
                             autoCompleteType='email'
                             onChangeText={text => setEmail(text)}
                         />

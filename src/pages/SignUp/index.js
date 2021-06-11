@@ -87,6 +87,7 @@ export default function SignUp() {
                         <Input
                             placeholder="Email"
                             autoCorrect={false}
+                            keyboardType="email-address"
                             autoCapitalize="none"
                             value={emailUser}
                             onChangeText={text => setEmailUser(text)}

@@ -37,11 +37,11 @@ export default function Conf() {
         <ImageBackground source={background} style={styles.body}>
             <View style={styles.header}>
                 <Text style={styles.textHeader}>Configurações</Text>
-                <Text style={styles.text}>Págima em desenvolvimento</Text>
             </View>
 
             <View style={styles.main}>
-                <View style={{ borderColor: 'white', borderWidth: 1, padding: 10, marginBottom: 50, width: '80%' }}>
+                <Text style={styles.text}>Págima em desenvolvimento...</Text>
+                {/* <View style={{ borderColor: 'white', borderWidth: 1, padding: 10, marginBottom: 50, width: '80%' }}>
                     <Text style={{ ...styles.text, fontSize: 20, textAlign: 'center', fontWeight: 'bold', marginBottom: 10 }}>Dados do usuário logado:</Text>
                     <Text style={{ ...styles.text, fontSize: 16, textAlign: 'left' }}> - Nome: {user.nome}</Text>
                     <Text style={{ ...styles.text, fontSize: 16, textAlign: 'left' }}> - E-mail: {user.email}</Text>
@@ -57,7 +57,7 @@ export default function Conf() {
                 </View>
 
 
-                {/* <View style={styles.themeArea}>
+                <View style={styles.themeArea}>
                     <Text style={{ ...styles.text, fontSize: 18 }}>Tema (Em implementação)</Text>
 
                     <View style={styles.themeAreaBtn}>
@@ -71,9 +71,9 @@ export default function Conf() {
                             <Text style={{ color: '#fff', fontSize: 28, textTransform: 'uppercase', marginLeft: 15 }}>Dark</Text>
                         </TouchableOpacity>
                     </View>
-                </View> */}
+                </View>
 
-                <Text>Alterar senha</Text>
+                <Text>Alterar senha</Text> */}
             </View>
 
 

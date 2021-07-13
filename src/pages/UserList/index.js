@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import { View, Text, ImageBackground, StyleSheet, Modal, ActivityIndicator, FlatList, TouchableOpacity, TextInput } from 'react-native';
 import { AreaInput, Background, Container, Input, Logo, SubmitButton, SubmitText, Link, LinkText, styles } from '../../styles/styles';
 import { FontAwesome } from '@expo/vector-icons';
@@ -13,52 +13,58 @@ import minhasCores from '../../styles/colors'
 export default function UserList() {
 
     const navigation = useNavigation();
-    // const [search, setSearch] = useState('teste')
+    const [search, setSearch] = useState(null)
 
     //dados do formulário: 
-    const [users, setUsers] = useState([])
+    const [totalUsers, setTotalUsers] = useState([])
+    const [filterUsers, setFilterUsers] = useState([])
     const [loadingList, setLoadingList] = useState(true)
 
     const { setLoading } = useContext(AuthContext)
     const { pageName, today, setPageName, setToday } = useContext(AppContext);
 
+    async function listarUsuarios() {
+        await firebase.database().ref('veiculos').on('value', snapshot => {
+            let arrayVeiculos = []
+            setTotalUsers([])
+            snapshot.forEach(itens => {
+                let data = {
+                    key: itens.key,
+                    cor: itens.val().cor,
+                    documentoIdentidade: itens.val().documentoIdentidade,
+                    modelo: itens.val().modelo,
+                    nomeCompleto: itens.val().nomeCompleto,
+                    nomeGuerra: itens.val().nomeGuerra,
+                    observacoes: itens.val().observacoes,
+                    placa: itens.val().placa,
+                    postGrad: itens.val().postGrad,
+                    tipoAcesso: itens.val().tipoAcesso,
+                    validade: itens.val().validade,
+                }
+                arrayVeiculos.push(data)
+            })
+            arrayVeiculos = arrayVeiculos.sort((a, b) => a.postGrad - b.postGrad)
+            setTotalUsers(arrayVeiculos)
+            setFilterUsers(arrayVeiculos)
+        })
+    }
 
     useEffect(() => {
-        async function listarUsuarios() {
-            await firebase.database().ref('veiculos').on('value', snapshot => {
-                let arrayVeiculos = []
-                setUsers([])
-                snapshot.forEach(itens => {
-                    let data = {
-                        key: itens.key,
-                        cor: itens.val().cor,
-                        documentoIdentidade: itens.val().documentoIdentidade,
-                        modelo: itens.val().modelo,
-                        nomeCompleto: itens.val().nomeCompleto,
-                        nomeGuerra: itens.val().nomeGuerra,
-                        observacoes: itens.val().observacoes,
-                        placa: itens.val().placa,
-                        postGrad: itens.val().postGrad,
-                        tipoAcesso: itens.val().tipoAcesso,
-                        validade: itens.val().validade,
-                    }
-                    arrayVeiculos.push(data)
-                })
-                arrayVeiculos = arrayVeiculos.sort((a, b) => a.postGrad - b.postGrad)
-                setUsers(arrayVeiculos)
-                setLoadingList(false)
-            })
-        }
         listarUsuarios()
+            .then(setLoadingList(false))
     }, [])
+
+    useEffect(() => {
+        search === '' ? setFilterUsers(totalUsers) : search != null && setFilterUsers(totalUsers.filter(item => item.nomeCompleto.toLowerCase().indexOf(search.toLowerCase()) > - 1 || item.placa.toLowerCase().indexOf(search.toLowerCase()) > - 1 ))
+    }, [search])
 
 
     return (
         <Background>
             <ImageBackground source={require('../../assets/background.jpg')} style={styles.image}>
-                {/* <View style={style.searchArea}>
+                <View style={style.searchArea}>
                     <TouchableOpacity style={style.btnSearch}>
-                        <FontAwesome name="search" size={32} color={minhasCores.color1} />
+                        <FontAwesome name="search" size={32} color={minhasCores.color5} />
                     </TouchableOpacity>
 
                     <TextInput
@@ -67,7 +73,7 @@ export default function UserList() {
                         onChangeText={(text) => { setSearch(text) }}
                         autoCapitalize='none'
                     />
-                </View> */}
+                </View>
                 <Container>
 
                     <Text style={style.textH1}>{pageName}</Text>
@@ -79,7 +85,7 @@ export default function UserList() {
                         : (
                             <FlatList
                                 keyExtractor={item => item.key}
-                                data={users}
+                                data={filterUsers}
                                 renderItem={({ item }) => (<Lista data={item} />)}
                             />
 

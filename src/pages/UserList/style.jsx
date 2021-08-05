@@ -47,7 +47,7 @@ export const style = StyleSheet.create({
         backgroundColor: minhasCores.color1,
         width: '80%',
         height: '100%',
-        fontSize: 20,
+        fontSize: 16,
         color: minhasCores.light,
         paddingLeft: 5,
     },

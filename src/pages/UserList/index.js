@@ -70,6 +70,8 @@ export default function UserList() {
                     <TextInput
                         style={style.inputSearch}
                         value={search}
+                        placeholder="Digite nome ou placa"
+                        placeholderTextColor="#ffffff30"
                         onChangeText={(text) => { setSearch(text) }}
                         autoCapitalize='none'
                     />

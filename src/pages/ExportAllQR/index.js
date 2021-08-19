@@ -15,8 +15,8 @@ export default function ExportAllQR() {
     const [loadingList, setLoadingList] = useState(true)
     const [loadingButton, setLoadingButton] = useState(false)
 
-    const [sizeQR, setSizeQR] = useState(50)
-    const [qtdQR, setQtdQR] = useState(2)
+    const [sizeQR, setSizeQR] = useState(100)
+    const [qtdQR, setQtdQR] = useState(12)
 
     useEffect(() => {
         async function listarUsuarios() {
@@ -104,6 +104,7 @@ export default function ExportAllQR() {
                                 value={qtdQR}
                                 onValueChange={value => { setQtdQR(value) }}
                                 step={1}
+                                
                                 maximumValue={100}
                                 minimumTrackTintColor="#FFFFFF"
                                 maximumTrackTintColor="#000000"

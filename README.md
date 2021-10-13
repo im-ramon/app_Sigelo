@@ -106,7 +106,7 @@
 
 #### 👨‍💻 <a id="autor">Autor</a>:
 
-​	<a href="#" title="Ramon Oliveira"><img alt="Ramon Oliveira" src="https://img.shields.io/badge/<>-Ramon%20Oliveira%20dos%20Santos%20 — Matrícula%20UNIFACS:%20312190023-%237519C1"></a>
+​	<a href="#" title="Ramon Oliveira"><img alt="Ramon Oliveira" src="https://img.shields.io/badge/<>-Ramon%20Oliveira%20dos%20Santos%20-%237519C1"></a>
 
 ------
 
